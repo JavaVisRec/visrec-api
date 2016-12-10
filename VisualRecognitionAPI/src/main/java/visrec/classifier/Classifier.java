@@ -1,5 +1,7 @@
 package visrec.classifier;
 
+import java.util.Map;
+
 /**
  * Generic classifier interface
  * 
