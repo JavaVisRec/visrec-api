@@ -1,23 +1,34 @@
 package visrec.samples;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import visrec.classifier.Classifier;
 import visrec.classifier.SimpleClassifier;
 import visrec.tasks.ImageRecognition;
 import visrec.tasks.ImageRecognitionProvider;
 
 /**
- *
+ * Example how image recognition service based on classifier can be created and used
+ * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class ImageRecognitionSample {
 
-    public static void main(String[] args) {        
+    public static void main(String[] args) throws IOException {        
+        // Create an image classifier based on standard classifier interface
         Classifier<BufferedImage, String> someClassifier = new SimpleClassifier();
-        // someClassifier.buildClassifier(data);
+        // someClassifier.buildClassifier(data); // train/build classifier here
         
-        ImageRecognition<BufferedImage, String> ir = new ImageRecognitionProvider<BufferedImage, String>(someClassifier);
-        ir.recognizeImage((BufferedImage) ir);
+        // wrap the image classifier into image recognition interface
+        ImageRecognition<BufferedImage, String> imgRecognition = new ImageRecognitionProvider<BufferedImage, String>(someClassifier);
+        
+        // get some image from file
+        BufferedImage someimage = ImageIO.read(new File("imageFile.png"));
+        
+        // use the image recognition service        
+        imgRecognition.recognizeImage(someimage);
     }
     
 }
