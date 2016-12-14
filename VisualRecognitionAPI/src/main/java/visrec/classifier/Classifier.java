@@ -3,7 +3,7 @@ package visrec.classifier;
 import java.util.Map;
 
 /**
- * Generic classifier interface
+ * Generic classifier interface, that all classifiers should implement
  * 
  * Based on classifiers from Weka and JML
  * 

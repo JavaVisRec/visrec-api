@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Example of a trivial classifier that map images to classes / strings
+ * We should add some basic type of image classifier from some open source library as an example...
  * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
