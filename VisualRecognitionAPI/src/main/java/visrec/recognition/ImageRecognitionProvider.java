@@ -1,4 +1,4 @@
-package visrec.tasks;
+package visrec.recognition;
 
 import java.util.List;
 import visrec.classifier.Classifier;

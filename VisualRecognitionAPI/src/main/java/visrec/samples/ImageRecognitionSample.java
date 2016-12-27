@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import visrec.classifier.Classifier;
 import visrec.classifier.SimpleClassifier;
 import visrec.recognition.Recognizer;
-import visrec.tasks.ImageRecognitionProvider;
+import visrec.recognition.ImageRecognitionProvider;
 
 /**
  * Example how image recognition service based on classifier can be created and used
