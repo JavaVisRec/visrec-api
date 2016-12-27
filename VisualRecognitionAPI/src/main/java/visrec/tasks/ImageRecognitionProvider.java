@@ -1,12 +1,14 @@
 package visrec.tasks;
 
+import java.util.List;
 import visrec.classifier.Classifier;
+import visrec.recognition.Recognizer;
 
 /**
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class ImageRecognitionProvider<I, C> implements ImageRecognition <I, C> {
+public class ImageRecognitionProvider<I, C> implements Recognizer <I, C> {
     
     Classifier<I, C> classifier;
 
@@ -15,11 +17,8 @@ public class ImageRecognitionProvider<I, C> implements ImageRecognition <I, C> {
     }
 
     @Override
-    public C recognizeImage(I image) {
-        return classifier.classify(image);
+    public List<C> recognize(I image) {
+        return (List<C>) classifier.classify(image);
     }
-    
-    
-    
     
 }

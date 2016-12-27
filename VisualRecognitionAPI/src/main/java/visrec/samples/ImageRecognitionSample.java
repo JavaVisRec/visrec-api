@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import visrec.classifier.Classifier;
 import visrec.classifier.SimpleClassifier;
-import visrec.tasks.ImageRecognition;
+import visrec.recognition.Recognizer;
 import visrec.tasks.ImageRecognitionProvider;
 
 /**
@@ -22,13 +22,13 @@ public class ImageRecognitionSample {
         // someClassifier.buildClassifier(data); // train/build classifier here
         
         // wrap the image classifier into image recognition interface
-        ImageRecognition<BufferedImage, String> imgRecognition = new ImageRecognitionProvider<BufferedImage, String>(someClassifier);
+        Recognizer<BufferedImage, String> imgRecognition = new ImageRecognitionProvider<BufferedImage, String>(someClassifier);
         
         // get some image from file
         BufferedImage someimage = ImageIO.read(new File("imageFile.png"));
         
         // use the image recognition service        
-        imgRecognition.recognizeImage(someimage);
+        imgRecognition.recognize(someimage);  // get recognition results in some standardized way
     }
     
 }
