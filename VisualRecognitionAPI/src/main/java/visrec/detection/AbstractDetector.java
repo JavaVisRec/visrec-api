@@ -10,7 +10,7 @@ import visrec.util.BoundingBox;
  */
 public abstract class AbstractDetector<IMAGE_CLASS> implements Detector<IMAGE_CLASS> {
 
-    Classifier<IMAGE_CLASS, Boolean> classifier;
+    Classifier<IMAGE_CLASS, Boolean> classifier; // This should be binary classifier, that can detect some object / image
 
     public AbstractDetector(Classifier<IMAGE_CLASS, Boolean> classifier) {
         this.classifier = classifier;

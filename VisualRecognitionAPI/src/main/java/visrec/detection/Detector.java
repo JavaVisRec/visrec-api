@@ -9,5 +9,12 @@ import visrec.util.BoundingBox;
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public interface Detector<IMAGE_CLASS> {
+        
+        /**
+         * Detects some object in specified image
+         * 
+         * @param image image to search for object
+         * @return list of bounding boxes (locations) where the object is detected in image
+         */
         public List<BoundingBox> detect(IMAGE_CLASS image);
 }
