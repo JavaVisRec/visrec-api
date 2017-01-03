@@ -19,4 +19,6 @@ public abstract class AbstractDetector<IMAGE_CLASS> implements Detector<IMAGE_CL
     @Override
     public abstract List<BoundingBox> detect(IMAGE_CLASS image);
     
+    // detect for Image, File, Url, Stream
+    
 }
