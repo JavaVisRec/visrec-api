@@ -23,8 +23,12 @@ public class VisRecFaceDetectorSample {
 
     public static void main(String[] args) throws IOException {
         
-        Detector<File> faceDetector = new HaarCascadeFaceDetector();                 
-        List results = faceDetector.detect(new File("people.jpg"));
+        Detector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
+     
+        ImageFactory<MBFImage> imageFactory = new MBFImageFactory();
+        MBFImage image = imageFactory.getImage(new File("people.jpg"));
+        
+        List results = faceDetector.detect(image);
         
         for(Object result : results) {
             System.out.println( ((DetectedFace)result).getBounds());

@@ -19,7 +19,7 @@ import visrec.detection.Detector;
  * http://openimaj.org/tutorial/finding-faces.html
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class CameraDisplay {
+public class CameraDemo {
 
     public static void main(String[] args) throws VideoCaptureException {
         VideoCapture vc = new VideoCapture(500, 400);
@@ -28,20 +28,21 @@ public class CameraDisplay {
         
         vd.addVideoListener(
                 new VideoDisplayListener<MBFImage>() {
+            @Override
             public void beforeUpdate(MBFImage frame) {
-                FaceDetector<DetectedFace,FImage> fd = new HaarCascadeDetector(40);
-                List<DetectedFace> faces = fd.detectFaces(Transforms.calculateIntensity(frame));
-            
-                for( DetectedFace face : faces ) {
-                    frame.drawShape(face.getBounds(), RGBColour.RED);
-                }
+//                FaceDetector<DetectedFace,FImage> fd = new HaarCascadeDetector(40);
+//                List<DetectedFace> faces = fd.detectFaces(Transforms.calculateIntensity(frame));
+//            
+//                for( DetectedFace face : faces ) {
+//                    frame.drawShape(face.getBounds(), RGBColour.RED);
+//                }
 
-//                  Detector<File> faceDetector = new HaarCascadeFaceDetector();                 
-//                  List results = faceDetector.detect(frame.flatten());
-//        
-//                    for(Object result : results) {
-//                        System.out.println( ((DetectedFace)result).getBounds());
-//                    }
+                  Detector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
+                  List results = faceDetector.detect(frame);
+        
+                    for(Object result : results) {
+                         frame.drawShape(((DetectedFace)result).getBounds(), RGBColour.RED);
+                    }
             }
 
             public void afterUpdate(VideoDisplay<MBFImage> display) {

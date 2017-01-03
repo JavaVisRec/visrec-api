@@ -19,7 +19,7 @@ import visrec.util.MBFImageFactory;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class HaarCascadeFaceDetector implements Detector<File> {
+public class HaarCascadeFaceDetector implements Detector<MBFImage> {
     FaceDetector<DetectedFace, FImage> faceDetector;
 
     public HaarCascadeFaceDetector() {
@@ -31,18 +31,14 @@ public class HaarCascadeFaceDetector implements Detector<File> {
     }
          
     @Override
-    public List detect(File imageFile) {
-        try {
+    public List detect(MBFImage image) {
             // MBFImage image = ImageUtilities.readMBF(imageFile);
-            ImageFactory<MBFImage> imageFactory = new MBFImageFactory();
-            MBFImage image = imageFactory.getImage(imageFile);
 
             List<DetectedFace> faces = faceDetector.detectFaces(image.flatten());
+            
             return faces;
-        } catch (IOException ex) {
-            Logger.getLogger(VisRecFaceDetectorSample.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+
+
     }
 
 }
