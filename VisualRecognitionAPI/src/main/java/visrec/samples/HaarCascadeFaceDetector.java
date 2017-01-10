@@ -11,6 +11,7 @@ import org.openimaj.image.MBFImage;
 import org.openimaj.image.processing.face.detection.DetectedFace;
 import org.openimaj.image.processing.face.detection.FaceDetector;
 import org.openimaj.image.processing.face.detection.HaarCascadeDetector;
+import visrec.detection.AbstractDetector;
 import visrec.detection.Detector;
 import visrec.util.ImageFactory;
 import visrec.util.MBFImageFactory;
@@ -19,7 +20,7 @@ import visrec.util.MBFImageFactory;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class HaarCascadeFaceDetector implements Detector<MBFImage> {
+public class HaarCascadeFaceDetector extends AbstractDetector<MBFImage> {
     FaceDetector<DetectedFace, FImage> faceDetector;
 
     public HaarCascadeFaceDetector() {
