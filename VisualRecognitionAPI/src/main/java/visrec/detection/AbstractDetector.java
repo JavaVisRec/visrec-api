@@ -16,6 +16,7 @@ import visrec.util.ImageFactory;
 public abstract class AbstractDetector<IMAGE_CLASS> implements Detector<IMAGE_CLASS> {
 
    // Classifier<IMAGE_CLASS, Boolean> classifier; // This should be binary classifier, that can detect some object / image
+    // this should hold iage classifier
     ImageFactory<IMAGE_CLASS> imageFactory;
 
     public AbstractDetector() {

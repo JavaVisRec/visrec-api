@@ -2,7 +2,6 @@ package visrec.recognition;
 
 import java.util.List;
 import visrec.classifier.Classifier;
-import visrec.recognition.Recognizer;
 
 /**
  *

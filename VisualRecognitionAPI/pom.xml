@@ -9,14 +9,57 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+      	<nd4j.version>0.7.2</nd4j.version>
+
+        
     </properties>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.nd4j</groupId>
+                <artifactId>nd4j-native-platform</artifactId>
+                <version>${nd4j.version}</version>
+            </dependency>
+       </dependencies>
+    </dependencyManagement>
+        
     <dependencies>
+        <dependency>
+            <groupId>com.ibm.watson.developer_cloud</groupId>
+            <artifactId>visual-recognition</artifactId>
+            <version>3.5.3</version>
+        </dependency>      
         <dependency>
 	<artifactId>faces</artifactId>
 	<groupId>org.openimaj</groupId>
 	<version>1.3.5</version>
 	<scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-core</artifactId>
+            <version>0.7.2</version>
+        </dependency>
+
+        <dependency>
+         <groupId>org.nd4j</groupId>
+         <artifactId>nd4j-native-platform</artifactId>
+         <version>${nd4j.version}</version>
+       </dependency>
+ 
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-core</artifactId>
+            <version>3.1.1</version>
+        </dependency>      
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160212</version>
+            <type>jar</type>
+        </dependency>
+
     </dependencies>
     
 </project>

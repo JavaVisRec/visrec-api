@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface Classifier <I, C> {
         
-    void buildClassifier(Map<I, C> data);
+    void buildClassifier(Map<I, C> data); // how to specify specific classifier options in this feneric builde- ? add List<ClassifierOpetion> ? ClassifierOption<Type> (nmae, value)
 
 
     // Classify the instance according to this classifier.
