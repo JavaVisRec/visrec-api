@@ -1,4 +1,4 @@
-package visrec.impl.dl4j;
+package visrec.examples;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,6 +9,7 @@ import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import visrec.classifier.ImageClassifier;
+import visrec.impl.dl4j.Dl4jImageClassifier;
 import visrec.util.ImageRecognitionResults;
 import visrec.util.ImageRecognitionResult;
 

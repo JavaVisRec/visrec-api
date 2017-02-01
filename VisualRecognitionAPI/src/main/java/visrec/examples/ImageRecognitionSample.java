@@ -1,4 +1,4 @@
-package visrec.samples;
+package visrec.examples;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

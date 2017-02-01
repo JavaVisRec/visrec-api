@@ -1,8 +1,9 @@
-package visrec.impl.watson;
+package visrec.examples;
 
 import java.io.File;
 import java.io.IOException;
 import visrec.classifier.ImageClassifier;
+import visrec.impl.watson.WatsonImageClassifier;
 import visrec.util.ImageRecognitionResults;
 import visrec.util.ImageRecognitionResult;
 
