@@ -1,10 +1,14 @@
 package visrec.impl.watson;
 
 import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifierOptions;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyImagesOptions;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassification;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifier;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Map;
+import javax.imageio.ImageIO;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import visrec.classifier.ImageClassifier;
@@ -14,10 +18,11 @@ import visrec.util.ImageRecognitionResults;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class WatsonImageClassifier extends ImageClassifier {
+public class WatsonImageClassifier extends ImageClassifier<BufferedImage, VisualRecognition> {
 
     private String apiKey;
     private VisualRecognition service = new VisualRecognition(VisualRecognition.VERSION_DATE_2016_05_20); // ovaj bi morao da zamotam u Classifier interface
+    private  VisualClassifier classifier; // this should be wraped in classfier interface?
 
     public WatsonImageClassifier(String apiKey) {
         this.apiKey = apiKey;
@@ -37,10 +42,24 @@ public class WatsonImageClassifier extends ImageClassifier {
               
     @Override
     public void buildClassifier(Map data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String classifierName = "myClassifier";
+        // put classes and file paths into the data map
+        // maybe create class to take all the parameters
+        // maybe create zip files from the specified path and standard dir structure?
+        
+        ClassifierOptions createOptions = new ClassifierOptions.Builder().classifierName(classifierName)
+                .addClass("car", new File("src/test/resources/visual_recognition/car_positive.zip"))
+                .addClass("baseball", new File("src/test/resources/visual_recognition/baseball_positive.zip"))
+                .negativeExamples(new File("src/test/resources/visual_recognition/negative.zip")) // can you provide negative examples for specific class and is it needed at all? very likely - car is not a bus
+                .build();
+        
+        this.classifier = service.createClassifier(createOptions).execute();
     }
 
+    
     // THIS ONE OVERRIDES THE METHOD WITH FILE param not image type
+    // we should be able to specify which classifier to use, where that should be specified?
     @Override
     public ImageRecognitionResults classify(File sample) {
         ClassifyImagesOptions options = new ClassifyImagesOptions.Builder()
@@ -71,15 +90,16 @@ public class WatsonImageClassifier extends ImageClassifier {
         return results;
     }
 
-    @Override
-    public ImageRecognitionResults classify(Object sample) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
-    public Map classDistribution(Object instance) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ImageRecognitionResults classify(BufferedImage sample) {
+      // create file from image
+      File tmpImgFile = ImageIO.createImageInputStream(sample);
+       classify(inStream)
+      
     }
+
+//
 
 //    @Override
 //    public String classify(Object sample) { // ?????

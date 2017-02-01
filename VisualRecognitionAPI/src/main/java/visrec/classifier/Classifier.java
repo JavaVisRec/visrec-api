@@ -18,6 +18,6 @@ public interface Classifier <I, C> {
     C classify(I instance);
 
 
-    // Generate the membership distribution for this instance using this classifier.
-    Map<C, Double> classDistribution (I instance);    
+    // Generate the membership distribution for this instance using this classifier. this is maybe not needed
+//    Map<C, Double> classDistribution (I instance);    
 }
