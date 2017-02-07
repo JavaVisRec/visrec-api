@@ -3,6 +3,7 @@ package visrec.examples;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 import javax.imageio.ImageIO;
 import org.datavec.image.loader.ImageLoader;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
@@ -20,9 +21,28 @@ import visrec.util.ImageRecognitionResult;
 public class Dl4jImageClassifierExample {
 
     
+    
+    public static ImageClassifier buildDl4jImageClassifier() {
+        Dl4jImageClassifier imageClassifier = new Dl4jImageClassifier(); 
+        
+        Properties properties = new Properties();
+        
+        properties.put("imagesPath", "/home/zoran/animals");
+        properties.put("imageWidth", "100");
+        properties.put("imageHeight", "100");
+        properties.put("accuracy", "0.03");
+                     
+        imageClassifier.buildClassifier(properties);
+        
+        return imageClassifier;
+    }
+    
     public static void main(String[] args) throws IOException {
         
-        // load trained dl4j LeNet 
+        ImageClassifier imageClassifier = buildDl4jImageClassifier();
+        
+        
+ /*       // load trained dl4j LeNet 
         //wrap this network into classifier interface
         MultiLayerNetwork neuralNet = ModelSerializer.restoreMultiLayerNetwork("LeNetMultiLayerNetwork.zip");
 //        
@@ -47,6 +67,7 @@ public class Dl4jImageClassifierExample {
        for(ImageRecognitionResult result : results) {
             System.out.println(result);
        }  
+*/
         
     }
     

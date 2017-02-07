@@ -1,6 +1,7 @@
 package visrec.classifier;
 
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Generic classifier interface, that all classifiers should implement
@@ -11,7 +12,7 @@ import java.util.Map;
  */
 public interface Classifier <I, C> {
         
-    void buildClassifier(Map<I, C> data); // how to specify specific classifier options in this feneric builde- ? add List<ClassifierOpetion> ? ClassifierOption<Type> (nmae, value)
+    void buildClassifier(Properties data); // how to specify specific classifier options in this feneric builde- ? add List<ClassifierOpetion> ? ClassifierOption<Type> (nmae, value)
 
 
     // Classify the instance according to this classifier.

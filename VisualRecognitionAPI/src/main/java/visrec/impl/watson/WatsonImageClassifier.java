@@ -8,6 +8,7 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifi
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Map;
+import java.util.Properties;
 import javax.imageio.ImageIO;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,6 +29,12 @@ public class WatsonImageClassifier extends ImageClassifier<BufferedImage, Visual
         this.apiKey = apiKey;
         service.setApiKey(apiKey);
     }
+    
+//    public WatsonImageClassifier(String apiKey) {
+//        this.apiKey = apiKey;
+//        service.setApiKey(apiKey);
+//        also use classifierId    
+//    }    
      
     public WatsonImageClassifier(VisualRecognition service) {
         this.service = service;
@@ -41,22 +48,23 @@ public class WatsonImageClassifier extends ImageClassifier<BufferedImage, Visual
     }
               
     @Override
-    public void buildClassifier(Map data) {
+    public void buildClassifier(Properties data) {
         
         String classifierName = "myClassifier";
         // put classes and file paths into the data map
         // maybe create class to take all the parameters
         // maybe create zip files from the specified path and standard dir structure?
-        
+                        
         ClassifierOptions createOptions = new ClassifierOptions.Builder().classifierName(classifierName)
-                .addClass("car", new File("src/test/resources/visual_recognition/car_positive.zip"))
-                .addClass("baseball", new File("src/test/resources/visual_recognition/baseball_positive.zip"))
-                .negativeExamples(new File("src/test/resources/visual_recognition/negative.zip")) // can you provide negative examples for specific class and is it needed at all? very likely - car is not a bus
+                .addClass("bear", new File("/home/zoran/animals/bear.zip"))
+                .addClass("deer", new File("/home/zoran/animals/deer.zip"))
+                .addClass("duck", new File("/home/zoran/animals/duck.zip"))
+                .addClass("turtle", new File("/home/zoran/animals/turtle.zip"))
+   //             .negativeExamples(new File("src/test/resources/visual_recognition/negative.zip")) // can you provide negative examples for specific class and is it needed at all? very likely - car is not a bus
                 .build();
         
         this.classifier = service.createClassifier(createOptions).execute();
     }
-
     
     // THIS ONE OVERRIDES THE METHOD WITH FILE param not image type
     // we should be able to specify which classifier to use, where that should be specified?
@@ -94,9 +102,9 @@ public class WatsonImageClassifier extends ImageClassifier<BufferedImage, Visual
     @Override
     public ImageRecognitionResults classify(BufferedImage sample) {
       // create file from image
-      File tmpImgFile = ImageIO.createImageInputStream(sample);
-       classify(inStream)
-      
+//      File tmpImgFile = ImageIO.createImageInputStream(sample);
+//       classify(inStream)
+      return null;
     }
 
 //
