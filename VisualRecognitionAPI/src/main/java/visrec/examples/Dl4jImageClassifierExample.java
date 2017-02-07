@@ -21,25 +21,18 @@ import visrec.util.ImageRecognitionResult;
 public class Dl4jImageClassifierExample {
 
     
-    
-    public static ImageClassifier buildDl4jImageClassifier() {
-        Dl4jImageClassifier imageClassifier = new Dl4jImageClassifier(); 
-        
-        Properties properties = new Properties();
-        
-        properties.put("imagesPath", "/home/zoran/animals");
-        properties.put("imageWidth", "100");
-        properties.put("imageHeight", "100");
-        properties.put("accuracy", "0.03");
-                     
-        imageClassifier.buildClassifier(properties);
-        
-        return imageClassifier;
-    }
+   
     
     public static void main(String[] args) throws IOException {
         
-        ImageClassifier imageClassifier = buildDl4jImageClassifier();
+        ImageClassifier imageClassifier = new Dl4jImageClassifier(); 
+        
+        Properties prop = new Properties();        
+        prop.put("imagesPath", "/home/zoran/animals");  // path to directory with images. Containes subfolders with images named as corresponding classes
+        prop.put("imageWidth", "100");
+        prop.put("imageHeight", "100");
+                    
+        imageClassifier.buildClassifier(prop);
         
         
  /*       // load trained dl4j LeNet 
@@ -56,18 +49,21 @@ public class Dl4jImageClassifierExample {
 //        System.out.println(output); // interpret results
         
   
-        // create watson image classifier using constructor with api key
-   //    ImageClassifier imageClassifier = new Dl4jImageClassifier("LeNetMultiLayerNetwork.zip");    
-       ImageClassifier imageClassifier = new Dl4jImageClassifier(neuralNet);    
         
+   //    ImageClassifier imageClassifier = new Dl4jImageClassifier("LeNetMultiLayerNetwork.zip");    // load trained model from file
+       ImageClassifier imageClassifier = new Dl4jImageClassifier(neuralNet);     // provide instance of the trained model or model that should be trained
+*/        
         // classify image, and get results
-       ImageRecognitionResults results = imageClassifier.classify(new File("00060.png")); // todo: additional classification options?
+  
+        // USING IMAGE CLASSIFIER
+        
+        ImageRecognitionResults results = imageClassifier.classify(new File("00060.png")); // todo: additional classification options?
        
        // iterate and print recognition results
        for(ImageRecognitionResult result : results) {
             System.out.println(result);
        }  
-*/
+
         
     }
     
