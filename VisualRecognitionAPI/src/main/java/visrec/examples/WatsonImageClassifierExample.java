@@ -15,30 +15,32 @@ import visrec.util.ImageRecognitionResult;
  */
 public class WatsonImageClassifierExample {
     
-    public static ImageClassifier buildWatsonImageClassifier() {
-        WatsonImageClassifier imageClassifier = new WatsonImageClassifier("9a576187233d8b7918c6165b8f128466a7420c62"); 
-        
-        
-        Properties properties = new Properties();
-        // provide images and apikey here - classes and files - what if there is a 1000 classes?
-//        properties.put("imagesPath", "/home/zoran/animals");
-//        properties.put("imageWidth", "100");
-//        properties.put("imageHeight", "100");
-                     
-        imageClassifier.buildClassifier(properties);
-        
-        return imageClassifier;
-    }
+
         
     
     
     public static void main(String[] args) throws IOException {
         
-        ImageClassifier customImageClassifier  = buildWatsonImageClassifier();
         
+        // BUILDING A CUSTOM IMAGE CLASSIFIER
         
         // create watson image classifier using constructor with api key
-       ImageClassifier imageClassifier = new WatsonImageClassifier("9a576187233d8b7918c6165b8f128466a7420c62");    
+        ImageClassifier imageClassifier = new WatsonImageClassifier("xxx"); 
+        
+        Properties prop = new Properties();
+        prop.setProperty("classifierName", "myClassifier");        // this can be optional
+        prop.setProperty("bear", "/home/zoran/animals/bear.zip");   // [className => zipped image files] pairs
+        prop.setProperty("deer", "/home/zoran/animals/deer.zip");
+        prop.setProperty("duck", "/home/zoran/animals/duck.zip");
+        prop.setProperty("turtle", "/home/zoran/animals/turtle.zip");    
+                            
+        imageClassifier.buildClassifier(prop);
+                
+                
+        // USING IMAGE CLASSIFIER 
+        
+       // create watson image classifier using constructor with api key
+       // ImageClassifier imageClassifier = new WatsonImageClassifier("xxx");    
         
         // classify image, and get results
        ImageRecognitionResults results = imageClassifier.classify(new File("people.jpg")); // todo: additional classification options?

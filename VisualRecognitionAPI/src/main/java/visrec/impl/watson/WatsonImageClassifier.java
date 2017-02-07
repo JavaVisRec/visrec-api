@@ -7,6 +7,7 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifi
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifier;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Enumeration;
 import java.util.Map;
 import java.util.Properties;
 import javax.imageio.ImageIO;
@@ -48,20 +49,43 @@ public class WatsonImageClassifier extends ImageClassifier<BufferedImage, Visual
     }
               
     @Override
-    public void buildClassifier(Properties data) {
+    public void buildClassifier(Properties properties) {
         
-        String classifierName = "myClassifier";
+        ClassifierOptions.Builder optionsBuilder = new ClassifierOptions.Builder();
+        
+        Enumeration en = properties.propertyNames();
+        while(en.hasMoreElements()) {
+            String key = (String)en.nextElement();
+            
+            if (key.equals("classifierName")) {
+                // if there is no classifier name property geenrate some automaticaly
+                String classifierName = properties.getProperty("classifierName"); 
+                optionsBuilder.classifierName(classifierName);
+            } else {
+        
+                String value = properties.getProperty(key);
+
+                optionsBuilder.addClass(key, new File(value));
+            }
+
+            
+            // todo: handle negative examples                        
+        }
+        
+        ClassifierOptions createOptions = optionsBuilder.build();
+        
+
         // put classes and file paths into the data map
         // maybe create class to take all the parameters
         // maybe create zip files from the specified path and standard dir structure?
                         
-        ClassifierOptions createOptions = new ClassifierOptions.Builder().classifierName(classifierName)
-                .addClass("bear", new File("/home/zoran/animals/bear.zip"))
-                .addClass("deer", new File("/home/zoran/animals/deer.zip"))
-                .addClass("duck", new File("/home/zoran/animals/duck.zip"))
-                .addClass("turtle", new File("/home/zoran/animals/turtle.zip"))
-   //             .negativeExamples(new File("src/test/resources/visual_recognition/negative.zip")) // can you provide negative examples for specific class and is it needed at all? very likely - car is not a bus
-                .build();
+//        ClassifierOptions createOptions = new ClassifierOptions.Builder().classifierName(classifierName)
+//                .addClass("bear", new File("/home/zoran/animals/bear.zip"))
+//                .addClass("deer", new File("/home/zoran/animals/deer.zip"))
+//                .addClass("duck", new File("/home/zoran/animals/duck.zip"))
+//                .addClass("turtle", new File("/home/zoran/animals/turtle.zip"))
+//   //             .negativeExamples(new File("src/test/resources/visual_recognition/negative.zip")) // can you provide negative examples for specific class and is it needed at all? very likely - car is not a bus
+//                .build();
         
         this.classifier = service.createClassifier(createOptions).execute();
     }
