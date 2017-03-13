@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ImageRecognitionResults implements Iterable<ImageRecognitionResult> {
 
-    List<ImageRecognitionResult> results;
+    private List<ImageRecognitionResult> results;
 
     public ImageRecognitionResults() {
         results = new ArrayList<>();
@@ -21,6 +21,10 @@ public class ImageRecognitionResults implements Iterable<ImageRecognitionResult>
         ImageRecognitionResult r = new ImageRecognitionResult(clazz, score);
         results.add(r);
     }
+    
+    public void add(ImageRecognitionResult r) {
+              results.add(r);
+    }    
              
     @Override
     public String toString() {
@@ -32,9 +36,7 @@ public class ImageRecognitionResults implements Iterable<ImageRecognitionResult>
         return results.iterator();
     }
 
-    public void add(ImageRecognitionResult r) {
-              results.add(r);
-    }
+
     
     
     

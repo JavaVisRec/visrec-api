@@ -3,17 +3,9 @@ package visrec.examples;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.openimaj.image.FImage;
-import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.MBFImage;
 import org.openimaj.image.processing.face.detection.DetectedFace;
-import org.openimaj.image.processing.face.detection.FaceDetector;
-import org.openimaj.image.processing.face.detection.HaarCascadeDetector;
-import visrec.detection.AbstractDetector;
 import visrec.detection.Detector;
-import visrec.util.ImageFactory;
 import visrec.util.MBFImageFactory;
 
 /**
@@ -24,8 +16,8 @@ public class VisRecFaceDetectorSample {
 
     public static void main(String[] args) throws IOException {
         
-        AbstractDetector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
-        faceDetector.setImageFactory(new MBFImageFactory()); // this should be automaticly losaded by detector based on the image class
+        Detector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
+//        faceDetector.setImageFactory(new MBFImageFactory()); // this should be automaticly losaded by detector based on the image class
 //        ImageFactory<MBFImage> imageFactory = new MBFImageFactory();
 //        MBFImage image = imageFactory.getImage(new File("people.jpg"));
         

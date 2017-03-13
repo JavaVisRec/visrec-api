@@ -12,10 +12,10 @@ import java.net.URL;
  * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public interface ImageFactory<I> {
+public interface ImageFactory<IMAGE_CLASS> {
 
-    public I getImage(File file) throws IOException; 
-    public I getImage(URL file) throws IOException;
-    public I getImage(InputStream file) throws IOException;
+    public IMAGE_CLASS getImage(File file) throws IOException; 
+    public IMAGE_CLASS getImage(URL file) throws IOException;
+    public IMAGE_CLASS getImage(InputStream file) throws IOException;
         
 }

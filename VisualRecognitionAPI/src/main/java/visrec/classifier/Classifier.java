@@ -10,15 +10,22 @@ import java.util.Properties;
  * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public interface Classifier <I, C> {
-        
-    void buildClassifier(Properties data); // how to specify specific classifier options in this feneric builde- ? add List<ClassifierOpetion> ? ClassifierOption<Type> (nmae, value)
+public interface Classifier <INSTANCE_TYPE, RESULT_TYPE> {
 
+    /**
+     * Classify specified instance and return corresponding class
+     * 
+     * @param instance instance to classify
+     * @return instane's class
+     */
+    RESULT_TYPE classify(INSTANCE_TYPE instance);    
+    
+    
+    /**
+     * Builds classifier with specified settings
+     * 
+     * @param prop vatious settings to build specific classifier
+     */
+    void build(Properties prop);
 
-    // Classify the instance according to this classifier.
-    C classify(I instance);
-
-
-    // Generate the membership distribution for this instance using this classifier. this is maybe not needed
-//    Map<C, Double> classDistribution (I instance);    
 }

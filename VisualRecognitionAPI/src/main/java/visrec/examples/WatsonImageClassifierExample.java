@@ -34,7 +34,7 @@ public class WatsonImageClassifierExample {
         prop.setProperty("duck", "/home/zoran/animals/duck.zip");
         prop.setProperty("turtle", "/home/zoran/animals/turtle.zip");    
                             
-        imageClassifier.buildClassifier(prop);
+        imageClassifier.build(prop);
                 
                 
         // USING IMAGE CLASSIFIER 

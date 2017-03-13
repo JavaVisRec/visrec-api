@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import visrec.util.BoundingBox;
+import visrec.util.BufferedImageFactory;
 import visrec.util.ImageFactory;
 import visrec.util.ImageRecognitionResults;
 
@@ -22,6 +23,15 @@ public abstract class ImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Class
     
     private MODEL_CLASS model;
 
+    public ImageClassifier() {
+        // instantiate image factory whuch coresponds to specified IMAGE_CLASS
+      //  imageFactory = new BufferedImageFactory();
+    }
+    
+    public ImageFactory<IMAGE_CLASS> getImageFactory() {
+        return imageFactory;
+    }
+       
     @Override
     public abstract ImageRecognitionResults classify(IMAGE_CLASS sample) ;  // OVAJ SE I NE KORISTI
     

@@ -19,12 +19,10 @@ import visrec.util.ImageRecognitionResult;
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class Dl4jImageClassifierExample {
-
-    
-   
     
     public static void main(String[] args) throws IOException {
         
+        // Build image classifier
         ImageClassifier imageClassifier = new Dl4jImageClassifier(); 
         
         Properties prop = new Properties();        
@@ -32,7 +30,7 @@ public class Dl4jImageClassifierExample {
         prop.put("imageWidth", "100");
         prop.put("imageHeight", "100");
                     
-        imageClassifier.buildClassifier(prop);
+        imageClassifier.build(prop);
         
         
  /*       // load trained dl4j LeNet 

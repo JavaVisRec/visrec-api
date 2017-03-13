@@ -106,7 +106,7 @@ public class Dl4jImageClassifier extends ImageClassifier<BufferedImage, MultiLay
     // we would need machine learning pipeline
     // use Properties
     @Override
-    public void buildClassifier(Properties prop) {
+    public void build(Properties prop) {
         try {
 
        // image diemnsions and channels

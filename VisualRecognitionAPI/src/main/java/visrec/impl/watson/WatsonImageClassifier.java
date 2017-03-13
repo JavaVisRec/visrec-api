@@ -49,7 +49,7 @@ public class WatsonImageClassifier extends ImageClassifier<BufferedImage, Visual
     }
               
     @Override
-    public void buildClassifier(Properties properties) {
+    public void build(Properties properties) {
         
         ClassifierOptions.Builder optionsBuilder = new ClassifierOptions.Builder();
         

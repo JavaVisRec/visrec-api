@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-import visrec.classifier.Classifier;
+import visrec.classifier.ImageClassifier;
 import visrec.util.BoundingBox;
-import visrec.util.ImageFactory;
 
 /**
  * missing image to search in
@@ -15,48 +14,44 @@ import visrec.util.ImageFactory;
  */
 public abstract class AbstractDetector<IMAGE_CLASS> implements Detector<IMAGE_CLASS> {
 
-   // Classifier<IMAGE_CLASS, Boolean> classifier; // This should be binary classifier, that can detect some object / image
-    // this should hold iage classifier
-    ImageFactory<IMAGE_CLASS> imageFactory;
+    ImageClassifier<IMAGE_CLASS, Boolean> imageClassifier; // This should be binary classifier, that can detect some object / image
 
-    public AbstractDetector() {
-        // get the image factory for the specified class (Service Loader? )
-       // imageFactory = ImageFactory.getForClass(IMAGE_CLASS);
-    }
     
-//    public AbstractDetector(Classifier<IMAGE_CLASS, Boolean> classifier) {
-//        this.classifier = classifier;
-//        // get the image factory for the specified class (Service Loader )
-//    }    
+    public AbstractDetector(ImageClassifier<IMAGE_CLASS, Boolean> imageClassifier) {
+        this.imageClassifier = imageClassifier;
+    }
            
+     /**
+      * Scan entire image and return positions where object is detected
+      * @param image
+      * @return 
+      */
     @Override
     public abstract List<BoundingBox> detect(IMAGE_CLASS image);
     
-    // detect for Image, File, Url, Stream
 
     @Override
     public List<BoundingBox> detect(File file) throws IOException {
-        IMAGE_CLASS image = imageFactory.getImage(file);        
+        IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(file);        
         return detect(image);
     }
 
     @Override
     public List<BoundingBox> detect(URL url) throws IOException {
-        IMAGE_CLASS image = imageFactory.getImage(url);        
+        IMAGE_CLASS image =imageClassifier.getImageFactory().getImage(url);        
         return detect(image);   
     }
 
     @Override
     public List<BoundingBox> detect(InputStream inStream) throws IOException {
-        IMAGE_CLASS image = imageFactory.getImage(inStream);        
+        IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(inStream);        
         return detect(image);   
-    }
+    }    
 
-    public void setImageFactory(ImageFactory<IMAGE_CLASS> imageFactory) {
-        this.imageFactory = imageFactory;
+    public ImageClassifier<IMAGE_CLASS, Boolean> getImageClassifier() {
+        return imageClassifier;
     }
     
     
-
     
 }
