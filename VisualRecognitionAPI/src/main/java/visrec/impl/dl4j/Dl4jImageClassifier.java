@@ -1,8 +1,10 @@
 package visrec.impl.dl4j;
 
+import deepnets.imgrec.api.RecognitionResult;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -56,28 +58,30 @@ import visrec.util.ImageRecognitionResult;
  */
 public class Dl4jImageClassifier extends ImageClassifier<BufferedImage, MultiLayerNetwork> {
 
-    MultiLayerNetwork neuralNet;
-
     public Dl4jImageClassifier() {
     }
 
     public Dl4jImageClassifier(String fileName) throws IOException {
-        neuralNet = ModelSerializer.restoreMultiLayerNetwork(fileName);
+        MultiLayerNetwork neuralNet = ModelSerializer.restoreMultiLayerNetwork(fileName);
+        setModel(neuralNet);
         setImageFactory(new BufferedImageFactory());
     }
 
     public Dl4jImageClassifier(File file) throws IOException {
-        neuralNet = ModelSerializer.restoreMultiLayerNetwork(file);
+        MultiLayerNetwork neuralNet = ModelSerializer.restoreMultiLayerNetwork(file);
+        setModel(neuralNet);
         setImageFactory(new BufferedImageFactory());
     }
 
     public Dl4jImageClassifier(MultiLayerNetwork neuralNet) {
-        this.neuralNet = neuralNet;
+        setModel(neuralNet);
         setImageFactory(new BufferedImageFactory());
     }
 
     @Override
-    public ImageRecognitionResults classify(BufferedImage sample) {
+    public List<RecognitionResult> classify(BufferedImage sample) {
+        MultiLayerNetwork neuralNet = getModel();
+        
         ImageLoader imageLoader = new ImageLoader();
         INDArray input = imageLoader.asRowVector(sample);
 
@@ -87,12 +91,12 @@ public class Dl4jImageClassifier extends ImageClassifier<BufferedImage, MultiLay
 
         // get output
         // get label
-        ImageRecognitionResults results = new ImageRecognitionResults();
+        List<RecognitionResult> results = new ArrayList<>();
         // transform here binary network outpit to ImageRecognitionResult
         for (int i = 0; i < output.getRow(0).length(); i++) {
             double score = output.getFloat(0, i);
             if (score > 0.5) {
-                ImageRecognitionResult r = new ImageRecognitionResult((i + 1) + " ", score); // get label here
+                RecognitionResult r = new RecognitionResult((i + 1) + " ", score); // get label here
                 results.add(r);
             }
         }
@@ -173,7 +177,7 @@ public class Dl4jImageClassifier extends ImageClassifier<BufferedImage, MultiLay
             MultipleEpochsIterator trainIter;
 
             
-            neuralNet = alexnetModel(seed, iterations, channels, numLabels, width, height);
+            MultiLayerNetwork neuralNet = alexnetModel(seed, iterations, channels, numLabels, width, height);
             
 //  log.info("Train model....");
 // Train without transformations
@@ -193,6 +197,8 @@ public class Dl4jImageClassifier extends ImageClassifier<BufferedImage, MultiLay
                 dataIter.setPreProcessor(scaler);
                 trainIter = new MultipleEpochsIterator(epochs, dataIter, nCores);
                 neuralNet.fit(trainIter);
+                                
+                setModel(neuralNet);
             }
         } catch (IOException ex) {
             Logger.getLogger(Dl4jImageClassifier.class.getName()).log(Level.SEVERE, null, ex);

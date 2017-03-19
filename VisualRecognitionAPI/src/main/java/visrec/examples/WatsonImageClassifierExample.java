@@ -1,7 +1,9 @@
 package visrec.examples;
 
+import deepnets.imgrec.api.RecognitionResult;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import visrec.classifier.ImageClassifier;
 import visrec.impl.dl4j.Dl4jImageClassifier;
@@ -25,7 +27,7 @@ public class WatsonImageClassifierExample {
         // BUILDING A CUSTOM IMAGE CLASSIFIER
         
         // create watson image classifier using constructor with api key
-        ImageClassifier imageClassifier = new WatsonImageClassifier("xxx"); 
+        ImageClassifier imageClassifier = new WatsonImageClassifier("apiKey", "classifierId"); 
         
         Properties prop = new Properties();
         prop.setProperty("classifierName", "myClassifier");        // this can be optional
@@ -43,10 +45,10 @@ public class WatsonImageClassifierExample {
        // ImageClassifier imageClassifier = new WatsonImageClassifier("xxx");    
         
         // classify image, and get results
-       ImageRecognitionResults results = imageClassifier.classify(new File("people.jpg")); // todo: additional classification options?
+       List<RecognitionResult> results = imageClassifier.classify(new File("people.jpg")); // todo: additional classification options?
        
        // iterate and print recognition results
-       for(ImageRecognitionResult result : results) {
+       for(RecognitionResult result : results) {
             System.out.println(result);
        }
     }

@@ -1,6 +1,5 @@
 package visrec.classifier;
 
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -9,6 +8,8 @@ import java.util.Properties;
  * Based on classifiers from Weka and JML
  * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @param <INSTANCE_TYPE>
+ * @param <RESULT_TYPE>
  */
 public interface Classifier <INSTANCE_TYPE, RESULT_TYPE> {
 
@@ -18,14 +19,14 @@ public interface Classifier <INSTANCE_TYPE, RESULT_TYPE> {
      * @param instance instance to classify
      * @return instane's class
      */
-    RESULT_TYPE classify(INSTANCE_TYPE instance);    
+    public RESULT_TYPE classify(INSTANCE_TYPE instance);    
     
     
     /**
-     * Builds classifier with specified settings
+     * Builds classifier with specified configuration (properties)
      * 
-     * @param prop vatious settings to build specific classifier
+     * @param prop settings to build specific classifier
      */
-    void build(Properties prop);
+    public void build(Properties prop);
 
 }

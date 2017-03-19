@@ -1,8 +1,10 @@
 package visrec.examples;
 
+import deepnets.imgrec.api.RecognitionResult;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import javax.imageio.ImageIO;
 import org.datavec.image.loader.ImageLoader;
@@ -55,10 +57,10 @@ public class Dl4jImageClassifierExample {
   
         // USING IMAGE CLASSIFIER
         
-        ImageRecognitionResults results = imageClassifier.classify(new File("00060.png")); // todo: additional classification options?
+       List<RecognitionResult> results = imageClassifier.classify(new File("00060.png")); // todo: additional classification options?
        
        // iterate and print recognition results
-       for(ImageRecognitionResult result : results) {
+       for(RecognitionResult result : results) {
             System.out.println(result);
        }  
 
