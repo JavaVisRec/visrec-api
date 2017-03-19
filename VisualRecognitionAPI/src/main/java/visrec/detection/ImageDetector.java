@@ -42,6 +42,7 @@ public class ImageDetector extends AbstractDetector<BufferedImage> {
                    for(RecognitionResult rr : results2) {
                        System.out.println(x+","+y);
                        if (rr.getScore() > threshold) {
+                           System.out.println("Evooooooooooooooooooooo gaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!!!");
                            BoundingBox bbox = new BoundingBox(x, y, boxWidth, boxHeight);   // TODO: this cannnot be hardcoded, get this from model
                            bbox.setLabel(rr.getLabel());
                            bbox.setScore(rr.getScore());

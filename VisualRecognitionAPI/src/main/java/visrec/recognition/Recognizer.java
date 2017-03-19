@@ -10,9 +10,9 @@ import java.util.List;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public interface Recognizer<IMAGE, RESULT> {
+public interface Recognizer<IMAGE_CLASS, RESULT> {
     
-        public List<RESULT> recognize(IMAGE image);
+        public List<RESULT> recognize(IMAGE_CLASS image);
         
         public List<RESULT> recognize(File file) throws IOException;
         
