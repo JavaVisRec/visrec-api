@@ -1,12 +1,12 @@
 package visrec.impl.deepnetts;
 
-import deepnets.imgrec.api.RecognitionResult;
+import deepnets.imgrec.api.DnRecognitionResult;
 import deepnetts.conv.ActivationFunctions;
 import deepnetts.conv.BackpropagationTrainer;
 import deepnetts.conv.ConvolutionalNetwork;
-import deepnetts.conv.loss.CrossEntropyLoss;
 import deepnetts.core.DeepNettsException;
 import deepnetts.core.DeepNettsNetwork;
+import deepnetts.core.loss.CrossEntropyLoss;
 import deepnetts.data.ExampleImage;
 import deepnetts.data.ImageSet;
 import deepnetts.io.FileIO;
@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import visrec.classifier.ImageClassifier;
 import visrec.util.BufferedImageFactory;
 import visrec.util.ImageRecognitionResults;
+import visrec.util.RecognitionResult;
 
 /**
  *
@@ -45,7 +46,7 @@ public class DeepNettsImageClassifier extends ImageClassifier<BufferedImage, Dee
         DeepNettsNetwork neuralNet = getModel();
                 
         ExampleImage exImage = new ExampleImage(sample);
-        neuralNet.setInput(exImage);
+        neuralNet.setInput(exImage.getInputMatrix());
         neuralNet.forward();
         double[] outputs = neuralNet.getOutput();
 
@@ -74,10 +75,8 @@ public class DeepNettsImageClassifier extends ImageClassifier<BufferedImage, Dee
         double maxError = Double.parseDouble(prop.getProperty("maxError"));
         double learningRate = Double.parseDouble(prop.getProperty("learningRate"));
         String modelFile = prop.getProperty("modelFile");
-        
-        
-        ImageSet imageSet = new ImageSet(imageWidth, imageHeight);
-        
+                
+        ImageSet imageSet = new ImageSet(imageWidth, imageHeight);        
         LOGGER.info("Loading images...");
         
         imageSet.loadLabels(new File(labelsFile));

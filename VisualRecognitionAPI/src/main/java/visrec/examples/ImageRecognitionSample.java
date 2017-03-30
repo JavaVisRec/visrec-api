@@ -1,6 +1,6 @@
 package visrec.examples;
 
-import deepnets.imgrec.api.RecognitionResult;
+import deepnets.imgrec.api.DnRecognitionResult;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import visrec.classifier.ImageClassifier;
 import visrec.recognition.Recognizer;
 import visrec.recognition.AbstractRecognizer;
+import visrec.util.RecognitionResult;
 
 /**
  * Example how image recognition service based on classifier can be created and used

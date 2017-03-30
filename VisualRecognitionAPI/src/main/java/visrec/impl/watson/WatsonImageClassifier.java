@@ -5,7 +5,6 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifierOpti
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyImagesOptions;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassification;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifier;
-import deepnets.imgrec.api.RecognitionResult;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import visrec.classifier.ImageClassifier;
 import visrec.util.ImageRecognitionResults;
+import visrec.util.RecognitionResult;
 
 /**
  *

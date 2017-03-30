@@ -4,13 +4,13 @@ package visrec.util;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-    public class ImageRecognitionResult {
+    public class RecognitionResult {
         String classLabel;
         double score;
         String typeHierarchy;
 
-        public ImageRecognitionResult(String clazz, double score) {
-            this.classLabel = clazz;
+        public RecognitionResult(String classLabel, double score) {
+            this.classLabel = classLabel;
             this.score = score;
         }
 

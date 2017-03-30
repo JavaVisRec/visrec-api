@@ -9,20 +9,20 @@ import java.util.List;
  * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class ImageRecognitionResults implements Iterable<ImageRecognitionResult> {
+public class ImageRecognitionResults implements Iterable<RecognitionResult> {
 
-    private List<ImageRecognitionResult> results;
+    private List<RecognitionResult> results;
 
     public ImageRecognitionResults() {
         results = new ArrayList<>();
     }
     
     public void add(String clazz, double score) {
-        ImageRecognitionResult r = new ImageRecognitionResult(clazz, score);
+        RecognitionResult r = new RecognitionResult(clazz, score);
         results.add(r);
     }
     
-    public void add(ImageRecognitionResult r) {
+    public void add(RecognitionResult r) {
               results.add(r);
     }    
              
@@ -32,7 +32,7 @@ public class ImageRecognitionResults implements Iterable<ImageRecognitionResult>
     }
 
     @Override
-    public Iterator<ImageRecognitionResult> iterator() {
+    public Iterator<RecognitionResult> iterator() {
         return results.iterator();
     }
 

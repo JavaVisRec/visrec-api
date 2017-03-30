@@ -1,8 +1,9 @@
 package visrec.recognition;
 
-import deepnets.imgrec.api.RecognitionResult;
+import deepnets.imgrec.api.DnRecognitionResult;
 import java.awt.image.BufferedImage;
 import visrec.classifier.ImageClassifier;
+import visrec.util.RecognitionResult;
 
 /**
  *

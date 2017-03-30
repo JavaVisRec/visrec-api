@@ -1,11 +1,12 @@
 package visrec.detection;
 
-import deepnets.imgrec.api.RecognitionResult;
+import deepnets.imgrec.api.DnRecognitionResult;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import visrec.classifier.ImageClassifier;
 import visrec.util.BoundingBox;
+import visrec.util.RecognitionResult;
 
 /**
  *
@@ -44,7 +45,7 @@ public class ImageDetector extends AbstractDetector<BufferedImage> {
                        if (rr.getScore() > threshold) {
                            System.out.println("Evooooooooooooooooooooo gaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!!!");
                            BoundingBox bbox = new BoundingBox(x, y, boxWidth, boxHeight);   // TODO: this cannnot be hardcoded, get this from model
-                           bbox.setLabel(rr.getLabel());
+                           bbox.setLabel(rr.getClassLabel());
                            bbox.setScore(rr.getScore());
                            results.add(bbox);
                        }

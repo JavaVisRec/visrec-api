@@ -1,6 +1,6 @@
 package visrec.classifier;
 
-import deepnets.imgrec.api.RecognitionResult;
+import deepnets.imgrec.api.DnRecognitionResult;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 import visrec.util.BufferedImageFactory;
 import visrec.util.ImageFactory;
+import visrec.util.RecognitionResult;
 
 /**
  *
@@ -30,7 +31,7 @@ public abstract class ImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Class
     }
        
     @Override
-    public abstract List<RecognitionResult> classify(IMAGE_CLASS sample) ;
+    public abstract List<RecognitionResult> classify(IMAGE_CLASS sample);
 
     @Override
     public abstract void build(Properties prop);

@@ -1,6 +1,6 @@
 package visrec.examples;
 
-import deepnets.imgrec.api.RecognitionResult;
+import deepnets.imgrec.api.DnRecognitionResult;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import visrec.classifier.ImageClassifier;
 import visrec.impl.dl4j.Dl4jImageClassifier;
 import visrec.util.ImageRecognitionResults;
-import visrec.util.ImageRecognitionResult;
+import visrec.util.RecognitionResult;
 
 /**
  *

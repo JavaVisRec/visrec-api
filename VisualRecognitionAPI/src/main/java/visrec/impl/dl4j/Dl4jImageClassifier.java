@@ -1,6 +1,6 @@
 package visrec.impl.dl4j;
 
-import deepnets.imgrec.api.RecognitionResult;
+import deepnets.imgrec.api.DnRecognitionResult;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +50,7 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 import visrec.classifier.ImageClassifier;
 import visrec.util.BufferedImageFactory;
 import visrec.util.ImageRecognitionResults;
-import visrec.util.ImageRecognitionResult;
+import visrec.util.RecognitionResult;
 
 /**
  *
@@ -92,7 +92,7 @@ public class Dl4jImageClassifier extends ImageClassifier<BufferedImage, MultiLay
         // get output
         // get label
         List<RecognitionResult> results = new ArrayList<>();
-        // transform here binary network outpit to ImageRecognitionResult
+        // transform here binary network outpit to DnRecognitionResult
         for (int i = 0; i < output.getRow(0).length(); i++) {
             double score = output.getFloat(0, i);
             if (score > 0.5) {

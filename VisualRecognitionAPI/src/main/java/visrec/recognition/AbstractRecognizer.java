@@ -1,12 +1,13 @@
 package visrec.recognition;
 
-import deepnets.imgrec.api.RecognitionResult;
+import deepnets.imgrec.api.DnRecognitionResult;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import visrec.classifier.ImageClassifier;
+import visrec.util.RecognitionResult;
 
 /**
  *

@@ -1,6 +1,6 @@
 package visrec.examples;
 
-import deepnets.imgrec.api.RecognitionResult;
+import deepnets.imgrec.api.DnRecognitionResult;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -9,7 +9,7 @@ import visrec.classifier.ImageClassifier;
 import visrec.impl.dl4j.Dl4jImageClassifier;
 import visrec.impl.watson.WatsonImageClassifier;
 import visrec.util.ImageRecognitionResults;
-import visrec.util.ImageRecognitionResult;
+import visrec.util.RecognitionResult;
 
 /**
  *
