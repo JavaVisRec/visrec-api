@@ -1,6 +1,5 @@
 package visrec.recognition;
 
-import deepnets.imgrec.api.DnRecognitionResult;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;

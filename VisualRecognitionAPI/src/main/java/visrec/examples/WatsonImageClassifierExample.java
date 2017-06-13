@@ -1,6 +1,5 @@
 package visrec.examples;
 
-import deepnets.imgrec.api.DnRecognitionResult;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -16,11 +15,7 @@ import visrec.util.RecognitionResult;
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class WatsonImageClassifierExample {
-    
-
-        
-    
-    
+         
     public static void main(String[] args) throws IOException {
         
         

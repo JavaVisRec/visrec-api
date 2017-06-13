@@ -1,6 +1,5 @@
 package visrec.impl.deepnetts;
 
-import deepnets.imgrec.api.DnRecognitionResult;
 import deepnetts.conv.ActivationFunctions;
 import deepnetts.conv.BackpropagationTrainer;
 import deepnetts.conv.ConvolutionalNetwork;
@@ -21,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import visrec.classifier.ImageClassifier;
 import visrec.util.BufferedImageFactory;
-import visrec.util.ImageRecognitionResults;
 import visrec.util.RecognitionResult;
 
 /**
@@ -93,24 +91,14 @@ public class DeepNettsImageClassifier extends ImageClassifier<BufferedImage, Dee
         
         ConvolutionalNetwork neuralNet = new ConvolutionalNetwork.Builder()
                                         .withInputLayer(imageWidth, imageHeight, 3) 
-                                        .withConvolutionalLayer(5, 5, 0, 3, ActivationFunctions.TANH) 
+                                        .withConvolutionalLayer(5, 5, 3, ActivationFunctions.TANH) 
                                         .withPoolingLayer(2, 2, 2) 
-                                        .withConvolutionalLayer(5, 5, 0, 2, ActivationFunctions.TANH) 
+                                        .withConvolutionalLayer(5, 5, 6, ActivationFunctions.TANH) 
                                         .withPoolingLayer(2, 2, 2)                 
                                         .withFullyConnectedLayer(30, ActivationFunctions.TANH)  // F6 this layer mus tbe connected to all neurons in previous layer!
                                         .withOutputLayer(classCount, SoftmaxOutputLayer.class) // softmax output // labelsCount
                                         .withLossFunction(CrossEntropyLoss.class)
                                         .build();        
-
-//        ConvolutionalNetwork neuralNet = new ConvolutionalNetwork.Builder()
-//                                        .withInputLayer(imageWidth, imageHeight, 3) 
-//                                        .withConvolutionalLayer(5, 5, 0, 3, ActivationFunctions.RELU) // C1 5x5 filter, produces10 output 28x28 , should be 6 channels, currently only one | dodati padding i stride? 
-//                                        .withPoolingLayer(2, 2, 2)
-//                                        .withFullyConnectedLayer(10, ActivationFunctions.RELU)
-//                                        .withOutputLayer(classCount, SoftmaxOutputLayer.class) // softmax output // labelsCount
-//                                        .withLossFunction(CrossEntropyLoss.class)           
-//                                        .build();                     
-//        
 
         LOGGER.info("Done!");       
         LOGGER.info("Training neural network"); 
@@ -120,7 +108,7 @@ public class DeepNettsImageClassifier extends ImageClassifier<BufferedImage, Dee
         // create a set of convolutional networks and do training, crossvalidation and performance evaluation
         BackpropagationTrainer trainer = new BackpropagationTrainer(neuralNet);
         trainer.setLearningRate(learningRate)
-               .setMomentum(0.01)
+//               .setMomentum(0.01)
                .setMaxError(maxError);
         trainer.train(imageSet);   
         

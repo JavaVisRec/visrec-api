@@ -1,13 +1,11 @@
 package visrec.classifier;
 
-import deepnets.imgrec.api.DnRecognitionResult;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.Properties;
-import visrec.util.BufferedImageFactory;
 import visrec.util.ImageFactory;
 import visrec.util.RecognitionResult;
 
@@ -15,6 +13,7 @@ import visrec.util.RecognitionResult;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  * @param <IMAGE_CLASS>
+ * @param <MODEL_CLASS>
  */
 public abstract class ImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, List<RecognitionResult>> {
 

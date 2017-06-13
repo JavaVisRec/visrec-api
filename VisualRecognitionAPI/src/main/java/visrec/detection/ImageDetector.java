@@ -1,6 +1,5 @@
 package visrec.detection;
 
-import deepnets.imgrec.api.DnRecognitionResult;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;

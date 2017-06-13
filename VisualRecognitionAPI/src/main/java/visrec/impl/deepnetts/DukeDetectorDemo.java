@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 import visrec.classifier.ImageClassifier;
+import visrec.classifier.ImageClassifierFactory;
 import visrec.detection.Detector;
 import visrec.detection.ImageDetector;
 import visrec.impl.deepnetts.DeepNettsImageClassifier;
@@ -20,9 +21,7 @@ public class DukeDetectorDemo {
 
     public static void main(String[] args) throws IOException {
                 
-        ImageClassifier imageClassifier = new DeepNettsImageClassifier();         
-        Properties prop = new Properties(); 
-        
+        Properties prop = new Properties();         
         // provide data set properties
         prop.setProperty("imageWidth", "64");   
         prop.setProperty("imageHeight", "64");        
@@ -35,9 +34,12 @@ public class DukeDetectorDemo {
                        
         // provide training properties
         prop.setProperty("maxError", "0.03");
-        prop.setProperty("learningRate", "0.01");
-               
-        imageClassifier.build(prop);
+        prop.setProperty("learningRate", "0.01");        
+        
+        ImageClassifierFactory icf = DeepNetts.createImageClassifierFactory();
+        ImageClassifier imageClassifier = icf.createImageClassifier(prop);   //new DeepNettsImageClassifier();         
+        // imageClassifier.traain();
+        
         System.out.println("Done building image classifier.");
         
          

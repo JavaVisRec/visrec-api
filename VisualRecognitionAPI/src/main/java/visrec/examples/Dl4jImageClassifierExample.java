@@ -1,19 +1,11 @@
 package visrec.examples;
 
-import deepnets.imgrec.api.DnRecognitionResult;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-import javax.imageio.ImageIO;
-import org.datavec.image.loader.ImageLoader;
-import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
-import org.deeplearning4j.util.ModelSerializer;
-import org.nd4j.linalg.api.ndarray.INDArray;
 import visrec.classifier.ImageClassifier;
 import visrec.impl.dl4j.Dl4jImageClassifier;
-import visrec.util.ImageRecognitionResults;
 import visrec.util.RecognitionResult;
 
 /**

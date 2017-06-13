@@ -1,6 +1,5 @@
 package visrec.impl.dl4j;
 
-import deepnets.imgrec.api.DnRecognitionResult;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +48,6 @@ import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 import visrec.classifier.ImageClassifier;
 import visrec.util.BufferedImageFactory;
-import visrec.util.ImageRecognitionResults;
 import visrec.util.RecognitionResult;
 
 /**
