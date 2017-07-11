@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
 import visrec.util.BufferedImageFactory;
+import visrec.util.VisRec;
 
 /**
  *
@@ -34,10 +35,9 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
     public static final Logger LOGGER = Logger.getLogger(DeepNettsImageClassifier.class.getName());
 
     public DeepNettsImageClassifier() {
-        setImageFactory(new BufferedImageFactory());
+        setImageFactory(new BufferedImageFactory()); // inject image factory
     }
-    
-    
+       
     
     @Override
     public List<ClassificationResult<String>> classify(BufferedImage sample) {
@@ -67,23 +67,24 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
     @Override
     public void build(Properties prop) {
         
-        imageWidth = Integer.parseInt(prop.getProperty("imageWidth"));
-        imageHeight = Integer.parseInt(prop.getProperty("imageHeight"));
-        String labelsFile = prop.getProperty("labelsFile");
-        String trainingFile = prop.getProperty("trainingFile");
-        float maxError = Float.parseFloat(prop.getProperty("maxError"));
-        float learningRate = Float.parseFloat(prop.getProperty("learningRate"));
+        imageWidth = Integer.parseInt(prop.getProperty(VisRec.IMAGE_WIDTH));
+        imageHeight = Integer.parseInt(prop.getProperty(VisRec.IMAGE_HEIGHT));
+        String labelsFile = prop.getProperty(VisRec.LABELS_FILE);
+        String trainingFile = prop.getProperty(VisRec.TRAINING_FILE);
+        float maxError = Float.parseFloat(prop.getProperty(VisRec.SGD_MAX_ERROR));
+        float learningRate = Float.parseFloat(prop.getProperty(VisRec.SGD_LEARNING_RATE));
+        
         String modelFile = prop.getProperty("modelFile");
                 
         ImageSet imageSet = new ImageSet(imageWidth, imageHeight);        
         LOGGER.info("Loading images...");
         
         imageSet.loadLabels(new File(labelsFile));
-        try {
-            imageSet.loadImages(new File(trainingFile)); // napomena - putanje bi trebalo da budu relativne inace moraju da se regenerisu 
-        } catch (IOException | DeepNettsException ex) {
-            java.util.logging.Logger.getLogger(DeepNettsImageClassifier.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    //    try {
+            imageSet.loadImages(new File(trainingFile), 100); // napomena - putanje bi trebalo da budu relativne inace moraju da se regenerisu 
+//        } catch (IOException | DeepNettsException ex) {
+//            java.util.logging.Logger.getLogger(DeepNettsImageClassifier.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     
         int classCount = imageSet.getLabelsCount();
         

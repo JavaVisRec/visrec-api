@@ -22,17 +22,15 @@ public interface Classifier <INPUT_TYPE, CLASS_TYPE> {   // string or boolean, o
      * @return instane's class
      */
     public  List<ClassificationResult<CLASS_TYPE>> classify(INPUT_TYPE instance);    
-    // Interface ClassificationResult<CLASS>
+    // Interface ClassificationResult<CLASS> consider using map of classes and scored instead of List/collection
     // http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/ClassificationResult.html
     // http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/BasicClassificationResult.html
-
-    
-//    
-//    /**
-//     * Builds classifier with specified configuration (properties)
-//     * 
-//     * @param prop settings to build specific classifier
-//     */
+        
+    /**
+     * Builds classifier with specified configuration (properties)
+     * 
+     * @param prop settings to build specific classifier
+     */
     public void build(Properties prop);
 
 }
