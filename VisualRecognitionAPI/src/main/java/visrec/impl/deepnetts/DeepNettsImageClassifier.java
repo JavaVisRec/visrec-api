@@ -1,6 +1,7 @@
 package visrec.impl.deepnetts;
 
 import deepnetts.conv.ActivationFunctions;
+import deepnetts.conv.ActivationType;
 import deepnetts.conv.BackpropagationTrainer;
 import deepnetts.conv.ConvolutionalNetwork;
 import deepnetts.core.DeepNettsException;
@@ -18,15 +19,15 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResult;
 import visrec.util.BufferedImageFactory;
-import visrec.util.RecognitionResult;
 
 /**
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class DeepNettsImageClassifier extends ImageClassifier<BufferedImage, DeepNettsNetwork>{
+public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedImage, DeepNettsNetwork>{
     
     private int imageWidth, imageHeight;
 
@@ -39,16 +40,16 @@ public class DeepNettsImageClassifier extends ImageClassifier<BufferedImage, Dee
     
     
     @Override
-    public List<RecognitionResult> classify(BufferedImage sample) {
-        List<RecognitionResult> results = new ArrayList<>();
+    public List<ClassificationResult<String>> classify(BufferedImage sample) {
+        List<ClassificationResult<String>>  results = new ArrayList<>();
         DeepNettsNetwork neuralNet = getModel();
                 
         ExampleImage exImage = new ExampleImage(sample);
         neuralNet.setInput(exImage.getInputMatrix());
         neuralNet.forward();
-        double[] outputs = neuralNet.getOutput();
+        float[] outputs = neuralNet.getOutput(); // change to double[]
 
-       double max = outputs[0];       
+       float max = outputs[0];       
        int maxIdx = 0;
        for(int i=1; i<outputs.length; i++) {
            if (outputs[i] > max) {
@@ -57,7 +58,7 @@ public class DeepNettsImageClassifier extends ImageClassifier<BufferedImage, Dee
            }
        }
              
-       RecognitionResult result = new RecognitionResult(neuralNet.getOutputLabel(maxIdx), max);
+       ClassificationResult result = new ClassificationResult(neuralNet.getOutputLabel(maxIdx), max);
        results.add(result);
        
        return results;                        
@@ -70,8 +71,8 @@ public class DeepNettsImageClassifier extends ImageClassifier<BufferedImage, Dee
         imageHeight = Integer.parseInt(prop.getProperty("imageHeight"));
         String labelsFile = prop.getProperty("labelsFile");
         String trainingFile = prop.getProperty("trainingFile");
-        double maxError = Double.parseDouble(prop.getProperty("maxError"));
-        double learningRate = Double.parseDouble(prop.getProperty("learningRate"));
+        float maxError = Float.parseFloat(prop.getProperty("maxError"));
+        float learningRate = Float.parseFloat(prop.getProperty("learningRate"));
         String modelFile = prop.getProperty("modelFile");
                 
         ImageSet imageSet = new ImageSet(imageWidth, imageHeight);        
@@ -90,14 +91,14 @@ public class DeepNettsImageClassifier extends ImageClassifier<BufferedImage, Dee
         LOGGER.info("Creating neural network...");
         
         ConvolutionalNetwork neuralNet = new ConvolutionalNetwork.Builder()
-                                        .withInputLayer(imageWidth, imageHeight, 3) 
-                                        .withConvolutionalLayer(5, 5, 3, ActivationFunctions.TANH) 
-                                        .withPoolingLayer(2, 2, 2) 
-                                        .withConvolutionalLayer(5, 5, 6, ActivationFunctions.TANH) 
-                                        .withPoolingLayer(2, 2, 2)                 
-                                        .withFullyConnectedLayer(30, ActivationFunctions.TANH)  // F6 this layer mus tbe connected to all neurons in previous layer!
-                                        .withOutputLayer(classCount, SoftmaxOutputLayer.class) // softmax output // labelsCount
-                                        .withLossFunction(CrossEntropyLoss.class)
+                                        .inputLayer(imageWidth, imageHeight, 3) 
+                                        .convolutionalLayer(5, 5, 3, ActivationType.TANH) 
+                                        .poolingLayer(2, 2, 2) 
+                                        .convolutionalLayer(5, 5, 6, ActivationType.TANH) 
+                                        .poolingLayer(2, 2, 2)                 
+                                        .fullyConnectedLayer(30, ActivationType.TANH)  // F6 this layer mus tbe connected to all neurons in previous layer!
+                                        .outputLayer(classCount, SoftmaxOutputLayer.class) // softmax output // labelsCount
+                                        .lossFunction(CrossEntropyLoss.class)
                                         .build();        
 
         LOGGER.info("Done!");       

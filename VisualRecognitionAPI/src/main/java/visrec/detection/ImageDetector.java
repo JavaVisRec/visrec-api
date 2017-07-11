@@ -3,7 +3,8 @@ package visrec.detection;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResult;
 import visrec.util.BoundingBox;
 import visrec.util.RecognitionResult;
 
@@ -15,7 +16,7 @@ public class ImageDetector extends AbstractDetector<BufferedImage> {
     
     private double threshold = 0.5;
     
-    public ImageDetector(ImageClassifier<BufferedImage, Boolean> classifier) {
+    public ImageDetector(AbstractImageClassifier<BufferedImage, Boolean> classifier) {
         super(classifier);
     }
 
@@ -38,8 +39,8 @@ public class ImageDetector extends AbstractDetector<BufferedImage> {
         for (int y = 0; y < image.getHeight()-boxHeight; y++) {
             for (int x = 0; x < image.getWidth()-boxWidth; x++) {
                     
-                   List<RecognitionResult> results2 = getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
-                   for(RecognitionResult rr : results2) {
+                   List<ClassificationResult<String>> results2 = getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
+                   for(ClassificationResult<String> rr : results2) {
                        System.out.println(x+","+y);
                        if (rr.getScore() > threshold) {
                            System.out.println("Evooooooooooooooooooooo gaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!!!");

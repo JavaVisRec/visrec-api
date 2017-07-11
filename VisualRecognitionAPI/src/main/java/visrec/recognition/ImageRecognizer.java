@@ -1,7 +1,7 @@
 package visrec.recognition;
 
 import java.awt.image.BufferedImage;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
 import visrec.util.RecognitionResult;
 
 /**
@@ -12,7 +12,7 @@ public class ImageRecognizer extends AbstractRecognizer<BufferedImage> {
     
     private double threshold;
         
-    public ImageRecognizer(ImageClassifier<BufferedImage, RecognitionResult> classifier) {
+    public ImageRecognizer(AbstractImageClassifier<BufferedImage, RecognitionResult> classifier) {
         super(classifier);
     }
 

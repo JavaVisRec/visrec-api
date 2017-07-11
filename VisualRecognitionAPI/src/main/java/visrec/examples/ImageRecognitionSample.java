@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
 import visrec.recognition.Recognizer;
 import visrec.recognition.AbstractRecognizer;
 import visrec.util.RecognitionResult;
@@ -18,11 +18,11 @@ public class ImageRecognitionSample {
 
     public static void main(String[] args) throws IOException {        
         // Create an image classifier based on standard classifier interface
-        ImageClassifier<BufferedImage, RecognitionResult> someClassifier = null;
-        // someClassifier.buildClassifier(data); // train/build classifier here -- use factory ImageClassifier
+        AbstractImageClassifier<BufferedImage, RecognitionResult> someClassifier = null;
+        // someClassifier.buildClassifier(data); // train/build classifier here -- use factory AbstractImageClassifier
         
         // wrap the image classifier into image recognition interface
-        Recognizer<BufferedImage, RecognitionResult> imgRecognition = new AbstractRecognizer<BufferedImage>(someClassifier);
+        Recognizer<BufferedImage> imgRecognition = new AbstractRecognizer<BufferedImage>(someClassifier);
         
         // get some image from file
         BufferedImage someimage = ImageIO.read(new File("imageFile.png"));

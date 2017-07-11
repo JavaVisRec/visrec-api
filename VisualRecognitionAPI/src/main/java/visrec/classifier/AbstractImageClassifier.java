@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.Properties;
+import visrec.util.BufferedImageFactory;
 import visrec.util.ImageFactory;
 import visrec.util.RecognitionResult;
 
@@ -15,37 +16,32 @@ import visrec.util.RecognitionResult;
  * @param <IMAGE_CLASS>
  * @param <MODEL_CLASS>
  */
-public abstract class ImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, List<RecognitionResult>> {
+public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String> { // could also implement binary classifier
 
     private ImageFactory<IMAGE_CLASS> imageFactory; // get image factory for the cpecified image class   
-    private MODEL_CLASS model;
+    private MODEL_CLASS model; // th emodel could be injected from machine learning container
 
-    public ImageClassifier() {
+    public AbstractImageClassifier() {
       // instantiate image factory whuch coresponds to specified IMAGE_CLASS
-     // imageFactory = new BufferedImageFactory();
+        imageFactory = (ImageFactory<IMAGE_CLASS>) new BufferedImageFactory();
     }
     
     public ImageFactory<IMAGE_CLASS> getImageFactory() {
         return imageFactory;
     }
-       
-    @Override
-    public abstract List<RecognitionResult> classify(IMAGE_CLASS sample);
 
-    @Override
-    public abstract void build(Properties prop);
       
-    public List<RecognitionResult> classify(File file) throws IOException {
+    public List<ClassificationResult<String>> classify(File file) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(file);
         return classify(image);            
     }
 
-    public List<RecognitionResult> classify(URL url) throws IOException {
+    public List<ClassificationResult<String>> classify(URL url) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(url);
          return classify(image);            
     }
 
-    public List<RecognitionResult> classify(InputStream inStream) throws IOException {
+    public List<ClassificationResult<String>> classify(InputStream inStream) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(inStream);
          return classify(image);       
     }

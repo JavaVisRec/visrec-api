@@ -5,40 +5,42 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResult;
 import visrec.util.RecognitionResult;
 
 /**
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @param <IMAGE_CLASS>
  */
-public class AbstractRecognizer<IMAGE_CLASS> implements Recognizer<IMAGE_CLASS,  RecognitionResult> {
+public class AbstractRecognizer<IMAGE_CLASS> implements Recognizer<IMAGE_CLASS> {
     
-    ImageClassifier<IMAGE_CLASS, RecognitionResult> imageClassifier; 
+    AbstractImageClassifier<IMAGE_CLASS, RecognitionResult> imageClassifier; 
 
-    public AbstractRecognizer(ImageClassifier<IMAGE_CLASS, RecognitionResult> classifier) {
+    public AbstractRecognizer(AbstractImageClassifier<IMAGE_CLASS, RecognitionResult> classifier) {
         this.imageClassifier = classifier;
     }
 
     @Override
-    public List<RecognitionResult> recognize(IMAGE_CLASS image) {
+    public List<ClassificationResult<String>> recognize(IMAGE_CLASS image) {
         return imageClassifier.classify(image);
     }
 
     @Override
-    public List<RecognitionResult> recognize(File file) throws IOException {
+    public  List<ClassificationResult<String>> recognize(File file) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(file);        
         return recognize(image);
     }
 
     @Override
-    public List<RecognitionResult> recognize(URL url) throws IOException {
+    public  List<ClassificationResult<String>> recognize(URL url) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(url);        
         return recognize(image);
     }
 
     @Override
-    public List<RecognitionResult> recognize(InputStream inStream) throws IOException {
+    public  List<ClassificationResult<String>> recognize(InputStream inStream) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(inStream);        
         return recognize(image);
     }

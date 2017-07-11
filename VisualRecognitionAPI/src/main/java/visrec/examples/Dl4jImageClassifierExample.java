@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
 import visrec.impl.dl4j.Dl4jImageClassifier;
 import visrec.util.RecognitionResult;
 
@@ -17,7 +17,7 @@ public class Dl4jImageClassifierExample {
     public static void main(String[] args) throws IOException {
         
         // Build image classifier
-        ImageClassifier imageClassifier = new Dl4jImageClassifier(); 
+        AbstractImageClassifier imageClassifier = new Dl4jImageClassifier(); 
         
         Properties prop = new Properties();        
         prop.put("imagesPath", "/home/zoran/animals");  // path to directory with images. Containes subfolders with images named as corresponding classes
@@ -42,8 +42,8 @@ public class Dl4jImageClassifierExample {
         
   
         
-   //    ImageClassifier imageClassifier = new Dl4jImageClassifier("LeNetMultiLayerNetwork.zip");    // load trained model from file
-       ImageClassifier imageClassifier = new Dl4jImageClassifier(neuralNet);     // provide instance of the trained model or model that should be trained
+   //    AbstractImageClassifier imageClassifier = new Dl4jImageClassifier("LeNetMultiLayerNetwork.zip");    // load trained model from file
+       AbstractImageClassifier imageClassifier = new Dl4jImageClassifier(neuralNet);     // provide instance of the trained model or model that should be trained
 */        
         // classify image, and get results
   

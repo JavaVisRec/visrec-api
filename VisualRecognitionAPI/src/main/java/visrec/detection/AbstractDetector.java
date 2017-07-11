@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
 import visrec.util.BoundingBox;
 
 /**
@@ -14,9 +14,9 @@ import visrec.util.BoundingBox;
  */
 public abstract class AbstractDetector<IMAGE_CLASS> implements Detector<IMAGE_CLASS> {
 
-    ImageClassifier<IMAGE_CLASS, Boolean> imageClassifier; // This should be binary classifier, that can detect some object / image
+    AbstractImageClassifier<IMAGE_CLASS, Boolean> imageClassifier; // This should be binary classifier, that can detect some object / image
     
-    public AbstractDetector(ImageClassifier<IMAGE_CLASS, Boolean> imageClassifier) {
+    public AbstractDetector(AbstractImageClassifier<IMAGE_CLASS, Boolean> imageClassifier) {
         this.imageClassifier = imageClassifier;
     }
            
@@ -47,7 +47,7 @@ public abstract class AbstractDetector<IMAGE_CLASS> implements Detector<IMAGE_CL
         return detect(image);   
     }    
 
-    public ImageClassifier<IMAGE_CLASS, Boolean> getImageClassifier() {
+    public AbstractImageClassifier<IMAGE_CLASS, Boolean> getImageClassifier() {
         return imageClassifier;
     }
     

@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
 import visrec.impl.dl4j.Dl4jImageClassifier;
 import visrec.impl.watson.WatsonImageClassifier;
 import visrec.util.ImageRecognitionResults;
@@ -22,7 +22,7 @@ public class WatsonImageClassifierExample {
         // BUILDING A CUSTOM IMAGE CLASSIFIER
         
         // create watson image classifier using constructor with api key
-        ImageClassifier imageClassifier = new WatsonImageClassifier("apiKey", "classifierId"); 
+        AbstractImageClassifier imageClassifier = new WatsonImageClassifier("apiKey", "classifierId"); 
         
         Properties prop = new Properties();
         prop.setProperty("classifierName", "myClassifier");        // this can be optional
@@ -37,7 +37,7 @@ public class WatsonImageClassifierExample {
         // USING IMAGE CLASSIFIER 
         
        // create watson image classifier using constructor with api key
-       // ImageClassifier imageClassifier = new WatsonImageClassifier("xxx");    
+       // AbstractImageClassifier imageClassifier = new WatsonImageClassifier("xxx");    
         
         // classify image, and get results
        List<RecognitionResult> results = imageClassifier.classify(new File("people.jpg")); // todo: additional classification options?

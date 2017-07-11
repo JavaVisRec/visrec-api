@@ -15,7 +15,8 @@ import java.util.Properties;
 import javax.imageio.ImageIO;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResult;
 import visrec.util.ImageRecognitionResults;
 import visrec.util.RecognitionResult;
 
@@ -23,7 +24,7 @@ import visrec.util.RecognitionResult;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class WatsonImageClassifier extends ImageClassifier<BufferedImage, VisualRecognition> {
+public class WatsonImageClassifier extends AbstractImageClassifier<BufferedImage, VisualRecognition> {
 
     private String apiKey;
     private VisualRecognition service = new VisualRecognition(VisualRecognition.VERSION_DATE_2016_05_20);
@@ -74,7 +75,7 @@ public class WatsonImageClassifier extends ImageClassifier<BufferedImage, Visual
     // THIS ONE OVERRIDES THE METHOD WITH FILE param not image type
     // we should be able to specify which classifier to use, where that should be specified?
     @Override
-    public List<RecognitionResult> classify(File sample) {
+    public  List<ClassificationResult<String>>classify(File sample) {
         ClassifyImagesOptions options = new ClassifyImagesOptions.Builder()
                 .images((File)sample)
                 .classifierIds(classifierId)
@@ -90,14 +91,14 @@ public class WatsonImageClassifier extends ImageClassifier<BufferedImage, Visual
         JSONObject classifierObj = classifiersArr.getJSONObject(0);
         JSONArray classes = classifierObj.getJSONArray("classes");
 
-        List<RecognitionResult> results = new ArrayList<>(); // parese serviceResultand fill results         
+        List<ClassificationResult<String>> results = new ArrayList<>(); // parese serviceResultand fill results         
         
         for(Object classResult : classes) {
             JSONObject r = (JSONObject)classResult;     
             String clazz = r.getString("class");
-            double score = r.getDouble("score");
+            float score = (float)r.getDouble("score");
             
-            results.add(new RecognitionResult(clazz, score));
+            results.add(new ClassificationResult(clazz, score));
             
         }
                        
@@ -106,7 +107,7 @@ public class WatsonImageClassifier extends ImageClassifier<BufferedImage, Visual
 
 
     @Override
-    public List<RecognitionResult> classify(BufferedImage sample) {
+    public List<ClassificationResult<String>>classify(BufferedImage sample) {
       // create file from image
 //      File tmpImgFile = ImageIO.createImageInputStream(sample);
 //       classify(inStream)

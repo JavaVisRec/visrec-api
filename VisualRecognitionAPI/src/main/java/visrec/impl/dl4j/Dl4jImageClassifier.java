@@ -46,7 +46,8 @@ import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.dataset.api.preprocessor.DataNormalization;
 import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
-import visrec.classifier.ImageClassifier;
+import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResult;
 import visrec.util.BufferedImageFactory;
 import visrec.util.RecognitionResult;
 
@@ -54,7 +55,7 @@ import visrec.util.RecognitionResult;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class Dl4jImageClassifier extends ImageClassifier<BufferedImage, MultiLayerNetwork> {
+public class Dl4jImageClassifier extends AbstractImageClassifier<BufferedImage, MultiLayerNetwork> {
 
     public Dl4jImageClassifier() {
     }
@@ -77,7 +78,7 @@ public class Dl4jImageClassifier extends ImageClassifier<BufferedImage, MultiLay
     }
 
     @Override
-    public List<RecognitionResult> classify(BufferedImage sample) {
+    public List<ClassificationResult<String>> classify(BufferedImage sample) {
         MultiLayerNetwork neuralNet = getModel();
         
         ImageLoader imageLoader = new ImageLoader();
@@ -89,12 +90,12 @@ public class Dl4jImageClassifier extends ImageClassifier<BufferedImage, MultiLay
 
         // get output
         // get label
-        List<RecognitionResult> results = new ArrayList<>();
+       List<ClassificationResult<String>> results = new ArrayList<>();
         // transform here binary network outpit to DnRecognitionResult
         for (int i = 0; i < output.getRow(0).length(); i++) {
-            double score = output.getFloat(0, i);
+            float score = output.getFloat(0, i);
             if (score > 0.5) {
-                RecognitionResult r = new RecognitionResult((i + 1) + " ", score); // get label here
+                ClassificationResult r = new ClassificationResult((i + 1) + " ", score); // get label here
                 results.add(r);
             }
         }
