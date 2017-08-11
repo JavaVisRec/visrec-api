@@ -6,6 +6,7 @@ import deepnetts.conv.BackpropagationTrainer;
 import deepnetts.conv.ConvolutionalNetwork;
 import deepnetts.core.DeepNettsException;
 import deepnetts.core.DeepNettsNetwork;
+import deepnetts.core.OptimizerType;
 import deepnetts.core.loss.CrossEntropyLoss;
 import deepnetts.data.ExampleImage;
 import deepnetts.data.ImageSet;
@@ -21,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
+import visrec.classifier.ClassificationResults;
 import visrec.util.BufferedImageFactory;
 import visrec.util.VisRec;
 
@@ -40,27 +42,20 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
        
     
     @Override
-    public List<ClassificationResult<String>> classify(BufferedImage sample) {
-        List<ClassificationResult<String>>  results = new ArrayList<>();
+    public ClassificationResults classify(BufferedImage sample) {
+        ClassificationResults results = new ClassificationResults();                
         DeepNettsNetwork neuralNet = getModel();
                 
         ExampleImage exImage = new ExampleImage(sample);
         neuralNet.setInput(exImage.getInputMatrix());
         neuralNet.forward();
-        float[] outputs = neuralNet.getOutput(); // change to double[]
+        
+       float[] outputs = neuralNet.getOutput();
 
-       float max = outputs[0];       
-       int maxIdx = 0;
        for(int i=1; i<outputs.length; i++) {
-           if (outputs[i] > max) {
-               max = outputs[i];
-               maxIdx = i;
-           }
+           results.add(neuralNet.getOutputLabel(i), outputs[i]);
        }
-             
-       ClassificationResult result = new ClassificationResult(neuralNet.getOutputLabel(maxIdx), max);
-       results.add(result);
-       
+
        return results;                        
     }
 
@@ -93,14 +88,13 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
         
         ConvolutionalNetwork neuralNet = new ConvolutionalNetwork.Builder()
                                         .inputLayer(imageWidth, imageHeight, 3) 
-                                        .convolutionalLayer(5, 5, 3, ActivationType.TANH) 
-                                        .poolingLayer(2, 2, 2) 
-                                        .convolutionalLayer(5, 5, 6, ActivationType.TANH) 
-                                        .poolingLayer(2, 2, 2)                 
-                                        .fullyConnectedLayer(30, ActivationType.TANH)  // F6 this layer mus tbe connected to all neurons in previous layer!
-                                        .outputLayer(classCount, SoftmaxOutputLayer.class) // softmax output // labelsCount
-                                        .lossFunction(CrossEntropyLoss.class)
-                                        .build();        
+                                        .convolutionalLayer(5, 5, 6, ActivationType.TANH)
+                                        .poolingLayer(2, 2, 2)  
+                                        .fullyConnectedLayer(80, ActivationType.TANH) 
+                                        .fullyConnectedLayer(40, ActivationType.TANH)     
+                                        .outputLayer(classCount, SoftmaxOutputLayer.class)
+                                        .lossFunction(CrossEntropyLoss.class)                
+                                        .build();      
 
         LOGGER.info("Done!");       
         LOGGER.info("Training neural network"); 
@@ -109,9 +103,11 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
         
         // create a set of convolutional networks and do training, crossvalidation and performance evaluation
         BackpropagationTrainer trainer = new BackpropagationTrainer(neuralNet);
-        trainer.setLearningRate(learningRate)
-//               .setMomentum(0.01)
-               .setMaxError(maxError);
+        trainer.setLearningRate(learningRate);
+        trainer.setMaxError(maxError);
+        trainer.setMomentum(0.9f); 
+        trainer.setOptimizer(OptimizerType.MOMENTUM); 
+       // trainer.setBatchMode(false); // false by default
         trainer.train(imageSet);   
         
         setModel(neuralNet);

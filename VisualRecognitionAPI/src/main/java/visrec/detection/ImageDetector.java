@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
+import visrec.classifier.ClassificationResults;
 import visrec.util.BoundingBox;
 import visrec.util.RecognitionResult;
 
@@ -39,8 +40,8 @@ public class ImageDetector extends AbstractDetector<BufferedImage> {
         for (int y = 0; y < image.getHeight()-boxHeight; y++) {
             for (int x = 0; x < image.getWidth()-boxWidth; x++) {
                     
-                   List<ClassificationResult<String>> results2 = getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
-                   for(ClassificationResult<String> rr : results2) {
+                   ClassificationResults results2 = getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
+                   for(ClassificationResult rr : results2.getTopKResults(5)) {
                        System.out.println(x+","+y);
                        if (rr.getScore() > threshold) {
                            System.out.println("Evooooooooooooooooooooo gaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!!!");

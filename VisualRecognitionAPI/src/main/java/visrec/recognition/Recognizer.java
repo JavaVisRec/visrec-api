@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import visrec.classifier.ClassificationResult;
+import visrec.classifier.ClassificationResults;
 
 /**
  *
@@ -13,12 +14,12 @@ import visrec.classifier.ClassificationResult;
  */
 public interface Recognizer<IMAGE_CLASS> {
     
-        public List<ClassificationResult<String>> recognize(IMAGE_CLASS image);
+        public ClassificationResults recognize(IMAGE_CLASS image);
         
-        public List<ClassificationResult<String>> recognize(File file) throws IOException;
+        public ClassificationResults recognize(File file) throws IOException;
         
-        public List<ClassificationResult<String>> recognize(URL url) throws IOException;
+        public ClassificationResults recognize(URL url) throws IOException;
         
-        public  List<ClassificationResult<String>> recognize(InputStream inStream) throws IOException;        
+        public ClassificationResults recognize(InputStream inStream) throws IOException;        
     
 }

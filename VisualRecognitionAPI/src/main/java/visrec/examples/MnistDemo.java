@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
-import visrec.classifier.ClassificationResult;
+import visrec.classifier.ClassificationResults;
 import visrec.detection.Detector;
 import visrec.detection.ImageDetector;
 import visrec.impl.deepnetts.DeepNettsImageClassifier;
@@ -27,7 +27,7 @@ public class MnistDemo {
         prop.setProperty("visrec.labelsFile",   "/home/zoran/datasets/mnist/train/labels.txt");  
         prop.setProperty("visrec.trainingFile", "/home/zoran/datasets/mnist/train/train.txt");  
         
-        // provide model properties
+        // provide model properties - inject?
         //prop.setProperty("networkArch", "architecture.json");
         prop.setProperty("modelFile", "mnist.dnet");  // save trained model in file at the end
                        
@@ -42,7 +42,7 @@ public class MnistDemo {
         
         
         System.out.println("Classifiying images ...");
-        List<ClassificationResult<String>> results = imageClassifier.classify(new File("/home/zoran/datasets/mnist/test/someTestImage.png"));        
+        ClassificationResults results = imageClassifier.classify(new File("/home/zoran/datasets/mnist/test/someTestImage.png"));        
         System.out.println(results);
         
         System.out.println(results);

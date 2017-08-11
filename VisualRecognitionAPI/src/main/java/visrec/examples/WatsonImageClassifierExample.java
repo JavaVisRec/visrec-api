@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResult;
+import visrec.classifier.ClassificationResults;
 import visrec.impl.dl4j.Dl4jImageClassifier;
 import visrec.impl.watson.WatsonImageClassifier;
 import visrec.util.ImageRecognitionResults;
@@ -40,10 +42,10 @@ public class WatsonImageClassifierExample {
        // AbstractImageClassifier imageClassifier = new WatsonImageClassifier("xxx");    
         
         // classify image, and get results
-       List<RecognitionResult> results = imageClassifier.classify(new File("people.jpg")); // todo: additional classification options?
+        ClassificationResults results = imageClassifier.classify(new File("people.jpg")); // todo: additional classification options?
        
        // iterate and print recognition results
-       for(RecognitionResult result : results) {
+       for(ClassificationResult result : results.getTopKResults(5)) {
             System.out.println(result);
        }
     }

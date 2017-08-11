@@ -1,28 +1,31 @@
 package visrec.classifier;
 
 /**
- *
- * TODO: map of classes and scores/confidences
- * http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/BasicClassificationResult.html
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * This class represents a single classification result.
+ * 
+  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class ClassificationResult<T> {
-    private T classLabel;
-    private float score;
+public class ClassificationResult {
+    private final String classLabel;
+    private final float score; // or confidence?
 
-    public ClassificationResult(T classLabel, float score) {
+    public ClassificationResult(String classLabel, float score) {
         this.classLabel = classLabel;
         this.score = score;
     }
 
-    public T getClassLabel() {
+    public String getClassLabel() {
         return classLabel;
     }
 
     public float getScore() {
         return score;
     }
-    
+
+    @Override
+    public String toString() {
+        return "ClassificationResult{" + "classLabel=" + classLabel + ", score=" + score + '}';
+    }
     
     
 }

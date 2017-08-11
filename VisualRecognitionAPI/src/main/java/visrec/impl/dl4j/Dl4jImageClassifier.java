@@ -48,8 +48,8 @@ import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
+import visrec.classifier.ClassificationResults;
 import visrec.util.BufferedImageFactory;
-import visrec.util.RecognitionResult;
 
 /**
  *
@@ -78,7 +78,7 @@ public class Dl4jImageClassifier extends AbstractImageClassifier<BufferedImage, 
     }
 
     @Override
-    public List<ClassificationResult<String>> classify(BufferedImage sample) {
+    public ClassificationResults classify(BufferedImage sample) {
         MultiLayerNetwork neuralNet = getModel();
         
         ImageLoader imageLoader = new ImageLoader();
@@ -90,7 +90,7 @@ public class Dl4jImageClassifier extends AbstractImageClassifier<BufferedImage, 
 
         // get output
         // get label
-       List<ClassificationResult<String>> results = new ArrayList<>();
+       ClassificationResults results = new ClassificationResults();
         // transform here binary network outpit to DnRecognitionResult
         for (int i = 0; i < output.getRow(0).length(); i++) {
             float score = output.getFloat(0, i);

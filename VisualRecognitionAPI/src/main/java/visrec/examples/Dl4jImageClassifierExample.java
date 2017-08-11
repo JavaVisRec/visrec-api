@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResult;
+import visrec.classifier.ClassificationResults;
 import visrec.impl.dl4j.Dl4jImageClassifier;
 import visrec.util.RecognitionResult;
 
@@ -49,10 +51,10 @@ public class Dl4jImageClassifierExample {
   
         // USING IMAGE CLASSIFIER
         
-       List<RecognitionResult> results = imageClassifier.classify(new File("00060.png")); // todo: additional classification options?
+       ClassificationResults results = imageClassifier.classify(new File("00060.png")); // todo: additional classification options?
        
        // iterate and print recognition results
-       for(RecognitionResult result : results) {
+       for(ClassificationResult result : results.getTopKResults(5)) {
             System.out.println(result);
        }  
 

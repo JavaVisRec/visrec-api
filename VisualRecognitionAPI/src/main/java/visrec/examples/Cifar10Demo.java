@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
-import visrec.classifier.ClassificationResult;
+import visrec.classifier.ClassificationResults;
 import visrec.impl.deepnetts.DeepNettsImageClassifier;
 
 
@@ -33,24 +33,21 @@ public class Cifar10Demo {
         // training settings
         prop.setProperty("visrec.sgd.maxError", "0.03");
         prop.setProperty("visrec.sgd.learningRate", "0.01");        
-        prop.setProperty("modelFile", "dukeDetector.dnet");  // save trained model in file at the end (model has to provide this feature)        
+        prop.setProperty("modelFile", "cifar10.dnet");  // save trained model in file at the end (model has to provide this feature)        
         
         AbstractImageClassifier imageClassifier = new DeepNettsImageClassifier(); // maybe also attach some listener to be notified when building is complete?
         imageClassifier.build(prop);    // the build should provide standard workflow that can be easily customized
         
         System.out.println("Done building image classifier.");
-        
-                 
+                         
         // TEST VISREC IMAGE CLASSIFIER
         // TODO ...
-        
-        
+                
         // USE VISREC IMAGE CLASSIFIER        
         System.out.println("Classifiying images ...");
-        List<ClassificationResult<String>> results = imageClassifier.classify(new File("/home/zoran/datasets/Cifar10/someTestImage.png"));        
+        ClassificationResults results = imageClassifier.classify(new File("/home/zoran/datasets/Cifar10/someTestImage.png"));        
         System.out.println(results);
-        
-                
+                        
         System.out.println("Done.");              
     }
     

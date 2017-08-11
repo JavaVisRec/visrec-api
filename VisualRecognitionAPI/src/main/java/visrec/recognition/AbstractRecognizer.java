@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.List;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
+import visrec.classifier.ClassificationResults;
 import visrec.util.RecognitionResult;
 
 /**
@@ -23,24 +24,24 @@ public class AbstractRecognizer<IMAGE_CLASS> implements Recognizer<IMAGE_CLASS> 
     }
 
     @Override
-    public List<ClassificationResult<String>> recognize(IMAGE_CLASS image) {
+    public ClassificationResults recognize(IMAGE_CLASS image) {
         return imageClassifier.classify(image);
     }
 
     @Override
-    public  List<ClassificationResult<String>> recognize(File file) throws IOException {
+    public ClassificationResults recognize(File file) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(file);        
         return recognize(image);
     }
 
     @Override
-    public  List<ClassificationResult<String>> recognize(URL url) throws IOException {
+    public ClassificationResults recognize(URL url) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(url);        
         return recognize(image);
     }
 
     @Override
-    public  List<ClassificationResult<String>> recognize(InputStream inStream) throws IOException {
+    public ClassificationResults recognize(InputStream inStream) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(inStream);        
         return recognize(image);
     }

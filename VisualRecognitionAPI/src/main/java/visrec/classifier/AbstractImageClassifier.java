@@ -5,10 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-import java.util.Properties;
 import visrec.util.BufferedImageFactory;
 import visrec.util.ImageFactory;
-import visrec.util.RecognitionResult;
 
 /**
  *
@@ -31,19 +29,19 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     }
 
       
-    public List<ClassificationResult<String>> classify(File file) throws IOException {
+    public ClassificationResults classify(File file) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(file);
         return classify(image);            
     }
 
-    public List<ClassificationResult<String>> classify(URL url) throws IOException {
+    public ClassificationResults classify(URL url) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(url);
          return classify(image);            
     }
 
-    public List<ClassificationResult<String>> classify(InputStream inStream) throws IOException {
+    public ClassificationResults classify(InputStream inStream) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(inStream);
-         return classify(image);       
+        return classify(image);       
     }
 
     public void setImageFactory(ImageFactory<IMAGE_CLASS> imageFactory) {

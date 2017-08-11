@@ -21,8 +21,8 @@ public interface Classifier <INPUT_TYPE, CLASS_TYPE> {   // string or boolean, o
      * @param instance instance to classify
      * @return instane's class
      */
-    public  List<ClassificationResult<CLASS_TYPE>> classify(INPUT_TYPE instance);    
-    // Interface ClassificationResult<CLASS> consider using map of classes and scored instead of List/collection
+    public ClassificationResults classify(INPUT_TYPE instance);    
+    // Interface ClassificationResults2<CLASS> consider using map of classes and scored instead of List/collection
     // http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/ClassificationResult.html
     // http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/BasicClassificationResult.html
         
@@ -31,6 +31,6 @@ public interface Classifier <INPUT_TYPE, CLASS_TYPE> {   // string or boolean, o
      * 
      * @param prop settings to build specific classifier
      */
-    public void build(Properties prop);
+    public void build(Properties prop); // ClassifierProperties - klasa koja je obican properties ali je ima marker interface ClassifierProperties
 
 }
