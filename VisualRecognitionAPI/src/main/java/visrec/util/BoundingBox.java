@@ -1,11 +1,12 @@
 package visrec.util;
 
 /**
- *
+ * This class represents a bounding box over image at specified position, dimensions, label and score.
+ * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class BoundingBox {
-    private int x, y, width, height;
+    private final int x, y, width, height;
     private String label;
     private double score;
 
@@ -47,7 +48,5 @@ public class BoundingBox {
     public void setScore(double score) {
         this.score = score;
     }
-    
-    
-    
+            
 }
