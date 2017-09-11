@@ -1,9 +1,9 @@
 package visrec.impl.deepnetts;
 
-import deepnetts.conv.ActivationFunctions;
-import deepnetts.conv.ActivationType;
-import deepnetts.conv.BackpropagationTrainer;
-import deepnetts.conv.ConvolutionalNetwork;
+import deepnetts.core.ActivationFunctions;
+import deepnetts.core.ActivationType;
+import deepnetts.core.BackpropagationTrainer;
+import deepnetts.net.conv.ConvolutionalNetwork;
 import deepnetts.core.DeepNettsException;
 import deepnetts.core.DeepNettsNetwork;
 import deepnetts.core.OptimizerType;
@@ -11,7 +11,7 @@ import deepnetts.core.loss.CrossEntropyLoss;
 import deepnetts.data.ExampleImage;
 import deepnetts.data.ImageSet;
 import deepnetts.io.FileIO;
-import deepnetts.layers.SoftmaxOutputLayer;
+import deepnetts.core.layers.SoftmaxOutputLayer;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -75,26 +75,42 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
         LOGGER.info("Loading images...");
         
         imageSet.loadLabels(new File(labelsFile));
-    //    try {
-            imageSet.loadImages(new File(trainingFile), 100); // napomena - putanje bi trebalo da budu relativne inace moraju da se regenerisu 
-//        } catch (IOException | DeepNettsException ex) {
-//            java.util.logging.Logger.getLogger(DeepNettsImageClassifier.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            imageSet.loadImages(new File(trainingFile)); // napomena - putanje bi trebalo da budu relativne inace moraju da se regenerisu 
+            imageSet.invert();
+            imageSet.zeroMean();
+            imageSet.shuffle();            
+        } catch (IOException | DeepNettsException ex) {
+            java.util.logging.Logger.getLogger(DeepNettsImageClassifier.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
         int classCount = imageSet.getLabelsCount();
         
         LOGGER.info("Done!");             
         LOGGER.info("Creating neural network...");
         
+//        ConvolutionalNetwork neuralNet = new ConvolutionalNetwork.Builder()
+//                                        .inputLayer(imageWidth, imageHeight, 3) 
+//                                        .convolutionalLayer(5, 5, 6, ActivationType.TANH)
+//                                        .maxPoolingLayer(2, 2, 2)  
+//                                        .fullyConnectedLayer(80, ActivationType.TANH) 
+//                                        .fullyConnectedLayer(40, ActivationType.TANH)     
+//                                        .outputLayer(classCount, SoftmaxOutputLayer.class)
+//                                        .lossFunction(CrossEntropyLoss.class)                
+//                                        .build();      
+
         ConvolutionalNetwork neuralNet = new ConvolutionalNetwork.Builder()
                                         .inputLayer(imageWidth, imageHeight, 3) 
-                                        .convolutionalLayer(5, 5, 6, ActivationType.TANH)
-                                        .poolingLayer(2, 2, 2)  
-                                        .fullyConnectedLayer(80, ActivationType.TANH) 
-                                        .fullyConnectedLayer(40, ActivationType.TANH)     
+                                        .convolutionalLayer(5, 5, 3, ActivationType.RELU)
+                                        .maxPoolingLayer(2, 2, 2)        
+                                        .convolutionalLayer(3, 3, 6, ActivationType.RELU) 
+                                        .maxPoolingLayer(2, 2, 2)       
+                                        .fullyConnectedLayer(30, ActivationType.RELU)
+                                        .fullyConnectedLayer(20, ActivationType.RELU)
                                         .outputLayer(classCount, SoftmaxOutputLayer.class)
-                                        .lossFunction(CrossEntropyLoss.class)                
-                                        .build();      
+                                        .lossFunction(CrossEntropyLoss.class)
+                                        .randomSeed(123)       
+                                        .build();  
 
         LOGGER.info("Done!");       
         LOGGER.info("Training neural network"); 
@@ -102,13 +118,21 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
         neuralNet.setOutputLabels(imageSet.getLabels());
         
         // create a set of convolutional networks and do training, crossvalidation and performance evaluation
+//        BackpropagationTrainer trainer = new BackpropagationTrainer(neuralNet);
+//        trainer.setLearningRate(learningRate);
+//        trainer.setMaxError(maxError);
+//        trainer.setMomentum(0.9f); 
+//        trainer.setOptimizer(OptimizerType.MOMENTUM); 
+//       // trainer.setBatchMode(false); // false by default
+//        trainer.train(imageSet);   
+        
         BackpropagationTrainer trainer = new BackpropagationTrainer(neuralNet);
-        trainer.setLearningRate(learningRate);
-        trainer.setMaxError(maxError);
-        trainer.setMomentum(0.9f); 
-        trainer.setOptimizer(OptimizerType.MOMENTUM); 
-       // trainer.setBatchMode(false); // false by default
-        trainer.train(imageSet);   
+        trainer.setLearningRate(learningRate)
+                .setMomentum(0.7f)
+                .setMaxError(maxError)
+                .setBatchMode(false)
+                .setOptimizer(OptimizerType.MOMENTUM);
+        trainer.train(imageSet);         
         
         setModel(neuralNet);
           

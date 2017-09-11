@@ -1,128 +1,120 @@
-Iteration: 1 Total Error: 3.056502
-Iteration: 2 Total Error: 2.693872
-Iteration: 3 Total Error: 2.4391758
-Iteration: 4 Total Error: 2.206388
-Iteration: 5 Total Error: 2.054291
-Iteration: 6 Total Error: 1.8573893
-Iteration: 7 Total Error: 1.6377558
-Iteration: 8 Total Error: 1.5046875
-Iteration: 9 Total Error: 1.3072755
-Iteration: 10 Total Error: 1.1616795
-Iteration: 11 Total Error: 1.0497491
-Iteration: 12 Total Error: 0.962458
-Iteration: 13 Total Error: 0.8952615
-Iteration: 14 Total Error: 0.8201046
-Iteration: 15 Total Error: 0.7596493
-Iteration: 16 Total Error: 0.67277026
-Iteration: 17 Total Error: 0.58102727
-Iteration: 18 Total Error: 0.49443626
-Iteration: 19 Total Error: 0.44072974
-Iteration: 20 Total Error: 0.36592907
-Iteration: 21 Total Error: 0.3114176
-Iteration: 22 Total Error: 0.24987951
-Iteration: 23 Total Error: 0.2082843
-Iteration: 24 Total Error: 0.1800285
-Iteration: 25 Total Error: 0.16206113
-Iteration: 26 Total Error: 0.14987393
-Iteration: 27 Total Error: 0.13664876
-Iteration: 28 Total Error: 0.122435495
-Iteration: 29 Total Error: 0.112828836
-Iteration: 30 Total Error: 0.09978886
-Iteration: 31 Total Error: 0.09086694
-Iteration: 32 Total Error: 0.086386785
-Iteration: 33 Total Error: 0.08224964
-Iteration: 34 Total Error: 0.07892393
-Iteration: 35 Total Error: 0.07603459
-Iteration: 36 Total Error: 0.07350294
-Iteration: 37 Total Error: 0.071254306
-Iteration: 38 Total Error: 0.06923721
-Iteration: 39 Total Error: 0.06741179
-Iteration: 40 Total Error: 0.06574728
-Iteration: 41 Total Error: 0.064219244
-Iteration: 42 Total Error: 0.06280849
-Iteration: 43 Total Error: 0.061499357
-Iteration: 44 Total Error: 0.060279228
-Iteration: 45 Total Error: 0.0591376
-Iteration: 46 Total Error: 0.05806571
-Iteration: 47 Total Error: 0.057056136
-Iteration: 48 Total Error: 0.056102645
-Iteration: 49 Total Error: 0.055199813
-Iteration: 50 Total Error: 0.05434299
-Iteration: 51 Total Error: 0.053528138
-Iteration: 52 Total Error: 0.052751724
-Iteration: 53 Total Error: 0.05201058
-Iteration: 54 Total Error: 0.05130199
-Iteration: 55 Total Error: 0.05062349
-Iteration: 56 Total Error: 0.049972907
-Iteration: 57 Total Error: 0.04934823
-Iteration: 58 Total Error: 0.04874774
-Iteration: 59 Total Error: 0.048169833
-Iteration: 60 Total Error: 0.04761301
-Iteration: 61 Total Error: 0.04707599
-Iteration: 62 Total Error: 0.046557613
-Iteration: 63 Total Error: 0.046056733
-Iteration: 64 Total Error: 0.045572396
-Iteration: 65 Total Error: 0.045103583
-Iteration: 66 Total Error: 0.0446496
-Iteration: 67 Total Error: 0.044209525
-Iteration: 68 Total Error: 0.04378269
-Iteration: 69 Total Error: 0.043368388
-Iteration: 70 Total Error: 0.042966038
-Iteration: 71 Total Error: 0.04257503
-Iteration: 72 Total Error: 0.042194847
-Iteration: 73 Total Error: 0.041824955
-Iteration: 74 Total Error: 0.041464895
-Iteration: 75 Total Error: 0.04111425
-Iteration: 76 Total Error: 0.04077259
-Iteration: 77 Total Error: 0.040439535
-Iteration: 78 Total Error: 0.040114686
-Iteration: 79 Total Error: 0.039797746
-Iteration: 80 Total Error: 0.039488364
-Iteration: 81 Total Error: 0.03918625
-Iteration: 82 Total Error: 0.03889112
-Iteration: 83 Total Error: 0.038602695
-Iteration: 84 Total Error: 0.03832075
-Iteration: 85 Total Error: 0.03804499
-Iteration: 86 Total Error: 0.037775233
-Iteration: 87 Total Error: 0.037511226
-Iteration: 88 Total Error: 0.037252784
-Iteration: 89 Total Error: 0.036999673
-Iteration: 90 Total Error: 0.036751784
-Iteration: 91 Total Error: 0.036508888
-Iteration: 92 Total Error: 0.036270816
-Iteration: 93 Total Error: 0.0360374
-Iteration: 94 Total Error: 0.035808515
-Iteration: 95 Total Error: 0.035583984
-Iteration: 96 Total Error: 0.03536371
-Iteration: 97 Total Error: 0.03514751
-Iteration: 98 Total Error: 0.034935273
-Iteration: 99 Total Error: 0.034726907
-Iteration: 100 Total Error: 0.03452228
-Iteration: 101 Total Error: 0.03432126
-Iteration: 102 Total Error: 0.034123767
-Iteration: 103 Total Error: 0.033929713
-Iteration: 104 Total Error: 0.033738915
-Iteration: 105 Total Error: 0.03355135
-Iteration: 106 Total Error: 0.033366922
-Iteration: 107 Total Error: 0.033185527
-Iteration: 108 Total Error: 0.033007078
-Iteration: 109 Total Error: 0.03283152
-Iteration: 110 Total Error: 0.032658767
-Iteration: 111 Total Error: 0.032488737
-Iteration: 112 Total Error: 0.032321356
-Iteration: 113 Total Error: 0.032156557
-Iteration: 114 Total Error: 0.03199427
-Iteration: 115 Total Error: 0.031834453
-Iteration: 116 Total Error: 0.03167704
-Iteration: 117 Total Error: 0.031521924
-Iteration: 118 Total Error: 0.031369094
-Iteration: 119 Total Error: 0.031218488
-Iteration: 120 Total Error: 0.031070063
-Iteration: 121 Total Error: 0.030923726
-Iteration: 122 Total Error: 0.030779487
-Iteration: 123 Total Error: 0.030637236
-Iteration: 124 Total Error: 0.03049696
-Iteration: 125 Total Error: 0.030358618
-Iteration: 126 Total Error: 0.030222142
-Iteration: 127 Total Error: 0.03008752
-Iteration: 128 Total Error: 0.029954677
+Iteration:1, Time:1146ms, TotalError:2.3126497, ErrorChange:2.3126497
+Iteration:2, Time:986ms, TotalError:2.3037386, ErrorChange:-0.008911133
+Iteration:3, Time:959ms, TotalError:2.2977254, ErrorChange:-0.006013155
+Iteration:4, Time:983ms, TotalError:2.2919824, ErrorChange:-0.0057430267
+Iteration:5, Time:996ms, TotalError:2.285708, ErrorChange:-0.0062744617
+Iteration:6, Time:982ms, TotalError:2.279268, ErrorChange:-0.0064399242
+Iteration:7, Time:965ms, TotalError:2.2721827, ErrorChange:-0.0070853233
+Iteration:8, Time:966ms, TotalError:2.2643125, ErrorChange:-0.007870197
+Iteration:9, Time:969ms, TotalError:2.2562265, ErrorChange:-0.008085966
+Iteration:10, Time:990ms, TotalError:2.2466776, ErrorChange:-0.0095489025
+Iteration:11, Time:978ms, TotalError:2.2366014, ErrorChange:-0.010076284
+Iteration:12, Time:974ms, TotalError:2.2247272, ErrorChange:-0.011874199
+Iteration:13, Time:1122ms, TotalError:2.2125683, ErrorChange:-0.012158871
+Iteration:14, Time:1014ms, TotalError:2.1973426, ErrorChange:-0.015225649
+Iteration:15, Time:965ms, TotalError:2.1715431, ErrorChange:-0.025799513
+Iteration:16, Time:1111ms, TotalError:2.1358993, ErrorChange:-0.035643816
+Iteration:17, Time:968ms, TotalError:2.0938525, ErrorChange:-0.042046785
+Iteration:18, Time:973ms, TotalError:2.0527143, ErrorChange:-0.041138172
+Iteration:19, Time:971ms, TotalError:2.0072749, ErrorChange:-0.04543948
+Iteration:20, Time:967ms, TotalError:1.9519116, ErrorChange:-0.055363297
+Iteration:21, Time:980ms, TotalError:1.8977149, ErrorChange:-0.054196715
+Iteration:22, Time:972ms, TotalError:1.8415396, ErrorChange:-0.056175232
+Iteration:23, Time:969ms, TotalError:1.7850996, ErrorChange:-0.056439996
+Iteration:24, Time:970ms, TotalError:1.7170333, ErrorChange:-0.06806636
+Iteration:25, Time:973ms, TotalError:1.6380252, ErrorChange:-0.0790081
+Iteration:26, Time:979ms, TotalError:1.5604783, ErrorChange:-0.077546835
+Iteration:27, Time:966ms, TotalError:1.4798454, ErrorChange:-0.080632925
+Iteration:28, Time:971ms, TotalError:1.4053681, ErrorChange:-0.074477315
+Iteration:29, Time:973ms, TotalError:1.3364483, ErrorChange:-0.06891978
+Iteration:30, Time:967ms, TotalError:1.2681613, ErrorChange:-0.068287015
+Iteration:31, Time:971ms, TotalError:1.2088856, ErrorChange:-0.059275746
+Iteration:32, Time:969ms, TotalError:1.1700275, ErrorChange:-0.038858056
+Iteration:33, Time:963ms, TotalError:1.1372182, ErrorChange:-0.032809258
+Iteration:34, Time:965ms, TotalError:1.1024613, ErrorChange:-0.0347569
+Iteration:35, Time:969ms, TotalError:1.0875826, ErrorChange:-0.01487875
+Iteration:36, Time:968ms, TotalError:1.0752463, ErrorChange:-0.012336254
+Iteration:37, Time:965ms, TotalError:1.0744824, ErrorChange:-7.638931E-4
+Iteration:38, Time:961ms, TotalError:1.075603, ErrorChange:0.0011205673
+Iteration:39, Time:963ms, TotalError:1.0766771, ErrorChange:0.0010740757
+Iteration:40, Time:966ms, TotalError:1.0673997, ErrorChange:-0.009277344
+Iteration:41, Time:965ms, TotalError:1.0453541, ErrorChange:-0.022045612
+Iteration:42, Time:959ms, TotalError:1.0293951, ErrorChange:-0.015959024
+Iteration:43, Time:962ms, TotalError:1.0194175, ErrorChange:-0.009977579
+Iteration:44, Time:966ms, TotalError:1.0127293, ErrorChange:-0.006688237
+Iteration:45, Time:961ms, TotalError:1.0069003, ErrorChange:-0.0058289766
+Iteration:46, Time:961ms, TotalError:1.0002065, ErrorChange:-0.00669384
+Iteration:47, Time:963ms, TotalError:0.99230224, ErrorChange:-0.007904232
+Iteration:48, Time:964ms, TotalError:0.9866211, ErrorChange:-0.005681157
+Iteration:49, Time:968ms, TotalError:0.98142576, ErrorChange:-0.0051953197
+Iteration:50, Time:988ms, TotalError:0.97786164, ErrorChange:-0.0035641193
+Iteration:51, Time:983ms, TotalError:0.9856221, ErrorChange:0.007760465
+Iteration:52, Time:981ms, TotalError:0.98270416, ErrorChange:-0.0029179454
+Iteration:53, Time:975ms, TotalError:0.96947664, ErrorChange:-0.013227522
+Iteration:54, Time:977ms, TotalError:0.95945984, ErrorChange:-0.010016799
+Iteration:55, Time:983ms, TotalError:0.9486427, ErrorChange:-0.01081717
+Iteration:56, Time:989ms, TotalError:0.9353962, ErrorChange:-0.013246477
+Iteration:57, Time:989ms, TotalError:0.9210292, ErrorChange:-0.014366984
+Iteration:58, Time:998ms, TotalError:0.9022968, ErrorChange:-0.018732429
+Iteration:59, Time:984ms, TotalError:0.87838686, ErrorChange:-0.023909926
+Iteration:60, Time:1007ms, TotalError:0.848439, ErrorChange:-0.029947877
+Iteration:61, Time:971ms, TotalError:0.8080826, ErrorChange:-0.040356398
+Iteration:62, Time:984ms, TotalError:0.73106766, ErrorChange:-0.07701492
+Iteration:63, Time:1032ms, TotalError:0.48831725, ErrorChange:-0.2427504
+Iteration:64, Time:980ms, TotalError:0.3479101, ErrorChange:-0.14040715
+Iteration:65, Time:992ms, TotalError:0.30334067, ErrorChange:-0.044569433
+Iteration:66, Time:990ms, TotalError:0.24356793, ErrorChange:-0.059772745
+Iteration:67, Time:978ms, TotalError:0.21556763, ErrorChange:-0.028000295
+Iteration:68, Time:1020ms, TotalError:0.18554859, ErrorChange:-0.030019045
+Iteration:69, Time:999ms, TotalError:0.15536657, ErrorChange:-0.030182019
+Iteration:70, Time:995ms, TotalError:0.14496008, ErrorChange:-0.010406494
+Iteration:71, Time:983ms, TotalError:0.12798321, ErrorChange:-0.016976863
+Iteration:72, Time:979ms, TotalError:0.11524634, ErrorChange:-0.012736872
+Iteration:73, Time:971ms, TotalError:0.105061084, ErrorChange:-0.010185257
+Iteration:74, Time:977ms, TotalError:0.099166416, ErrorChange:-0.0058946684
+Iteration:75, Time:1023ms, TotalError:0.094408914, ErrorChange:-0.004757501
+Iteration:76, Time:986ms, TotalError:0.09179986, ErrorChange:-0.0026090518
+Iteration:77, Time:982ms, TotalError:0.08984109, ErrorChange:-0.0019587725
+Iteration:78, Time:975ms, TotalError:0.0881519, ErrorChange:-0.0016891882
+Iteration:79, Time:974ms, TotalError:0.086531706, ErrorChange:-0.0016201958
+Iteration:80, Time:975ms, TotalError:0.08507653, ErrorChange:-0.0014551729
+Iteration:81, Time:980ms, TotalError:0.0836917, ErrorChange:-0.001384832
+Iteration:82, Time:973ms, TotalError:0.08237196, ErrorChange:-0.0013197437
+Iteration:83, Time:972ms, TotalError:0.08106589, ErrorChange:-0.0013060644
+Iteration:84, Time:968ms, TotalError:0.07977755, ErrorChange:-0.0012883395
+Iteration:85, Time:969ms, TotalError:0.078432694, ErrorChange:-0.0013448596
+Iteration:86, Time:971ms, TotalError:0.07713169, ErrorChange:-0.0013010055
+Iteration:87, Time:999ms, TotalError:0.07566003, ErrorChange:-0.001471661
+Iteration:88, Time:1093ms, TotalError:0.07435538, ErrorChange:-0.0013046488
+Iteration:89, Time:1027ms, TotalError:0.07294467, ErrorChange:-0.0014107078
+Iteration:90, Time:1064ms, TotalError:0.07132541, ErrorChange:-0.0016192645
+Iteration:91, Time:996ms, TotalError:0.06993157, ErrorChange:-0.0013938397
+Iteration:92, Time:1024ms, TotalError:0.06901548, ErrorChange:-9.1608614E-4
+Iteration:93, Time:1015ms, TotalError:0.068969965, ErrorChange:-4.5515597E-5
+Iteration:94, Time:1025ms, TotalError:0.06953717, ErrorChange:5.6720525E-4
+Iteration:95, Time:1028ms, TotalError:0.07002016, ErrorChange:4.8299134E-4
+Iteration:96, Time:984ms, TotalError:0.07262122, ErrorChange:0.0026010573
+Iteration:97, Time:988ms, TotalError:0.07261175, ErrorChange:-9.469688E-6
+Iteration:98, Time:980ms, TotalError:0.075683095, ErrorChange:0.0030713454
+Iteration:99, Time:986ms, TotalError:0.06677121, ErrorChange:-0.008911885
+Iteration:100, Time:1090ms, TotalError:0.054288324, ErrorChange:-0.012482885
+Iteration:101, Time:1059ms, TotalError:0.051903382, ErrorChange:-0.002384942
+Iteration:102, Time:1023ms, TotalError:0.049122024, ErrorChange:-0.0027813576
+Iteration:103, Time:991ms, TotalError:0.04695191, ErrorChange:-0.0021701157
+Iteration:104, Time:1030ms, TotalError:0.045356296, ErrorChange:-0.0015956126
+Iteration:105, Time:1017ms, TotalError:0.04387706, ErrorChange:-0.0014792345
+Iteration:106, Time:1024ms, TotalError:0.04260703, ErrorChange:-0.0012700297
+Iteration:107, Time:982ms, TotalError:0.04133955, ErrorChange:-0.0012674816
+Iteration:108, Time:985ms, TotalError:0.04012551, ErrorChange:-0.0012140386
+Iteration:109, Time:982ms, TotalError:0.038804315, ErrorChange:-0.0013211966
+Iteration:110, Time:987ms, TotalError:0.0375033, ErrorChange:-0.0013010167
+Iteration:111, Time:982ms, TotalError:0.036178045, ErrorChange:-0.0013252534
+Iteration:112, Time:1067ms, TotalError:0.03495926, ErrorChange:-0.0012187846
+Iteration:113, Time:1047ms, TotalError:0.033795886, ErrorChange:-0.0011633746
+Iteration:114, Time:1145ms, TotalError:0.032080986, ErrorChange:-0.0017149001
+Iteration:115, Time:1007ms, TotalError:0.032068368, ErrorChange:-1.2617558E-5
+Iteration:116, Time:1039ms, TotalError:0.029055322, ErrorChange:-0.0030130465
+Iteration:117, Time:999ms, TotalError:0.028249511, ErrorChange:-8.058101E-4
+Iteration:118, Time:995ms, TotalError:0.028683918, ErrorChange:4.344061E-4
+Iteration:119, Time:997ms, TotalError:0.019555937, ErrorChange:-0.00912798
+Total Training Time: 118159ms

@@ -2,14 +2,10 @@ package visrec.examples;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResults;
-import visrec.detection.Detector;
-import visrec.detection.ImageDetector;
 import visrec.impl.deepnetts.DeepNettsImageClassifier;
-import visrec.util.BoundingBox;
 
 
 /**
@@ -22,36 +18,28 @@ public class MnistDemo {
                 
         Properties prop = new Properties();         
         // provide data set properties
-        prop.setProperty("visrec.imageWidth",   "28");   
-        prop.setProperty("visrec.imageHeight",  "28");        
-        prop.setProperty("visrec.labelsFile",   "/home/zoran/datasets/mnist/train/labels.txt");  
-        prop.setProperty("visrec.trainingFile", "/home/zoran/datasets/mnist/train/train.txt");  
+        prop.setProperty("visrec.imageWidth",   "28");                                              // width of example images   
+        prop.setProperty("visrec.imageHeight",  "28");                                              // height of example images
+        prop.setProperty("visrec.labelsFile",   "/home/zoran/datasets/mnist/train/labels.txt");     // path to filer with labels (maybe this could be also specifid as visrec.labels="label1,label2,label3")
+        prop.setProperty("visrec.trainingFile", "/home/zoran/datasets/mnist/train/train3.txt");     // file with list of training images (contains image paths and corresponding labels)
         
-        // provide model properties - inject?
-        //prop.setProperty("networkArch", "architecture.json");
-        prop.setProperty("modelFile", "mnist.dnet");  // save trained model in file at the end
+        // provide model - it could also be injected using CDI
+        // prop.setProperty("visrec.model", "networkArchitecture.json");
+        // or prop.setProperty("visrec.model.deepnetts", "networkArchitecture.json");
+        // or set individual properties but that would be too heavy from heree
+        prop.setProperty("visrec.model.saveToFile", "mnist.dnet");  // save trained model in file at the end
                        
-        // provide training properties
-        prop.setProperty("visrec.sgd.maxError", "0.03");
-        prop.setProperty("visrec.sgd.learningRate", "0.01");        
+        // provide training settings
+        prop.setProperty("visrec.sgd.maxError", "0.02");
+        prop.setProperty("visrec.sgd.learningRate", "0.03");        
         
         AbstractImageClassifier imageClassifier = new DeepNettsImageClassifier();         
         imageClassifier.build(prop);
         
         System.out.println("Done building image classifier.");
-        
-        
-        System.out.println("Classifiying images ...");
-        ClassificationResults results = imageClassifier.classify(new File("/home/zoran/datasets/mnist/test/someTestImage.png"));        
-        System.out.println(results);
-        
-        System.out.println(results);
-        System.out.println("Done.");
-        
-        
-        // show image and frame and outline results
-        
-    }
-    
-    
+                
+        System.out.println("Testing image classifier...");
+        ClassificationResults results = imageClassifier.classify(new File("/home/zoran/datasets/mnist/train/2/00005.png"));        
+        System.out.println(results);                           
+    }        
 }

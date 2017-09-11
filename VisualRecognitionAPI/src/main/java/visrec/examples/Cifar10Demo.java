@@ -45,7 +45,7 @@ public class Cifar10Demo {
                 
         // USE VISREC IMAGE CLASSIFIER        
         System.out.println("Classifiying images ...");
-        ClassificationResults results = imageClassifier.classify(new File("/home/zoran/datasets/Cifar10/someTestImage.png"));        
+        ClassificationResults results = imageClassifier.classify(new File("/home/zoran/datasets/Cifar10/train/airplane/someTestImage.png"));        
         System.out.println(results);
                         
         System.out.println("Done.");              
