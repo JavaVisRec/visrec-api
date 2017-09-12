@@ -23,13 +23,12 @@ public class MnistDemo {
         prop.setProperty("visrec.labelsFile",   "/home/zoran/datasets/mnist/train/labels.txt");     // path to filer with labels (maybe this could be also specifid as visrec.labels="label1,label2,label3")
         prop.setProperty("visrec.trainingFile", "/home/zoran/datasets/mnist/train/train3.txt");     // file with list of training images (contains image paths and corresponding labels)
         
-        // provide model - it could also be injected using CDI
         // prop.setProperty("visrec.model", "networkArchitecture.json");
-        // or prop.setProperty("visrec.model.deepnetts", "networkArchitecture.json");
+        prop.setProperty("visrec.model.deepnetts", "mnist1.json");
         // or set individual properties but that would be too heavy from heree
         prop.setProperty("visrec.model.saveToFile", "mnist.dnet");  // save trained model in file at the end
                        
-        // provide training settings
+        // training settings
         prop.setProperty("visrec.sgd.maxError", "0.02");
         prop.setProperty("visrec.sgd.learningRate", "0.03");        
         

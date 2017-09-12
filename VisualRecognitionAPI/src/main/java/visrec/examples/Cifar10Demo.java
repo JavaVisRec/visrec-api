@@ -2,7 +2,6 @@ package visrec.examples;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResults;
@@ -35,8 +34,8 @@ public class Cifar10Demo {
         prop.setProperty("visrec.sgd.learningRate", "0.01");        
         prop.setProperty("modelFile", "cifar10.dnet");  // save trained model in file at the end (model has to provide this feature)        
         
-        AbstractImageClassifier imageClassifier = new DeepNettsImageClassifier(); // maybe also attach some listener to be notified when building is complete?
-        imageClassifier.build(prop);    // the build should provide standard workflow that can be easily customized
+        AbstractImageClassifier imageClassifier = new DeepNettsImageClassifier(); // maybe also attach some listener to be notified when model building is complete?
+        imageClassifier.build(prop);    // the build should provide standard workflow that can be easily customized (preprocessing etc.)
         
         System.out.println("Done building image classifier.");
                          
@@ -49,7 +48,5 @@ public class Cifar10Demo {
         System.out.println(results);
                         
         System.out.println("Done.");              
-    }
-    
-    
+    }        
 }
