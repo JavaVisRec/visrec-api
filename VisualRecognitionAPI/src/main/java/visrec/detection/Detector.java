@@ -1,30 +1,27 @@
 package visrec.detection;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.List;
+import visrec.classifier.ClassificationResults;
 import visrec.util.BoundingBox;
 
 /**
  * Detect some object in image
  * 
+ * Is this on image X?
+ * Does this image contains X?
+ * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @param <IMAGE_CLASS> Class used to represent image
  */
+@FunctionalInterface
 public interface Detector<IMAGE_CLASS> {
         
         /**
          * Detects object in specified image
          * 
          * @param image image to search for object
-         * @return list of bounding boxes (locations) where the object is detected in image
+         * @return 
          */
-        public List<BoundingBox> detect(IMAGE_CLASS image);
+        public ClassificationResults<BoundingBox> detect(IMAGE_CLASS image); 
         
-        public List<BoundingBox> detect(File file) throws IOException;
         
-        public List<BoundingBox> detect(URL url) throws IOException;
-        
-        public List<BoundingBox> detect(InputStream inStream) throws IOException;
 }

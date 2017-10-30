@@ -34,10 +34,5 @@ public class ImageRecognitionResults implements Iterable<RecognitionResult> {
     @Override
     public Iterator<RecognitionResult> iterator() {
         return results.iterator();
-    }
-
-
-    
-    
-    
+    } 
 }

@@ -12,25 +12,26 @@ import java.util.Properties;
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  * @param <INPUT_TYPE>
  * CLASS TYPE can be boolean for binary classifier, enum for small number of predefined classes or string for maximum flexibility and big number of classes
+ * 
+ * TODO: separate classify and build methods
+ *  add builder interface to abstract classes?
+ * 
+ *     // Interface ClassificationResults<CLASS>
+    // http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/ClassificationResult.html
+    // http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/BasicClassificationResult.html
+ * 
+ * @param <CLASS_TYPE>
  */
+@FunctionalInterface
 public interface Classifier <INPUT_TYPE, CLASS_TYPE> {   // string or boolean, or enum?
 
     /**
-     * Classify specified instance and return corresponding class
+     * Classify specified instance and return classification results
      * 
      * @param instance instance to classify
-     * @return instane's class
+     * @return instance's class
      */
     public ClassificationResults classify(INPUT_TYPE instance);    
-    // Interface ClassificationResults2<CLASS> consider using map of classes and scored instead of List/collection
-    // http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/ClassificationResult.html
-    // http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/BasicClassificationResult.html
-        
-    /**
-     * Builds classifier with specified configuration (properties)
-     * 
-     * @param prop settings to build specific classifier
-     */
-    public void build(Properties prop); // ClassifierProperties - klasa koja je obican properties ali je ima marker interface ClassifierProperties
-
+  
+           
 }

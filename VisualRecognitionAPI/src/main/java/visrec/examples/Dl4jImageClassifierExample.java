@@ -51,7 +51,7 @@ public class Dl4jImageClassifierExample {
   
         // USING IMAGE CLASSIFIER
         
-       ClassificationResults results = imageClassifier.classify(new File("00060.png")); // todo: additional classification options?
+       ClassificationResults<ClassificationResult> results = imageClassifier.classify(new File("00060.png")); // todo: additional classification options?
        
        // iterate and print recognition results
        for(ClassificationResult result : results.getTopKResults(5)) {

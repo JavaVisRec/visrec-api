@@ -7,45 +7,53 @@ import java.util.List;
 
 /**
  *
- * TODO: map of classes and scores/confidences
- * Inspired by 
+ * Inspired by
  * http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/BasicClassificationResult.html
- * 
- * list of classification results
- * 
+ *
+ * list of classification results TODO: add BoundingBox somehere here
+ *
+ * a kind of ResultSet
+ *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class ClassificationResults {
-    private List<ClassificationResult> results;
+public class ClassificationResults<T extends ClassificationResult> {
+
+    private List<T> results;
 
     public ClassificationResults() {
         results = new ArrayList();
     }
-    
-    public void add(String classLabel, float score) {
-        results.add(new ClassificationResult(classLabel, score));
-    }
-    
-    public void add(ClassificationResult result) {
-        if (result == null) throw new IllegalArgumentException("Result cannot be null!");
-        
+
+    public void add(T result) {
+        if (result == null) {
+            throw new IllegalArgumentException("Result cannot be null!");
+        }
+
         results.add(result);
-    }    
-    
-    public Iterator<ClassificationResult> iterator() {
+    }
+
+    public Iterator<T> iterator() {
         return results.iterator();
     }
-    
+
     public void sort() {
-        Collections.sort(results, (ClassificationResult o1, ClassificationResult o2) -> {
+        Collections.sort(results, (T o1, T o2) -> {
             float diff = o1.getScore() - o2.getScore();
             return (int)Math.signum(diff);
         });
     }
-    
-    public List<ClassificationResult> getTopKResults(int k) {
+
+    public List<T> getTopKResults(int k) {
         this.sort();
         return results.subList(0, k);
-    } 
-    
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T r : results) {
+            sb.append(r).append(System.lineSeparator());
+        }
+        return sb.toString();
+    }
+
 }

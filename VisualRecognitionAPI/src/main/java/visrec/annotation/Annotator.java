@@ -1,23 +1,19 @@
 package visrec.annotation;
 
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.List;
+import visrec.classifier.ClassificationResults;
 import visrec.util.BoundingBox;
 
 /**
- * Interface for annotating images
+ * Interface for annotating images.
+ * 
+ * List all objects found in specified images, with class labels and scores
+ * Recognize one or several learned objects or object classes with their 2D positions.
+ * Performs object  classification + localization  task
+ * 
+ * @param <IMAGE_CLASS> Type of the input images
  */
-public interface Annotator<IMAGE>  {
+public interface Annotator<IMAGE_CLASS>  {
         
-    public List<BoundingBox> annotate(IMAGE image);
-    
-    public List<BoundingBox> annotate(File file);
-    
-    public List<BoundingBox> annotate(URL url);
-    
-    public List<BoundingBox> annotate(InputStream inStream);
-    
-        
+    public ClassificationResults<BoundingBox> annotate(IMAGE_CLASS image);
+               
 }

@@ -3,21 +3,25 @@ package visrec.classifier;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.List;
+import visrec.util.BoundingBox;
 import visrec.util.BufferedImageFactory;
+import visrec.util.Builder;
 import visrec.util.ImageFactory;
 
 /**
- *
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ *  
+ * 
+
  * @param <IMAGE_CLASS>
  * @param <MODEL_CLASS>
+ * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String> { // could also implement binary classifier
+public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String>, Builder<Classifier> { // could also implement binary classifier
 
-    private ImageFactory<IMAGE_CLASS> imageFactory; // get image factory for the cpecified image class   
+    private ImageFactory<IMAGE_CLASS> imageFactory; // get image factory for the specified image class   
     private MODEL_CLASS model; // th emodel could be injected from machine learning container
+    
+    private float threshold;
 
     public AbstractImageClassifier() {
       // instantiate image factory whuch coresponds to specified IMAGE_CLASS
@@ -27,17 +31,16 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     public ImageFactory<IMAGE_CLASS> getImageFactory() {
         return imageFactory;
     }
-
-      
-    public ClassificationResults classify(File file) throws IOException {
+    
+    public ClassificationResults<BoundingBox>  classify(File file) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(file);
-        return classify(image);            
+        return (ClassificationResults<BoundingBox>) classify(image);            
     }
 
-    public ClassificationResults classify(URL url) throws IOException {
-        IMAGE_CLASS image = imageFactory.getImage(url);
-         return classify(image);            
-    }
+//    public ClassificationResults<BoundingBox> classify(URL url) throws IOException {
+//        IMAGE_CLASS image = imageFactory.getImage(url);
+//         return classify(image);            
+//    }
 
     public ClassificationResults classify(InputStream inStream) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(inStream);
@@ -56,4 +59,11 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
         this.model = model;
     }
 
+    public float getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(float threshold) {
+        this.threshold = threshold;
+    }    
 }

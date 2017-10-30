@@ -16,24 +16,24 @@ public class MnistDemo {
 
     public static void main(String[] args) throws IOException {
                 
-        Properties prop = new Properties();         
+        Properties props = new Properties();         
         // provide data set properties
-        prop.setProperty("visrec.imageWidth",   "28");                                              // width of example images   
-        prop.setProperty("visrec.imageHeight",  "28");                                              // height of example images
-        prop.setProperty("visrec.labelsFile",   "/home/zoran/datasets/mnist/train/labels.txt");     // path to filer with labels (maybe this could be also specifid as visrec.labels="label1,label2,label3")
-        prop.setProperty("visrec.trainingFile", "/home/zoran/datasets/mnist/train/train3.txt");     // file with list of training images (contains image paths and corresponding labels)
+        props.setProperty("visrec.imageWidth",   "28");                                              // width of example images   
+        props.setProperty("visrec.imageHeight",  "28");                                              // height of example images
+        props.setProperty("visrec.labelsFile",   "/home/zoran/datasets/mnist/train/labels.txt");     // path to filer with labels (maybe this could be also specifid as visrec.labels="label1,label2,label3")
+        props.setProperty("visrec.trainingFile", "/home/zoran/datasets/mnist/train/train3.txt");     // file with list of training images (contains image paths and corresponding labels)
         
         // prop.setProperty("visrec.model", "networkArchitecture.json");
-        prop.setProperty("visrec.model.deepnetts", "mnist1.json");
+        props.setProperty("visrec.model.deepnetts", "mnist1.json");
         // or set individual properties but that would be too heavy from heree
-        prop.setProperty("visrec.model.saveToFile", "mnist.dnet");  // save trained model in file at the end
+        props.setProperty("visrec.model.saveToFile", "mnist.dnet");  // save trained model to file at the end
                        
-        // training settings
-        prop.setProperty("visrec.sgd.maxError", "0.02");
-        prop.setProperty("visrec.sgd.learningRate", "0.03");        
+        // training settings visrec.deepnetts.optimizationType=adagrad etc.
+        props.setProperty("visrec.sgd.maxError", "0.02");
+        props.setProperty("visrec.sgd.learningRate", "0.03");        
         
         AbstractImageClassifier imageClassifier = new DeepNettsImageClassifier();         
-        imageClassifier.build(prop);
+        imageClassifier.build(props);
         
         System.out.println("Done building image classifier.");
                 

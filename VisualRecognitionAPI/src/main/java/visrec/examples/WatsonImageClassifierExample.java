@@ -2,15 +2,11 @@ package visrec.examples;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
 import visrec.classifier.ClassificationResults;
-import visrec.impl.dl4j.Dl4jImageClassifier;
 import visrec.impl.watson.WatsonImageClassifier;
-import visrec.util.ImageRecognitionResults;
-import visrec.util.RecognitionResult;
 
 /**
  *
@@ -19,8 +15,7 @@ import visrec.util.RecognitionResult;
 public class WatsonImageClassifierExample {
          
     public static void main(String[] args) throws IOException {
-        
-        
+                
         // BUILDING A CUSTOM IMAGE CLASSIFIER
         
         // create watson image classifier using constructor with api key
@@ -31,18 +26,14 @@ public class WatsonImageClassifierExample {
         prop.setProperty("bear", "/home/zoran/animals/bear.zip");   // [className => zipped image files] pairs
         prop.setProperty("deer", "/home/zoran/animals/deer.zip");
         prop.setProperty("duck", "/home/zoran/animals/duck.zip");
-        prop.setProperty("turtle", "/home/zoran/animals/turtle.zip");    
-                            
+        prop.setProperty("turtle", "/home/zoran/animals/turtle.zip");                                
+
         imageClassifier.build(prop);
-                
-                
+                                
         // USING IMAGE CLASSIFIER 
-        
-       // create watson image classifier using constructor with api key
-       // AbstractImageClassifier imageClassifier = new WatsonImageClassifier("xxx");    
-        
+               
         // classify image, and get results
-        ClassificationResults results = imageClassifier.classify(new File("people.jpg")); // todo: additional classification options?
+        ClassificationResults<ClassificationResult> results = imageClassifier.classify(new File("people.jpg")); // todo: additional classification options?
        
        // iterate and print recognition results
        for(ClassificationResult result : results.getTopKResults(5)) {

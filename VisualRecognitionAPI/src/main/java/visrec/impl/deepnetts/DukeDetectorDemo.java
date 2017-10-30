@@ -1,15 +1,12 @@
 package visrec.impl.deepnetts;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResults;
 import visrec.detection.Detector;
 import visrec.detection.ImageDetector;
-import visrec.impl.deepnetts.DeepNettsImageClassifier;
-import visrec.util.BoundingBox;
 
 
 /**
@@ -43,7 +40,7 @@ public class DukeDetectorDemo {
          
         System.out.println("Detecting dukes...");
         Detector logoDetector = new ImageDetector(imageClassifier); // should we use scanning? Test it a bit further
-        List<BoundingBox> results = logoDetector.detect(new File("/home/zoran/datasets/DukeSet/TestDukeDetection.png"));
+        ClassificationResults results = logoDetector.detect(new File("/home/zoran/datasets/DukeSet/TestDukeDetection.png"));
         
        // imageClassifier.classify(file)
         

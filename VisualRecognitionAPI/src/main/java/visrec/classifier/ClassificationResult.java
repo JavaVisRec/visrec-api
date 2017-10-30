@@ -3,11 +3,13 @@ package visrec.classifier;
 /**
  * This class represents a single classification result.
  * 
+ * This could be an interface and then have BasicClassificationResult and ImageClassificationResult
+ * 
   * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class ClassificationResult {
-    private final String classLabel;
-    private final float score; // or confidence?
+    private String classLabel;
+    private float score; // confidence
 
     public ClassificationResult(String classLabel, float score) {
         this.classLabel = classLabel;
@@ -22,6 +24,14 @@ public class ClassificationResult {
         return score;
     }
 
+    public void setLabel(String label) {
+        this.classLabel = label;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
+    }
+    
     @Override
     public String toString() {
         return "ClassificationResult{" + "classLabel=" + classLabel + ", score=" + score + '}';

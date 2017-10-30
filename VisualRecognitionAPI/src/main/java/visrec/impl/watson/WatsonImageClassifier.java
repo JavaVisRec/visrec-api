@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
 import visrec.classifier.ClassificationResults;
+import visrec.classifier.Classifier;
 import visrec.util.ImageRecognitionResults;
 import visrec.util.RecognitionResult;
 
@@ -41,11 +42,9 @@ public class WatsonImageClassifier extends AbstractImageClassifier<BufferedImage
     private WatsonImageClassifier() {
         
     }
-    
-    
-                 
+                         
     @Override
-    public void build(Properties properties) {
+    public Classifier build(Properties properties) {
         
         ClassifierOptions.Builder optionsBuilder = new ClassifierOptions.Builder();
         
@@ -71,6 +70,8 @@ public class WatsonImageClassifier extends AbstractImageClassifier<BufferedImage
         
         ClassifierOptions createOptions = optionsBuilder.build();                
         this.classifier = service.createClassifier(createOptions).execute();
+        
+        return this;
     }
     
     // THIS ONE OVERRIDES THE METHOD WITH FILE param not image type

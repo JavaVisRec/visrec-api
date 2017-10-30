@@ -13,6 +13,7 @@ import org.openimaj.video.VideoDisplay;
 import org.openimaj.video.VideoDisplayListener;
 import org.openimaj.video.capture.VideoCapture;
 import org.openimaj.video.capture.VideoCaptureException;
+import visrec.classifier.ClassificationResults;
 import visrec.detection.Detector;
 
 /**
@@ -26,8 +27,7 @@ public class CameraDemo {
         VideoDisplay<MBFImage> vd = VideoDisplay.createVideoDisplay(vc);
         
         
-        vd.addVideoListener(
-                new VideoDisplayListener<MBFImage>() {
+        vd.addVideoListener(new VideoDisplayListener<MBFImage>() {
             @Override
             public void beforeUpdate(MBFImage frame) {
 //                FaceDetector<DetectedFace,FImage> fd = new HaarCascadeDetector(40);
@@ -38,9 +38,9 @@ public class CameraDemo {
 //                }
 
                   Detector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
-                  List results = faceDetector.detect(frame);
+                  ClassificationResults results = faceDetector.detect(frame);
         
-                    for(Object result : results) {
+                    for(Object result : results.getTopKResults(5)) {
                          frame.drawShape(((DetectedFace)result).getBounds(), RGBColour.RED);
                     }
             }

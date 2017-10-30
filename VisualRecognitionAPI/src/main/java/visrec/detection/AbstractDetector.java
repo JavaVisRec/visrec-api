@@ -3,9 +3,8 @@ package visrec.detection;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.List;
 import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResults;
 import visrec.util.BoundingBox;
 
 /**
@@ -26,31 +25,24 @@ public abstract class AbstractDetector<IMAGE_CLASS> implements Detector<IMAGE_CL
       * @return 
       */
     @Override
-    public abstract List<BoundingBox> detect(IMAGE_CLASS image);
+    public abstract ClassificationResults<BoundingBox> detect(IMAGE_CLASS image);
     
-
-    @Override
-    public List<BoundingBox> detect(File file) throws IOException {
+    public ClassificationResults detect(File file) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(file);        
         return detect(image);
     }
 
-    @Override
-    public List<BoundingBox> detect(URL url) throws IOException {
-        IMAGE_CLASS image =imageClassifier.getImageFactory().getImage(url);        
-        return detect(image);   
-    }
-
-    @Override
-    public List<BoundingBox> detect(InputStream inStream) throws IOException {
+    public ClassificationResults detect(InputStream inStream) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(inStream);        
         return detect(image);   
     }    
 
+    /**
+     * Subclasses should use ths method to use the inderlying image classifier
+     * @return 
+     */
     public AbstractImageClassifier<IMAGE_CLASS, Boolean> getImageClassifier() {
         return imageClassifier;
     }
-    
-    
-    
+            
 }

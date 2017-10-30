@@ -1,13 +1,10 @@
 package visrec.detection;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
 import visrec.classifier.ClassificationResults;
 import visrec.util.BoundingBox;
-import visrec.util.RecognitionResult;
 
 /**
  *
@@ -32,22 +29,19 @@ public class ImageDetector extends AbstractDetector<BufferedImage> {
      * @return 
      */
     @Override
-    public List<BoundingBox> detect(BufferedImage image) {       
-        List<BoundingBox> results = new ArrayList<>();
+    public ClassificationResults detect(BufferedImage image) {       
+        ClassificationResults<ClassificationResult> results = new ClassificationResults();
         
         int boxWidth = 64, boxHeight = 64;
         
         for (int y = 0; y < image.getHeight()-boxHeight; y++) {
             for (int x = 0; x < image.getWidth()-boxWidth; x++) {
                     
-                   ClassificationResults results2 = getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
+                   ClassificationResults<ClassificationResult> results2 = (ClassificationResults<ClassificationResult>) getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
                    for(ClassificationResult rr : results2.getTopKResults(5)) {
                        System.out.println(x+","+y);
                        if (rr.getScore() > threshold) {
-                           System.out.println("Evooooooooooooooooooooo gaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!!!");
-                           BoundingBox bbox = new BoundingBox(x, y, boxWidth, boxHeight);   // TODO: this cannnot be hardcoded, get this from model
-                           bbox.setLabel(rr.getClassLabel());
-                           bbox.setScore(rr.getScore());
+                           BoundingBox bbox = new BoundingBox(rr.getClassLabel(), rr.getScore(), x, y, boxWidth, boxHeight);   // TODO: this cannnot be hardcoded, get this from model
                            results.add(bbox);
                        }
                    }                   

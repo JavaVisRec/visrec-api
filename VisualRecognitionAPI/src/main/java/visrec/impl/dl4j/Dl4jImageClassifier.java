@@ -49,6 +49,7 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
 import visrec.classifier.ClassificationResults;
+import visrec.classifier.Classifier;
 import visrec.util.BufferedImageFactory;
 
 /**
@@ -108,8 +109,8 @@ public class Dl4jImageClassifier extends AbstractImageClassifier<BufferedImage, 
     // maybe put it in the Classifier specific class?
     // we would need machine learning pipeline
     // use Properties
-    @Override
-    public void build(Properties prop) {
+
+    public Classifier build(Properties prop) {
         try {
 
        // image diemnsions and channels
@@ -199,10 +200,12 @@ public class Dl4jImageClassifier extends AbstractImageClassifier<BufferedImage, 
                                 
                 setModel(neuralNet);
             }
+            return this;
         } catch (IOException ex) {
             Logger.getLogger(Dl4jImageClassifier.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        return this;
     }
     
     public MultiLayerNetwork alexnetModel(int seed, int iterations, int channels, int numLabels, int width, int height ) {

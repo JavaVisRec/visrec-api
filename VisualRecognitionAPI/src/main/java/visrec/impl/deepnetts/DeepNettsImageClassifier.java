@@ -1,16 +1,16 @@
 package visrec.impl.deepnetts;
 
-import deepnetts.core.ActivationType;
-import deepnetts.core.BackpropagationTrainer;
-import deepnetts.net.conv.ConvolutionalNetwork;
-import deepnetts.core.DeepNettsException;
-import deepnetts.core.DeepNettsNetwork;
-import deepnetts.core.OptimizerType;
-import deepnetts.core.loss.CrossEntropyLoss;
 import deepnetts.data.ExampleImage;
 import deepnetts.data.ImageSet;
-import deepnetts.io.FileIO;
-import deepnetts.core.layers.SoftmaxOutputLayer;
+import deepnetts.net.ConvolutionalNetwork;
+import deepnetts.net.NeuralNetwork;
+import deepnetts.net.layers.ActivationType;
+import deepnetts.net.layers.SoftmaxOutputLayer;
+import deepnetts.net.loss.CrossEntropyLoss;
+import deepnetts.net.train.BackpropagationTrainer;
+import deepnetts.net.train.OptimizerType;
+import deepnetts.util.DeepNettsException;
+import deepnetts.util.FileIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,15 +18,31 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import visrec.classifier.AbstractImageClassifier;
+import visrec.classifier.ClassificationResult;
 import visrec.classifier.ClassificationResults;
+import visrec.classifier.Classifier;
 import visrec.util.BufferedImageFactory;
 import visrec.util.VisRec;
 
 /**
- *
+ * TODO: Traffic sign recognition
+ *       healhcare - skin, 
+ *                  radiology caner for bone - MRI 
+ *          vegetarian or non vegeterian food, transportation boxes
+ *        simple implementation and ditributed implemantayion using th esame api as hazelcast          
+ *          trab
+ *          what is teh biggest challange for javadeveloper starting tio use it
+ *          apache or gpl wit classpath , allow dynamic linkoing
+ *          
+ *          separate training from using. (resource usage)
+ *          3d stereo vision - using conv networks
+ *          use configuration JSR  apache 382
+ *          iso standardize containers
+ *          thermal imaging
+ * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedImage, DeepNettsNetwork>{
+public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedImage, ConvolutionalNetwork>{
     
     private int imageWidth, imageHeight;
 
@@ -39,24 +55,24 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
     
     @Override
     public ClassificationResults classify(BufferedImage sample) {
-        ClassificationResults results = new ClassificationResults();                
-        DeepNettsNetwork neuralNet = getModel();
+        ClassificationResults<ClassificationResult> results = new ClassificationResults();                
+        NeuralNetwork neuralNet = getModel();
                 
         ExampleImage exImage = new ExampleImage(sample);
-        neuralNet.setInput(exImage.getInputMatrix());
+        neuralNet.setInput(exImage.getInput());
         neuralNet.forward();
         
        float[] outputs = neuralNet.getOutput();
 
        for(int i=1; i<outputs.length; i++) {
-           results.add(neuralNet.getOutputLabel(i), outputs[i]);
+           results.add(new ClassificationResult(neuralNet.getOutputLabel(i), outputs[i]));
        }
 
        return results;                        
     }
 
-    @Override
-    public void build(Properties prop) {
+
+    public Classifier build(Properties prop) {
         
         imageWidth = Integer.parseInt(prop.getProperty(VisRec.IMAGE_WIDTH));
         imageHeight = Integer.parseInt(prop.getProperty(VisRec.IMAGE_HEIGHT));
@@ -72,7 +88,7 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
         
         imageSet.loadLabels(new File(labelsFile));
         try {
-            imageSet.loadImages(new File(trainingFile)); // paths in training file should be relative
+            imageSet.loadImages(new File(trainingFile), true); // paths in training file should be relative
             imageSet.invert();
             imageSet.zeroMean();
             imageSet.shuffle();            
@@ -86,27 +102,27 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
         LOGGER.info("Creating neural network...");
         
         
-        String modelJsonFile = prop.getProperty("visrec.model.deepnetts");
-        ConvolutionalNetwork neuralNet = null;
-        try {
-            neuralNet = FileIO.createFromJson(new File(modelJsonFile));
-            //neuralNet.setOutputLabels(imageSet.getLabels());
-        } catch (IOException ex) {
-            Logger.getLogger(DeepNettsImageClassifier.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        String modelJsonFile = prop.getProperty("visrec.model.deepnetts");
+//        ConvolutionalNetwork neuralNet = null;
+//        try {
+//            neuralNet = FileIO.createFromJson(new File(modelJsonFile));
+//            //neuralNet.setOutputLabels(imageSet.getLabels());
+//        } catch (IOException ex) {
+//            Logger.getLogger(DeepNettsImageClassifier.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
-//        ConvolutionalNetwork neuralNet = new ConvolutionalNetwork.Builder()
-//                                        .inputLayer(imageWidth, imageHeight, 3) 
-//                                        .convolutionalLayer(5, 5, 3, ActivationType.RELU)
-//                                        .maxPoolingLayer(2, 2, 2)        
-//                                        .convolutionalLayer(3, 3, 6, ActivationType.RELU) 
-//                                        .maxPoolingLayer(2, 2, 2)       
-//                                        .fullyConnectedLayer(30, ActivationType.RELU)
-//                                        .fullyConnectedLayer(20, ActivationType.RELU)
-//                                        .outputLayer(classCount, SoftmaxOutputLayer.class)
-//                                        .lossFunction(CrossEntropyLoss.class)
-//                                        .randomSeed(123)       
-//                                        .build();  
+        ConvolutionalNetwork neuralNet = new ConvolutionalNetwork.Builder()
+                                        .inputLayer(imageWidth, imageHeight, 3) 
+                                        .convolutionalLayer(5, 5, 3, ActivationType.RELU)
+                                        .maxPoolingLayer(2, 2, 2)        
+                                        .convolutionalLayer(3, 3, 6, ActivationType.RELU) 
+                                        .maxPoolingLayer(2, 2, 2)       
+                                        .fullyConnectedLayer(30, ActivationType.RELU)
+                                        .fullyConnectedLayer(20, ActivationType.RELU)
+                                        .outputLayer(classCount, SoftmaxOutputLayer.class)
+                                        .lossFunction(CrossEntropyLoss.class)
+                                        .randomSeed(123)       
+                                        .build();  
 
         LOGGER.info("Done!");       
         LOGGER.info("Training neural network"); 
@@ -129,6 +145,9 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(DeepNettsImageClassifier.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return this;
+        
     }
 
     public int getImageWidth() {

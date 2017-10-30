@@ -1,7 +1,7 @@
 package visrec.classifier;
 
 /**
- * Binary true/false classifier for objects of type T
+ * Binary (true/false) classifier for objects of type T
  * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */

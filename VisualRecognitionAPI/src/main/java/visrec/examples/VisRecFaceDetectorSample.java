@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import org.openimaj.image.MBFImage;
 import org.openimaj.image.processing.face.detection.DetectedFace;
+import visrec.classifier.ClassificationResults;
 import visrec.detection.Detector;
 import visrec.util.MBFImageFactory;
 
@@ -21,11 +22,11 @@ public class VisRecFaceDetectorSample {
 //        ImageFactory<MBFImage> imageFactory = new MBFImageFactory();
 //        MBFImage image = imageFactory.getImage(new File("people.jpg"));
         
-        List results = faceDetector.detect(new File("people.jpg"));
-        
-        for(Object result : results) {
-            System.out.println( ((DetectedFace)result).getBounds());
-        }
+//        ClassificationResults results = faceDetector.detect(new File("people.jpg"));
+//        
+//        for(Object result : results.getTopKResults(5)) {
+//            System.out.println( ((DetectedFace)result).getBounds());
+//        }
    
         // we need to allow detectors recognizers and annotators to get input directly from file, url or stream. Maybe some ImageConsumerInterface ? 
         // we dont want to make people to dig deep into our api and understand internal classes in order to be able to use it (thats most important thing)
