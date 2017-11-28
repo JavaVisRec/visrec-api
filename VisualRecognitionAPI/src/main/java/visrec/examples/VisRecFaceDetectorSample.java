@@ -6,8 +6,8 @@ import java.util.List;
 import org.openimaj.image.MBFImage;
 import org.openimaj.image.processing.face.detection.DetectedFace;
 import visrec.classifier.ClassificationResults;
-import visrec.detection.Detector;
 import visrec.util.MBFImageFactory;
+import visrec.detection.ObjectDetector;
 
 /**
  *
@@ -17,12 +17,12 @@ public class VisRecFaceDetectorSample {
 
     public static void main(String[] args) throws IOException {
         
-        Detector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
+        ObjectDetector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
 //        faceDetector.setImageFactory(new MBFImageFactory()); // this should be automaticly losaded by detector based on the image class
 //        ImageFactory<MBFImage> imageFactory = new MBFImageFactory();
 //        MBFImage image = imageFactory.getImage(new File("people.jpg"));
         
-//        ClassificationResults results = faceDetector.detect(new File("people.jpg"));
+//        ClassificationResults results = faceDetector.detectObject(new File("people.jpg"));
 //        
 //        for(Object result : results.getTopKResults(5)) {
 //            System.out.println( ((DetectedFace)result).getBounds());

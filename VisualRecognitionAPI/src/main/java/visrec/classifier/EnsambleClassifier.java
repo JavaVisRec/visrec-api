@@ -13,7 +13,7 @@ public class EnsambleClassifier<INPUT_TYPE, CLASS_TYPE> implements Classifier<IN
             
     @Override
     public ClassificationResults classify(INPUT_TYPE instance) {
-        classifiers.values().stream()
+        classifiers.values().stream()   // or parallelStream
                    .forEach( c -> c.classify(instance) );
                     //.collect();
         // return merged classification result of all classifiers  - mean or median

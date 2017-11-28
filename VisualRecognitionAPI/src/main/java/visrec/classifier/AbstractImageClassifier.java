@@ -32,9 +32,9 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
         return imageFactory;
     }
     
-    public ClassificationResults<BoundingBox>  classify(File file) throws IOException {
+    public ClassificationResults<ClassificationResult>  classify(File file) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(file);
-        return (ClassificationResults<BoundingBox>) classify(image);            
+        return classify(image);            
     }
 
 //    public ClassificationResults<BoundingBox> classify(URL url) throws IOException {

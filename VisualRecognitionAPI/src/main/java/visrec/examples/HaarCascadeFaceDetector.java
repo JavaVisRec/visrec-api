@@ -11,15 +11,15 @@ import org.openimaj.image.processing.face.detection.FaceDetector;
 import org.openimaj.image.processing.face.detection.HaarCascadeDetector;
 import org.openimaj.math.geometry.shape.Rectangle;
 import visrec.classifier.ClassificationResults;
-import visrec.detection.Detector;
 import visrec.util.BoundingBox;
 import visrec.util.ImageFactory;
+import visrec.detection.ObjectDetector;
 
 /**
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class HaarCascadeFaceDetector implements Detector<MBFImage> {
+public class HaarCascadeFaceDetector implements ObjectDetector<MBFImage> {
     FaceDetector<DetectedFace, FImage> faceDetector;
     ImageFactory<MBFImage> imageFactory;
 
@@ -32,7 +32,7 @@ public class HaarCascadeFaceDetector implements Detector<MBFImage> {
     }
          
     @Override
-    public ClassificationResults detect(MBFImage image) {
+    public ClassificationResults detectObject(MBFImage image) {
             // MBFImage image = ImageUtilities.readMBF(imageFile);
 
            List<DetectedFace> faces = faceDetector.detectFaces(image.flatten());
@@ -52,13 +52,13 @@ public class HaarCascadeFaceDetector implements Detector<MBFImage> {
     //@Override
     public ClassificationResults detect(File file) throws IOException {
         MBFImage image = imageFactory.getImage(file);
-        return detect(image);
+        return detectObject(image);
     }
 //
 //    @Override
-//    public ClassificationResults detect(InputStream inStream) throws IOException {
+//    public ClassificationResults detectObject(InputStream inStream) throws IOException {
 //        MBFImage image = imageFactory.getImage(inStream);
-//        return detect(image);
+//        return detectObject(image);
 //    }
 
 }

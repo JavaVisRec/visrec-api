@@ -11,11 +11,11 @@ import visrec.util.BoundingBox;
  * missing image to search in
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public abstract class AbstractDetector<IMAGE_CLASS> implements Detector<IMAGE_CLASS> {
+public abstract class AbstractObjectDetector<IMAGE_CLASS> implements ObjectDetector<IMAGE_CLASS> {
 
-    AbstractImageClassifier<IMAGE_CLASS, Boolean> imageClassifier; // This should be binary classifier, that can detect some object / image
+    AbstractImageClassifier<IMAGE_CLASS, Boolean> imageClassifier; // This should be binary classifier, that can detectObject some object / image
     
-    public AbstractDetector(AbstractImageClassifier<IMAGE_CLASS, Boolean> imageClassifier) {
+    public AbstractObjectDetector(AbstractImageClassifier<IMAGE_CLASS, Boolean> imageClassifier) {
         this.imageClassifier = imageClassifier;
     }
            
@@ -25,16 +25,16 @@ public abstract class AbstractDetector<IMAGE_CLASS> implements Detector<IMAGE_CL
       * @return 
       */
     @Override
-    public abstract ClassificationResults<BoundingBox> detect(IMAGE_CLASS image);
+    public abstract ClassificationResults<BoundingBox> detectObject(IMAGE_CLASS image);
     
     public ClassificationResults detect(File file) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(file);        
-        return detect(image);
+        return detectObject(image);
     }
 
     public ClassificationResults detect(InputStream inStream) throws IOException {
         IMAGE_CLASS image = imageClassifier.getImageFactory().getImage(inStream);        
-        return detect(image);   
+        return detectObject(image);   
     }    
 
     /**

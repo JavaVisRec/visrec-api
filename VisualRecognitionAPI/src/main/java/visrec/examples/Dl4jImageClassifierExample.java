@@ -2,13 +2,11 @@ package visrec.examples;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
 import visrec.classifier.ClassificationResults;
 import visrec.impl.dl4j.Dl4jImageClassifier;
-import visrec.util.RecognitionResult;
 
 /**
  *

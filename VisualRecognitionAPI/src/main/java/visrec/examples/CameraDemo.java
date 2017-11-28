@@ -14,7 +14,7 @@ import org.openimaj.video.VideoDisplayListener;
 import org.openimaj.video.capture.VideoCapture;
 import org.openimaj.video.capture.VideoCaptureException;
 import visrec.classifier.ClassificationResults;
-import visrec.detection.Detector;
+import visrec.detection.ObjectDetector;
 
 /**
  * http://openimaj.org/tutorial/finding-faces.html
@@ -37,8 +37,8 @@ public class CameraDemo {
 //                    frame.drawShape(face.getBounds(), RGBColour.RED);
 //                }
 
-                  Detector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
-                  ClassificationResults results = faceDetector.detect(frame);
+                  ObjectDetector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
+                  ClassificationResults results = faceDetector.detectObject(frame);
         
                     for(Object result : results.getTopKResults(5)) {
                          frame.drawShape(((DetectedFace)result).getBounds(), RGBColour.RED);

@@ -10,17 +10,18 @@ import visrec.util.BoundingBox;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class ImageDetector extends AbstractDetector<BufferedImage> {
+public class SimpleObjectDetector extends AbstractObjectDetector<BufferedImage> {
     
     private double threshold = 0.5;
     
-    public ImageDetector(AbstractImageClassifier<BufferedImage, Boolean> classifier) {
+    public SimpleObjectDetector(AbstractImageClassifier<BufferedImage, Boolean> classifier) {
         super(classifier);
     }
 
     /**
      * Scan image using brute force sliding window and return positions where classifier
-     * returns score greater then threshold
+     * returns score greater then threshold.
+     * 
      * get width and height of the image
      * and scan image with classifier - apply classifier to each position
      * This is trivial implementation and should be replaced with something better
@@ -29,7 +30,7 @@ public class ImageDetector extends AbstractDetector<BufferedImage> {
      * @return 
      */
     @Override
-    public ClassificationResults detect(BufferedImage image) {       
+    public ClassificationResults detectObject(BufferedImage image) {       
         ClassificationResults<ClassificationResult> results = new ClassificationResults();
         
         int boxWidth = 64, boxHeight = 64;
@@ -37,11 +38,10 @@ public class ImageDetector extends AbstractDetector<BufferedImage> {
         for (int y = 0; y < image.getHeight()-boxHeight; y++) {
             for (int x = 0; x < image.getWidth()-boxWidth; x++) {
                     
-                   ClassificationResults<ClassificationResult> results2 = (ClassificationResults<ClassificationResult>) getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
+                   ClassificationResults<ClassificationResult> results2 =  getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
                    for(ClassificationResult rr : results2.getTopKResults(5)) {
-                       System.out.println(x+","+y);
                        if (rr.getScore() > threshold) {
-                           BoundingBox bbox = new BoundingBox(rr.getClassLabel(), rr.getScore(), x, y, boxWidth, boxHeight);   // TODO: this cannnot be hardcoded, get this from model
+                           BoundingBox bbox = new BoundingBox(rr.getClassLabel(), rr.getScore(), x, y, boxWidth, boxHeight);
                            results.add(bbox);
                        }
                    }                   
@@ -57,8 +57,5 @@ public class ImageDetector extends AbstractDetector<BufferedImage> {
 
     public void setThreshold(double threshold) {
         this.threshold = threshold;
-    }
-    
-    
-
+    }        
 }

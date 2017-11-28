@@ -13,7 +13,7 @@ import visrec.util.BoundingBox;
  * @param <IMAGE_CLASS> Class used to represent image
  */
 @FunctionalInterface
-public interface Detector<IMAGE_CLASS> {
+public interface ObjectDetector<IMAGE_CLASS> {
         
         /**
          * Detects object in specified image
@@ -21,7 +21,7 @@ public interface Detector<IMAGE_CLASS> {
          * @param image image to search for object
          * @return 
          */
-        public ClassificationResults<BoundingBox> detect(IMAGE_CLASS image); 
+        public ClassificationResults<BoundingBox> detectObject(IMAGE_CLASS image); 
         
         
 }

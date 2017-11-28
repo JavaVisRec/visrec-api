@@ -1,11 +1,10 @@
 package visrec.classifier;
 
 /**
- * This class represents a single classification result.
+ * This class represents a single classification result with class label and 
+ * corresponding score (confidence level).
  * 
- * This could be an interface and then have BasicClassificationResult and ImageClassificationResult
- * 
-  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class ClassificationResult {
     private String classLabel;
@@ -35,7 +34,5 @@ public class ClassificationResult {
     @Override
     public String toString() {
         return "ClassificationResult{" + "classLabel=" + classLabel + ", score=" + score + '}';
-    }
-    
-    
+    }        
 }

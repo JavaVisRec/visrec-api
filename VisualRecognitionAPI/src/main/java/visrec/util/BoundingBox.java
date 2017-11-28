@@ -10,7 +10,9 @@ import visrec.classifier.ClassificationResult;
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class BoundingBox extends ClassificationResult {
+    private int id;
     private final int x, y, width, height;
+
 
     public BoundingBox(String label, float score, int x, int y, int width, int height) {
         super(label, score);
@@ -19,6 +21,14 @@ public class BoundingBox extends ClassificationResult {
         this.width = width;
         this.height = height;
     }
+    
+//    public BoundingBox(int x, int y, int width, int height) {
+//        super("", -1);
+//        this.x = x;
+//        this.y = y;
+//        this.width = width;
+//        this.height = height;
+//    }    
         
     public int getX() {
         return x;
@@ -35,5 +45,21 @@ public class BoundingBox extends ClassificationResult {
     public int getHeight() {
         return height;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "BoundingBox{" + "id=" + id + ", x=" + x + ", y=" + y + ", width=" + width + ", height=" + height + '}';
+    }
+
+
+    
             
 }

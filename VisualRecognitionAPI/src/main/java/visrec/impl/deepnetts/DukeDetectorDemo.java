@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.Properties;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResults;
-import visrec.detection.Detector;
-import visrec.detection.ImageDetector;
+import visrec.detection.SimpleObjectDetector;
+import visrec.detection.ObjectDetector;
 
 
 /**
@@ -39,8 +39,8 @@ public class DukeDetectorDemo {
         
          
         System.out.println("Detecting dukes...");
-        Detector logoDetector = new ImageDetector(imageClassifier); // should we use scanning? Test it a bit further
-        ClassificationResults results = logoDetector.detect(new File("/home/zoran/datasets/DukeSet/TestDukeDetection.png"));
+        ObjectDetector logoDetector = new SimpleObjectDetector(imageClassifier); // should we use scanning? Test it a bit further
+        ClassificationResults results = logoDetector.detectObject(new File("/home/zoran/datasets/DukeSet/TestDukeDetection.png"));
         
        // imageClassifier.classify(file)
         

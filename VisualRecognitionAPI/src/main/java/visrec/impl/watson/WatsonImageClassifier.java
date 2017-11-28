@@ -7,20 +7,14 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifi
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifier;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
-import javax.imageio.ImageIO;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import visrec.classifier.AbstractImageClassifier;
 import visrec.classifier.ClassificationResult;
 import visrec.classifier.ClassificationResults;
 import visrec.classifier.Classifier;
-import visrec.util.ImageRecognitionResults;
-import visrec.util.RecognitionResult;
 
 /**
  *
