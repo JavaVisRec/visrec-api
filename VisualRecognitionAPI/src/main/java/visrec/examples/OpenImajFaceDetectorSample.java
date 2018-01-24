@@ -2,7 +2,7 @@ package visrec.examples;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+
 import org.openimaj.image.FImage;
 import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.MBFImage;
@@ -21,11 +21,9 @@ public class OpenImajFaceDetectorSample {
     public static void main(String[] args) throws IOException {
         FaceDetector<DetectedFace,FImage> fd = new HaarCascadeDetector(40);
     
-        MBFImage image = ImageUtilities.readMBF(new File("people.jpg"));
-        List<DetectedFace> faces = fd.detectFaces(image.flatten());
-
-        for( DetectedFace face : faces ) {
-            System.out.println(face.getBounds());
-        }
+        File file = Utility.getImageFile("people.jpg");
+        
+        MBFImage image = ImageUtilities.readMBF(file);
+        Utility.markImageWithRectangle(fd.detectFaces(image.flatten()), "people.jpg",new File("src/main/resources/peopleResult.jpg"));
     }
 }
