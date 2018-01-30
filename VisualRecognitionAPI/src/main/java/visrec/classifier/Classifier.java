@@ -19,7 +19,7 @@ public interface Classifier <INPUT_TYPE, CLASS_TYPE> {   // string or boolean, o
 
     /**
      * Classify specified instance and return classification results
-     * 
+     *  return a Map (class, confidence? no need for the additional classes.. whats their purporse?)
      * @param instance some instance to classify
      * @return classification results for the specified instance
      */

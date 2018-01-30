@@ -7,8 +7,8 @@ package visrec.classifier;
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class ClassificationResult {
-    private String classLabel;
-    private float score; // confidence
+    private final String classLabel;
+    private final float score; // confidence
 
     public ClassificationResult(String classLabel, float score) {
         this.classLabel = classLabel;
@@ -23,13 +23,13 @@ public class ClassificationResult {
         return score;
     }
 
-    public void setLabel(String label) {
-        this.classLabel = label;
-    }
-
-    public void setScore(float score) {
-        this.score = score;
-    }
+//    public void setLabel(String label) {
+//        this.classLabel = label;
+//    }
+//
+//    public void setScore(float score) {
+//        this.score = score;
+//    }
     
     @Override
     public String toString() {
