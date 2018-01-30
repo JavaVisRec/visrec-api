@@ -112,16 +112,16 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
 //        }
         
         ConvolutionalNetwork neuralNet = new ConvolutionalNetwork.Builder()
-                                        .inputLayer(imageWidth, imageHeight, 3) 
-                                        .convolutionalLayer(5, 5, 3, ActivationType.RELU)
-                                        .maxPoolingLayer(2, 2, 2)        
-                                        .convolutionalLayer(3, 3, 6, ActivationType.RELU) 
-                                        .maxPoolingLayer(2, 2, 2)       
-                                        .fullyConnectedLayer(30, ActivationType.RELU)
-                                        .fullyConnectedLayer(20, ActivationType.RELU)
-                                        .outputLayer(classCount, SoftmaxOutputLayer.class)
-                                        .lossFunction(CrossEntropyLoss.class)
-                                        .randomSeed(123)       
+                                        .addInputLayer(imageWidth, imageHeight, 3) 
+                                        .addConvolutionalLayer(5, 5, 3, ActivationType.RELU)
+                                        .addMaxPoolingLayer(2, 2, 2)        
+                                        .addConvolutionalLayer(3, 3, 6, ActivationType.RELU) 
+                                        .addMaxPoolingLayer(2, 2, 2)       
+                                        .addFullyConnectedLayer(30, ActivationType.RELU)
+                                        .addFullyConnectedLayer(20, ActivationType.RELU)
+                                        .addOutputLayer(classCount, SoftmaxOutputLayer.class)
+                                        .withLossFunction(CrossEntropyLoss.class)
+                                        .withRandomSeed(123)       
                                         .build();  
 
         LOGGER.info("Done!");       

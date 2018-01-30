@@ -3,15 +3,11 @@ package visrec.classifier;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import visrec.util.BoundingBox;
 import visrec.util.BufferedImageFactory;
 import visrec.util.Builder;
 import visrec.util.ImageFactory;
 
 /**
- *  
- * 
-
  * @param <IMAGE_CLASS>
  * @param <MODEL_CLASS>
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>

@@ -23,6 +23,38 @@ public interface Classifier <INPUT_TYPE, CLASS_TYPE> {   // string or boolean, o
      * @param instance some instance to classify
      * @return classification results for the specified instance
      */
-    public ClassificationResults classify(INPUT_TYPE instance);    
+    public ClassificationResults classify(INPUT_TYPE instance);
+
+//    public static class Result {
+//
+//        private String classLabel;
+//        private float score; // confidence
+//
+//        public Result(String classLabel, float score) {
+//            this.classLabel = classLabel;
+//            this.score = score;
+//        }
+//
+//        public String getClassLabel() {
+//            return classLabel;
+//        }
+//
+//        public float getScore() {
+//            return score;
+//        }
+//
+//        public void setLabel(String label) {
+//            this.classLabel = label;
+//        }
+//
+//        public void setScore(float score) {
+//            this.score = score;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return "ClassificationResult{" + "classLabel=" + classLabel + ", score=" + score + '}';
+//        }
+//    }
             
 }
