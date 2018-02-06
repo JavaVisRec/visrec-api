@@ -120,8 +120,8 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
                                         .addFullyConnectedLayer(30, ActivationType.RELU)
                                         .addFullyConnectedLayer(20, ActivationType.RELU)
                                         .addOutputLayer(classCount, SoftmaxOutputLayer.class)
-                                        .withLossFunction(CrossEntropyLoss.class)
-                                        .withRandomSeed(123)       
+                                        .lossFunction(CrossEntropyLoss.class)
+                                        .randomSeed(123)
                                         .build();  
 
         LOGGER.info("Done!");       
