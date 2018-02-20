@@ -120,23 +120,23 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
                                         .addFullyConnectedLayer(30, ActivationType.RELU)
                                         .addFullyConnectedLayer(20, ActivationType.RELU)
                                         .addOutputLayer(classCount, SoftmaxOutputLayer.class)
-                                        .withLossFunction(CrossEntropyLoss.class)
-                                        .withRandomSeed(123)       
+                                        .lossFunction(CrossEntropyLoss.class)
+                                        .randomSeed(123)
                                         .build();  
 
         LOGGER.info("Done!");       
         LOGGER.info("Training neural network"); 
         
-        neuralNet.setOutputLabels(imageSet.getOutputLabels());
+        neuralNet.setOutputLabels(imageSet.getLabels());
                
         // create a set of convolutional networks and do training, crossvalidation and performance evaluation     
-        BackpropagationTrainer trainer = new BackpropagationTrainer();
+        BackpropagationTrainer trainer = new BackpropagationTrainer(neuralNet);
         trainer.setLearningRate(learningRate)
                 .setMomentum(0.7f)
                 .setMaxError(maxError)
                 .setBatchMode(false)
                 .setOptimizer(OptimizerType.MOMENTUM);
-        trainer.train(neuralNet, imageSet);         
+        trainer.train(imageSet);
         
         setModel(neuralNet);
           
