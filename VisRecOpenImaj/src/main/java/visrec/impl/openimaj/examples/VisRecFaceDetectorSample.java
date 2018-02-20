@@ -1,4 +1,4 @@
-package visrec.examples;
+package visrec.impl.openimaj.examples;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.openimaj.image.MBFImage;
 import org.openimaj.image.processing.face.detection.DetectedFace;
 import visrec.classifier.ClassificationResults;
-import visrec.util.MBFImageFactory;
+import visrec.impl.openimaj.util.MBFImageFactory;
 import visrec.detection.ObjectDetector;
 
 /**

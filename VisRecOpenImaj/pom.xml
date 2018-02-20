@@ -6,23 +6,25 @@
         <artifactId>VisualRecognitionAPI-Parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>VisRecWatsonImpl</artifactId>
+    <artifactId>VisRecOpenImaj</artifactId>
     <packaging>jar</packaging>
     <dependencies>
-        <dependency>
-            <groupId>com.ibm.watson.developer_cloud</groupId>
-            <artifactId>visual-recognition</artifactId>
-            <version>3.5.3</version>
-        </dependency>          
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>VisualRecognitionAPI</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.openimaj</groupId>
+            <artifactId>core-video-capture</artifactId>
+            <version>1.3.5</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.openimaj</groupId>
+            <artifactId>faces</artifactId>
+            <version>1.3.5</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-    <name>VisRecWatsonImpl</name>
 </project>

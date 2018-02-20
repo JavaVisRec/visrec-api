@@ -43,16 +43,18 @@ public class ClassificationResults<T extends ClassificationResult> {
         });
     }
 
-    public List<T> getTopKResults(int k) {
+    public List<T> getTopKResults(int k) {        
         this.sort();
+        if (results.size() <k) return results;
         return results.subList(0, k);
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (T r : results) {
+        results.forEach((r) -> {
             sb.append(r).append(System.lineSeparator());
-        }
+        });
         return sb.toString();
     }
 

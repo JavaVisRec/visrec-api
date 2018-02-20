@@ -10,6 +10,7 @@
         <module>VisRecWatsonImpl</module>
         <module>VisRecDl4jImpl</module>
         <module>VisualRecognitionApi</module>
+        <module>VisRecOpenImaj</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

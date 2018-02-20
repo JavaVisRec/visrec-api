@@ -8,6 +8,8 @@ import visrec.util.Builder;
 import visrec.util.ImageFactory;
 
 /**
+ * Skeleton abstract class to make it easier to implemen image classifier.
+ * 
  * @param <IMAGE_CLASS>
  * @param <MODEL_CLASS>
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>

@@ -127,16 +127,16 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
         LOGGER.info("Done!");       
         LOGGER.info("Training neural network"); 
         
-        neuralNet.setOutputLabels(imageSet.getLabels());
+        neuralNet.setOutputLabels(imageSet.getOutputLabels());
                
         // create a set of convolutional networks and do training, crossvalidation and performance evaluation     
-        BackpropagationTrainer trainer = new BackpropagationTrainer(neuralNet);
+        BackpropagationTrainer trainer = new BackpropagationTrainer();
         trainer.setLearningRate(learningRate)
                 .setMomentum(0.7f)
                 .setMaxError(maxError)
                 .setBatchMode(false)
                 .setOptimizer(OptimizerType.MOMENTUM);
-        trainer.train(imageSet);         
+        trainer.train(neuralNet, imageSet);         
         
         setModel(neuralNet);
           

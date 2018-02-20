@@ -1,4 +1,4 @@
-package visrec.util;
+package visrec.impl.openimaj.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.net.URL;
 import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.MBFImage;
+import visrec.util.ImageFactory;
 
 /**
  *

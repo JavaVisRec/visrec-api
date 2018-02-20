@@ -1,4 +1,4 @@
-package visrec.examples;
+package visrec.impl.openimaj.examples;
 
 import java.io.File;
 import java.io.IOException;

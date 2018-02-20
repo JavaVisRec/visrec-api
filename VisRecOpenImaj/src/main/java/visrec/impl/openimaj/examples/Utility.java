@@ -1,4 +1,4 @@
-package visrec.examples;
+package visrec.impl.openimaj.examples;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
