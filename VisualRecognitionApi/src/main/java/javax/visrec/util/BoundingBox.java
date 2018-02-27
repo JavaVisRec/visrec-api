@@ -1,6 +1,6 @@
-package visrec.util;
+package javax.visrec.util;
 
-import visrec.classifier.ClassificationResult;
+import javax.visrec.ml.classification.ClassificationResult;
 
 /**
  * This class represents a bounding box over image at specified position, dimensions, label and score.
@@ -54,7 +54,6 @@ public class BoundingBox extends ClassificationResult {
         this.id = id;
     }
 
-    @Override
     public String toString() {
         return "BoundingBox{" + "id=" + id + ", x=" + x + ", y=" + y + ", width=" + width + ", height=" + height + '}';
     }

@@ -1,10 +1,10 @@
-package visrec.detection;
+package javax.visrec.detection;
 
 import java.awt.image.BufferedImage;
-import visrec.classifier.AbstractImageClassifier;
-import visrec.classifier.ClassificationResult;
-import visrec.classifier.ClassificationResults;
-import visrec.util.BoundingBox;
+import javax.visrec.AbstractImageClassifier;
+import javax.visrec.ml.classification.ClassificationResult;
+import javax.visrec.ml.classification.ClassificationResults;
+import javax.visrec.util.BoundingBox;
 
 /**
  *

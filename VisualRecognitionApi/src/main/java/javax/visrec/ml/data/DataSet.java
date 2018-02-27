@@ -1,4 +1,4 @@
-package visrec.data;
+package javax.visrec.ml.data;
 
 /**
  *

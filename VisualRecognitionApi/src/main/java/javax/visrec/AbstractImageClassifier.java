@@ -1,14 +1,17 @@
-package visrec.classifier;
+package javax.visrec;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import visrec.util.BufferedImageFactory;
-import visrec.util.Builder;
-import visrec.util.ImageFactory;
+import javax.visrec.ml.classification.ClassificationResult;
+import javax.visrec.ml.classification.ClassificationResults;
+import javax.visrec.ml.classification.Classifier;
+import javax.visrec.util.BufferedImageFactory;
+import javax.visrec.util.Builder;
+import javax.visrec.util.ImageFactory;
 
 /**
- * Skeleton abstract class to make it easier to implemen image classifier.
+ * Skeleton abstract class to make it easier to implement image classifier.
  * 
  * @param <IMAGE_CLASS>
  * @param <MODEL_CLASS>
@@ -22,7 +25,7 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     private float threshold;
 
     public AbstractImageClassifier() {
-      // instantiate image factory whuch coresponds to specified IMAGE_CLASS
+      // instantiate image factory whuch coresponds to specified IMAGE_CLASS - use some lookup/registru/service provider mechanism
         imageFactory = (ImageFactory<IMAGE_CLASS>) new BufferedImageFactory();
     }
     

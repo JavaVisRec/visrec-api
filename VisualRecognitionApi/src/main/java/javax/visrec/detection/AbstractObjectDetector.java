@@ -1,11 +1,11 @@
-package visrec.detection;
+package javax.visrec.detection;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import visrec.classifier.AbstractImageClassifier;
-import visrec.classifier.ClassificationResults;
-import visrec.util.BoundingBox;
+import javax.visrec.AbstractImageClassifier;
+import javax.visrec.ml.classification.ClassificationResults;
+import javax.visrec.util.BoundingBox;
 
 /**
  * missing image to search in

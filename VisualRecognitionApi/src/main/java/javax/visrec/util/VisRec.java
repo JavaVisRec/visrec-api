@@ -1,4 +1,4 @@
-package visrec.util;
+package javax.visrec.util;
 
 /**
  *

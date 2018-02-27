@@ -1,4 +1,4 @@
-package visrec.classifier;
+package javax.visrec.ml.classification;
 
 /**
  * Generic classifier interface, that all classifiers should implement.

@@ -1,4 +1,4 @@
-package visrec.classifier;
+package javax.visrec.ml.classification;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,11 +10,11 @@ import java.util.List;
  * Inspired by
  * http://openimaj.org/apidocs/org/openimaj/experiment/evaluation/classification/BasicClassificationResult.html
  *
- * list of classification results TODO: add BoundingBox somehere here
- *
- * a kind of ResultSet
- *
+ * Use SortedSet to hold results?
+ * This class should be collection also, maybe extend SortedSet
+ * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @param <T> Type of a single classification result
  */
 public class ClassificationResults<T extends ClassificationResult> {
 

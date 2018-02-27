@@ -1,4 +1,4 @@
-package visrec.classifier;
+package javax.visrec.ml.classification;
 
 /**
  * This class represents a single classification result with class label and 
@@ -23,13 +23,6 @@ public class ClassificationResult {
         return score;
     }
 
-//    public void setLabel(String label) {
-//        this.classLabel = label;
-//    }
-//
-//    public void setScore(float score) {
-//        this.score = score;
-//    }
     
     @Override
     public String toString() {

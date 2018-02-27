@@ -1,4 +1,4 @@
-package visrec.classifier;
+package javax.visrec.ml.classification;
 
 import java.util.HashMap;
 import java.util.Map;

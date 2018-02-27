@@ -1,7 +1,7 @@
-package visrec.detection;
+package javax.visrec.detection;
 
-import visrec.classifier.ClassificationResults;
-import visrec.util.BoundingBox;
+import javax.visrec.ml.classification.ClassificationResults;
+import javax.visrec.util.BoundingBox;
 
 /**
  * Detect some object in image

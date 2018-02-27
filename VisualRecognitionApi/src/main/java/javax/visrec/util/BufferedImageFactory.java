@@ -1,4 +1,4 @@
-package visrec.util;
+package javax.visrec.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

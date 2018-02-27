@@ -1,4 +1,4 @@
-package visrec.util;
+package javax.visrec.util;
 
 import java.io.File;
 import java.io.IOException;
