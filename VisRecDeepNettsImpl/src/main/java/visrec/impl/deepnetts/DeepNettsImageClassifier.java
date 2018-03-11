@@ -11,18 +11,19 @@ import deepnetts.net.train.BackpropagationTrainer;
 import deepnetts.net.train.OptimizerType;
 import deepnetts.util.DeepNettsException;
 import deepnetts.util.FileIO;
+
+import javax.visrec.AbstractImageClassifier;
+import javax.visrec.ml.classification.ClassificationResult;
+import javax.visrec.ml.classification.ClassificationResults;
+import javax.visrec.ml.classification.Classifier;
+import javax.visrec.util.BufferedImageFactory;
+import javax.visrec.util.VisRec;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import visrec.classifier.AbstractImageClassifier;
-import visrec.classifier.ClassificationResult;
-import visrec.classifier.ClassificationResults;
-import visrec.classifier.Classifier;
-import visrec.util.BufferedImageFactory;
-import visrec.util.VisRec;
 
 /**
  * TODO: Traffic sign recognition
@@ -55,7 +56,7 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
     
     @Override
     public ClassificationResults classify(BufferedImage sample) {
-        ClassificationResults<ClassificationResult> results = new ClassificationResults();                
+        ClassificationResults<ClassificationResult> results = new ClassificationResults();
         NeuralNetwork neuralNet = getModel();
                 
         ExampleImage exImage = new ExampleImage(sample);
@@ -83,7 +84,7 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
         
         String modelFile = prop.getProperty("visrec.model.saveToFile");
                 
-        ImageSet imageSet = new ImageSet(imageWidth, imageHeight);        
+        ImageSet imageSet = new ImageSet(imageWidth, imageHeight);
         LOGGER.info("Loading images...");
         
         imageSet.loadLabels(new File(labelsFile));

@@ -1,14 +1,14 @@
 package visrec.impl.deepnetts.examples;
 
+import visrec.impl.deepnetts.DeepNettsImageClassifier;
+
+import javax.visrec.AbstractImageClassifier;
+import javax.visrec.detection.ObjectDetector;
+import javax.visrec.detection.SimpleObjectDetector;
+import javax.visrec.ml.classification.ClassificationResults;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
-import visrec.classifier.AbstractImageClassifier;
-import visrec.classifier.ClassificationResults;
-import visrec.detection.SimpleObjectDetector;
-import visrec.detection.ObjectDetector;
-import visrec.impl.deepnetts.DeepNettsImageClassifier;
-
 
 /**
  *
@@ -33,7 +33,7 @@ public class DukeDetectorDemo {
         prop.setProperty("maxError", "0.03");
         prop.setProperty("learningRate", "0.01");        
         
-        AbstractImageClassifier imageClassifier = new DeepNettsImageClassifier();         
+        AbstractImageClassifier imageClassifier = new DeepNettsImageClassifier();
         imageClassifier.build(prop);
         
         System.out.println("Done building image classifier.");
