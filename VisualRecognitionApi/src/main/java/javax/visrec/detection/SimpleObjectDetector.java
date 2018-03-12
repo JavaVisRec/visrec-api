@@ -1,9 +1,11 @@
 package javax.visrec.detection;
 
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.visrec.AbstractImageClassifier;
 import javax.visrec.ml.classification.ClassificationResult;
-import javax.visrec.ml.classification.ClassificationResults;
 import javax.visrec.util.BoundingBox;
 
 /**
@@ -30,25 +32,27 @@ public class SimpleObjectDetector extends AbstractObjectDetector<BufferedImage> 
      * @return 
      */
     @Override
-    public ClassificationResults detectObject(BufferedImage image) {       
-        ClassificationResults<ClassificationResult> results = new ClassificationResults();
+    public Map detectObject(BufferedImage image) {       
         
+        Map<String, Float>  results = null;
         int boxWidth = 64, boxHeight = 64;
         
         for (int y = 0; y < image.getHeight()-boxHeight; y++) {
             for (int x = 0; x < image.getWidth()-boxWidth; x++) {
                     
-                   ClassificationResults<ClassificationResult> results2 =  getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
-                   for(ClassificationResult rr : results2.getTopKResults(5)) {
-                       if (rr.getScore() > threshold) {
-                           BoundingBox bbox = new BoundingBox(rr.getClassLabel(), rr.getScore(), x, y, boxWidth, boxHeight);
-                           results.add(bbox);
-                       }
-                   }                   
+                   results =  getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));     
+                   // sort rsults and get top 5
+//                   for(ClassificationResult rr : results2.getTopKResults(5)) {
+//                       if (rr.getScore() > threshold) {
+//                           BoundingBox bbox = new BoundingBox(rr.getClassLabel(), rr.getScore(), x, y, boxWidth, boxHeight);
+//                           results.put(bbox);
+//                       }
+//                   }                   
             }
         }
                 
-        return results;
+        Map<String, Float>  sortedResults = new TreeMap(results);
+        return sortedResults;
     }
 
     public double getThreshold() {

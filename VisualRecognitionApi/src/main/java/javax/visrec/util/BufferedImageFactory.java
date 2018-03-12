@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 /**
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * https://github.com/google/auto/tree/master/service
  */
 public class BufferedImageFactory implements ImageFactory<BufferedImage> {
 

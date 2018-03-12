@@ -7,12 +7,12 @@ import java.util.Map;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class EnsambleClassifier<INPUT_TYPE, CLASS_TYPE> implements Classifier<INPUT_TYPE, CLASS_TYPE> {
+public class EnsambleClassifier<INPUT_TYPE> implements Classifier<INPUT_TYPE> {
 
-    Map<String, Classifier<INPUT_TYPE, CLASS_TYPE>> classifiers = new HashMap<>();
+    Map<String, Classifier<INPUT_TYPE>> classifiers = new HashMap<>();
             
     @Override
-    public ClassificationResults classify(INPUT_TYPE instance) {
+    public Map<String, Float>  classify(INPUT_TYPE instance) {
         classifiers.values().stream()   // or parallelStream
                    .forEach( c -> c.classify(instance) );
                     //.collect();
