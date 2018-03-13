@@ -1,12 +1,12 @@
 package visrec.impl.deepnetts.examples;
 
+import visrec.impl.deepnetts.DeepNettsImageClassifier;
+
+import javax.visrec.AbstractImageClassifier;
+import javax.visrec.ml.classification.ClassificationResults;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
-import visrec.classifier.AbstractImageClassifier;
-import visrec.classifier.ClassificationResults;
-import visrec.impl.deepnetts.DeepNettsImageClassifier;
-import visrec.impl.deepnetts.DeepNettsImageClassifier;
 
 
 /**
