@@ -40,12 +40,12 @@ public class SimpleObjectDetector extends AbstractObjectDetector<BufferedImage> 
             for (int x = 0; x < image.getWidth() - boxWidth; x++) {
 
                 Map<String, Float> results2 = getImageClassifier().classify(image.getSubimage(x, y, boxWidth, boxHeight));
-//                for (ClassificationResult rr : results2.getTopKResults(5)) {
-//                    if (rr.getScore() > threshold) {
-//                        BoundingBox bbox = new BoundingBox(rr.getClassLabel(), rr.getScore(), x, y, boxWidth, boxHeight);
-//                        results.add(bbox);
-//                    }
-//                }
+                for (Map.Entry<String, Float> keyValPair : results2.entrySet()) {
+                    if (keyValPair.getValue() > threshold) {
+                        BoundingBox bbox = new BoundingBox(keyValPair.getKey(), keyValPair.getValue(), x, y, boxWidth, boxHeight);
+                        // results.add(bbox);
+                    }
+                }
             }
         }
 
