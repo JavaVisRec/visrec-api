@@ -8,13 +8,13 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifi
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import javax.visrec.AbstractImageClassifier;
+import javax.visrec.ml.classification.Classifier;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import visrec.classifier.AbstractImageClassifier;
-import visrec.classifier.ClassificationResult;
-import visrec.classifier.ClassificationResults;
-import visrec.classifier.Classifier;
 
 /**
  *
@@ -34,119 +34,115 @@ public class WatsonImageClassifier extends AbstractImageClassifier<BufferedImage
     }
 
     private WatsonImageClassifier() {
-        
+
     }
-                         
+
     @Override
     public Classifier build(Properties properties) {
-        
+
         ClassifierOptions.Builder optionsBuilder = new ClassifierOptions.Builder();
-        
+
         Enumeration en = properties.propertyNames();
-        while(en.hasMoreElements()) {
-            String key = (String)en.nextElement();
-            
+        while (en.hasMoreElements()) {
+            String key = (String) en.nextElement();
+
             if (key.equals("classifierName")) {
                 // if there is no classifier name property geenrate some automaticaly
-                String classifierName = properties.getProperty("classifierName"); 
+                String classifierName = properties.getProperty("classifierName");
                 optionsBuilder.classifierName(classifierName);
-            } else {        
+            } else {
                 String value = properties.getProperty(key);
-                
-                if (!key.equals("negative_examples"))
+
+                if (!key.equals("negative_examples")) {
                     optionsBuilder.addClass(key, new File(value));
-                else
+                } else {
                     optionsBuilder.negativeExamples(new File(value));
+                }
             }
-            
-            // todo: handle negative examples                        
+
+            // todo: handle negative examples
         }
-        
-        ClassifierOptions createOptions = optionsBuilder.build();                
+
+        ClassifierOptions createOptions = optionsBuilder.build();
         this.classifier = service.createClassifier(createOptions).execute();
-        
+
         return this;
     }
-    
+
     // THIS ONE OVERRIDES THE METHOD WITH FILE param not image type
     // we should be able to specify which classifier to use, where that should be specified?
     @Override
-    public ClassificationResults classify(File sample) {
+    public Map<String, Float> classify(File sample) {
         ClassifyImagesOptions options = new ClassifyImagesOptions.Builder()
-                .images((File)sample)
+                .images((File) sample)
                 .classifierIds(classifierId)
                 .build();
-        
+
         VisualClassification serviceResult = service.classify(options).execute();
-        
+
         JSONObject jsonResult = new JSONObject(serviceResult.toString());
         JSONArray imagesArr = jsonResult.getJSONArray("images");
         JSONObject pbj = imagesArr.getJSONObject(0);
-        
+
         JSONArray classifiersArr = pbj.getJSONArray("classifiers");
         JSONObject classifierObj = classifiersArr.getJSONObject(0);
         JSONArray classes = classifierObj.getJSONArray("classes");
 
-        ClassificationResults results = new ClassificationResults(); // parese serviceResultand fill results         
-        
-        for(Object classResult : classes) {
-            JSONObject r = (JSONObject)classResult;     
+        Map<String, Float> results = new HashMap<>();
+
+        for (Object classResult : classes) {
+            JSONObject r = (JSONObject) classResult;
             String clazz = r.getString("class");
-            float score = (float)r.getDouble("score");
-            
-            results.add(new ClassificationResult(clazz, score));
-            
+            Float score = (float) (r.getDouble("score"));
+
+            results.put(clazz, score);
+
         }
-                       
+
         return results;
     }
 
-
     @Override
-    public ClassificationResults classify(BufferedImage sample) {
-      // create file from image
+    public Map<String, Float> classify(BufferedImage sample) {
+        // create file from image
 //      File tmpImgFile = ImageIO.createImageInputStream(sample);
 //       classify(inStream)
-      return null;
+        return null;
     }
 
 //
-
 //    @Override
 //    public String classify(Object sample) { // ?????
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-
 //    @Override
 //    public String classify(IMAGE_TYPE sample) {
-//        
+//
 //        ClassifyImagesOptions options = new ClassifyImagesOptions.Builder()
 //                .images((File)sample)
 //                .build();
 //        VisualClassification serviceResult = service.classify(options).execute();
-//        
-//        ImageRecognitionResults results = new ImageRecognitionResults(); // parese serviceResultand fill results 
-//        
-//        
-//        return serviceResult.toString();       
-//        
+//
+//        ImageRecognitionResults results = new ImageRecognitionResults(); // parese serviceResultand fill results
+//
+//
+//        return serviceResult.toString();
+//
 //    }
-
     public static class Builder {
-    
-        WatsonImageClassifier watsonImageClassifier = new WatsonImageClassifier();    
-        
+
+        WatsonImageClassifier watsonImageClassifier = new WatsonImageClassifier();
+
         public Builder withApiKey(String apiKey) {
             watsonImageClassifier.apiKey = apiKey;
-            watsonImageClassifier.service.setApiKey(apiKey);    
+            watsonImageClassifier.service.setApiKey(apiKey);
             return this;
         }
-        
+
         public WatsonImageClassifier build() {
             return watsonImageClassifier;
         }
-        
-    }
 
+    }
 
 }
