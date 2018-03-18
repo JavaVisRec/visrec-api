@@ -1,23 +1,20 @@
 package visrec.impl.openimaj.examples;
 
-import java.io.File;
 import java.util.List;
-import org.openimaj.image.FImage;
+import java.util.Map;
+import javax.visrec.detection.ObjectDetector;
+import javax.visrec.util.BoundingBox;
 import org.openimaj.image.MBFImage;
 import org.openimaj.image.colour.RGBColour;
-import org.openimaj.image.colour.Transforms;
-import org.openimaj.image.processing.face.detection.DetectedFace;
-import org.openimaj.image.processing.face.detection.FaceDetector;
-import org.openimaj.image.processing.face.detection.HaarCascadeDetector;
+import org.openimaj.math.geometry.shape.Rectangle;
 import org.openimaj.video.VideoDisplay;
 import org.openimaj.video.VideoDisplayListener;
 import org.openimaj.video.capture.VideoCapture;
 import org.openimaj.video.capture.VideoCaptureException;
-import visrec.classifier.ClassificationResults;
-import visrec.detection.ObjectDetector;
 
 /**
  * http://openimaj.org/tutorial/finding-faces.html
+ *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public class CameraDemo {
@@ -25,24 +22,25 @@ public class CameraDemo {
     public static void main(String[] args) throws VideoCaptureException {
         VideoCapture vc = new VideoCapture(500, 400);
         VideoDisplay<MBFImage> vd = VideoDisplay.createVideoDisplay(vc);
-        
-        
+
         vd.addVideoListener(new VideoDisplayListener<MBFImage>() {
             @Override
             public void beforeUpdate(MBFImage frame) {
 //                FaceDetector<DetectedFace,FImage> fd = new HaarCascadeDetector(40);
 //                List<DetectedFace> faces = fd.detectFaces(Transforms.calculateIntensity(frame));
-//            
+//
 //                for( DetectedFace face : faces ) {
 //                    frame.drawShape(face.getBounds(), RGBColour.RED);
 //                }
 
-                  ObjectDetector<MBFImage> faceDetector = new HaarCascadeFaceDetector();                 
-                  ClassificationResults results = faceDetector.detectObject(frame);
-        
-                    for(Object result : results.getTopKResults(5)) {
-                         frame.drawShape(((DetectedFace)result).getBounds(), RGBColour.RED);
+                ObjectDetector<MBFImage> faceDetector = new HaarCascadeFaceDetector();
+                Map<String, List<BoundingBox>> results = faceDetector.detectObject(frame);
+
+                for (List<BoundingBox> bboxes : results.values()) {
+                    for (BoundingBox bbox : bboxes) {
+                        frame.drawShape(new Rectangle(bbox.getX(), bbox.getY(), bbox.getWidth(), bbox.getHeight()), RGBColour.RED);
                     }
+                }
             }
 
             public void afterUpdate(VideoDisplay<MBFImage> display) {
