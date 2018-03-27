@@ -4,15 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import javax.visrec.util.ImageFactory;
 import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.MBFImage;
-import visrec.util.ImageFactory;
 
 /**
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public class MBFImageFactory implements ImageFactory<MBFImage >{
+public class MBFImageFactory implements ImageFactory<MBFImage> {
 
     @Override
     public MBFImage getImage(File file) throws IOException {
@@ -21,12 +21,12 @@ public class MBFImageFactory implements ImageFactory<MBFImage >{
 
     @Override
     public MBFImage getImage(URL url) throws IOException {
-         return ImageUtilities.readMBF(url);
+        return ImageUtilities.readMBF(url);
     }
 
     @Override
     public MBFImage getImage(InputStream inputStream) throws IOException {
-         return ImageUtilities.readMBF(inputStream);
+        return ImageUtilities.readMBF(inputStream);
     }
 
 }
