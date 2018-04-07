@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>VisualRecognitionAPI</module>
+        <module>VisualRecognitionApi</module>
         <module>VisRecDeepNettsImpl</module>
         <module>VisRecWatsonImpl</module>
         <module>VisRecDl4jImpl</module>
