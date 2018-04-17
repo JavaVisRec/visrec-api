@@ -3,7 +3,8 @@ package javax.visrec.ml.classification;
 import java.util.Map;
 
 /**
- * Generic classifier interface, that all classifiers should implement.
+ * Generic classifier interface, that all classifiers should implement. Provides
+ * a method to classify instances.
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  *
