@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @author Kevin Berendsen <info@kevinberendsen.nl>
  */
-class ImageFactoryServiceLoader {
+public class ImageFactoryServiceLoader {
 
     /**
      * Singleton instance
@@ -40,7 +40,7 @@ class ImageFactoryServiceLoader {
      * Get the singleton instance of the class
      * @return An instance of {@link ImageFactoryServiceLoader}
      */
-    static ImageFactoryServiceLoader getInstance() {
+    public static ImageFactoryServiceLoader getInstance() {
         if (instance == null) {
             instance = new ImageFactoryServiceLoader();
         }
@@ -60,7 +60,7 @@ class ImageFactoryServiceLoader {
      * be found on the classpath or not.
      * @throws InvalidImageClassException If the {@link ImageFactory} can not be casted correctly.
      */
-    <T> Optional<ImageFactory<T>> findImageFactory(Class<T> cls) {
+    public <T> Optional<ImageFactory<T>> findImageFactory(Class<T> cls) {
         Objects.requireNonNull(cls);
         ImageFactory<T> imageFactory = findCachedImageFactory(cls);
         if (imageFactory == null) {
