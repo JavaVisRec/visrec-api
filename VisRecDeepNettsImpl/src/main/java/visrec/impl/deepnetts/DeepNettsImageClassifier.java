@@ -44,7 +44,7 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
     public static final Logger LOGGER = Logger.getLogger(DeepNettsImageClassifier.class.getName());
 
     public DeepNettsImageClassifier() {
-        setImageFactory(new BufferedImageFactory()); // inject image factory
+        super(BufferedImage.class);
     }
 
     @Override

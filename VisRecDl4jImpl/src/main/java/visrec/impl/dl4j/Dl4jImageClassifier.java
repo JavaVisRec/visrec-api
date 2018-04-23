@@ -58,23 +58,24 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 public class Dl4jImageClassifier extends AbstractImageClassifier<BufferedImage, MultiLayerNetwork> {
 
     public Dl4jImageClassifier() {
+        super(BufferedImage.class);
     }
 
     public Dl4jImageClassifier(String fileName) throws IOException {
+        this();
         MultiLayerNetwork neuralNet = ModelSerializer.restoreMultiLayerNetwork(fileName);
         setModel(neuralNet);
-        setImageFactory(new BufferedImageFactory());
     }
 
     public Dl4jImageClassifier(File file) throws IOException {
+        this();
         MultiLayerNetwork neuralNet = ModelSerializer.restoreMultiLayerNetwork(file);
         setModel(neuralNet);
-        setImageFactory(new BufferedImageFactory());
     }
 
     public Dl4jImageClassifier(MultiLayerNetwork neuralNet) {
+        this();
         setModel(neuralNet);
-        setImageFactory(new BufferedImageFactory());
     }
 
     @Override
