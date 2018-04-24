@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Optional;
 import javax.visrec.ml.classification.Classifier;
 import javax.visrec.util.BufferedImageFactory;
 import javax.visrec.util.Builder;
 import javax.visrec.util.ImageFactory;
+import javax.visrec.util.ImageFactoryServiceLoader;
 
 /**
  * Skeleton abstract class to make it easier to implement image classifier.
@@ -23,9 +25,12 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
 
     private float threshold;
 
-    public AbstractImageClassifier() {
-        // instantiate image factory whuch coresponds to specified IMAGE_CLASS - use some lookup/registru/service provider mechanism
-        imageFactory = (ImageFactory<IMAGE_CLASS>) new BufferedImageFactory();
+    protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls) {
+        final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ImageFactoryServiceLoader.getInstance().findImageFactory(cls);
+        if (!optionalImageFactory.isPresent()) {
+            throw new IllegalArgumentException(String.format("Could not find ImageFactory by '%s'", cls.getName()));
+        }
+        imageFactory = optionalImageFactory.get();
     }
 
     public ImageFactory<IMAGE_CLASS> getImageFactory() {

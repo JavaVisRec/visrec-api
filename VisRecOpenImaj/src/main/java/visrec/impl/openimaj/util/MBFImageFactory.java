@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import javax.visrec.util.Image;
 import javax.visrec.util.ImageFactory;
 import org.openimaj.image.ImageUtilities;
 import org.openimaj.image.MBFImage;
@@ -12,6 +13,7 @@ import org.openimaj.image.MBFImage;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
+@Image(MBFImage.class)
 public class MBFImageFactory implements ImageFactory<MBFImage> {
 
     @Override

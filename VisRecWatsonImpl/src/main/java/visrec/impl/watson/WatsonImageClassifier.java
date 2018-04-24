@@ -28,13 +28,14 @@ public class WatsonImageClassifier extends AbstractImageClassifier<BufferedImage
     private String classifierId;
 
     public WatsonImageClassifier(String apiKey, String classifierId) {
+        this();
         this.apiKey = apiKey;
         service.setApiKey(apiKey);
         this.classifierId = classifierId;
     }
 
     private WatsonImageClassifier() {
-
+        super(BufferedImage.class);
     }
 
     @Override

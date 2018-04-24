@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
+@Image(BufferedImage.class)
 public class BufferedImageFactory implements ImageFactory<BufferedImage> {
 
     @Override

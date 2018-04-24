@@ -2,3 +2,5 @@
 /VisRecDl4jImpl/target/
 /VisRecOpenImaj/target/
 /VisualRecognitionApi/target/
+.idea/
+*.iml
