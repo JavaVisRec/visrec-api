@@ -4,3 +4,6 @@
 /VisualRecognitionApi/target/
 .idea/
 *.iml
+.gradle/
+gradle/
+*/build/**

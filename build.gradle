@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+version = '1.0-SNAPSHOT'
+group = 'javax.visrec'
+
+subprojects {
+
+    group = rootProject.group
+    version = rootProject.version
+
+    repositories {
+        mavenCentral()
+    }
+}
