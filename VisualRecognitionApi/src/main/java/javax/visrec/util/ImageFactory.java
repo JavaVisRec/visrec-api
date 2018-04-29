@@ -14,8 +14,8 @@ import java.net.URL;
  */
 public interface ImageFactory<IMAGE_CLASS> {
 
-    public IMAGE_CLASS getImage(File file) throws IOException; 
-    public IMAGE_CLASS getImage(URL file) throws IOException;
-    public IMAGE_CLASS getImage(InputStream file) throws IOException;
+    IMAGE_CLASS getImage(File file) throws IOException;
+    IMAGE_CLASS getImage(URL file) throws IOException;
+    IMAGE_CLASS getImage(InputStream file) throws IOException;
         
 }

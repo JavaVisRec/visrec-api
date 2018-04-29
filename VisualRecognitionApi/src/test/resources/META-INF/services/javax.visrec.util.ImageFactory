@@ -1,4 +1,4 @@
 javax.visrec.util.BufferedImageFactory
-javax.visrec.util.ExampleImageFactory
-javax.visrec.util.InvalidExampleImageFactory
-javax.visrec.util.MissingAnnotationImageFactory
+javax.visrec.internal.ExampleImageFactory
+javax.visrec.internal.InvalidExampleImageFactory
+javax.visrec.internal.MissingAnnotationImageFactory
