@@ -1,1 +1,1 @@
-include "VisualRecognitionApi", "VisRecWatsonImpl"
+include "VisualRecognitionApi", "VisRecWatsonImpl", "VisRecOpenImaj"

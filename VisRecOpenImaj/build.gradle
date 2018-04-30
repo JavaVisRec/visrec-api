@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "visrec.impl.openimaj.examples.CameraDemo"
+
+repositories {
+    maven { url 'http://maven.openimaj.org' }
+}
+
+dependencies {
+    compile project(':VisualRecognitionApi')
+    compile 'org.openimaj:core-video-capture:1.3.5'
+    compile 'org.openimaj:faces:1.3.5'
+}
