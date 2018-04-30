@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "visrec.impl.dl4j.examples.Dl4jImageClassifierExample"
+
+dependencies {
+    compile project(':VisualRecognitionApi')
+    compile 'org.datavec:datavec-api:0.7.2'
+    compile 'org.datavec:datavec-data-image:0.7.2'
+    compile 'org.deeplearning4j:deeplearning4j-core:0.7.2'
+}
