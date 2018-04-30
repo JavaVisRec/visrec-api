@@ -11,7 +11,7 @@ There's support for the following build tools:
 
 It's mandatory for the `VisRecDeepNettsImpl` to install DeepNetts in your local maven repository which
 can be done by cloning the [GitHub repository](https://github.com/sevarac/deepnetts) and `mvn install` in the `deepnetts-core/` directory of the project. 
-For you to that, it's required to have maven installed on your machine.
+It's required to have maven installed on your machine.
 
 Note: Some of the examples are using specific maven repositories for specific libraries. If you're
 behind a cooperate firewall, some example implementations may not work.
