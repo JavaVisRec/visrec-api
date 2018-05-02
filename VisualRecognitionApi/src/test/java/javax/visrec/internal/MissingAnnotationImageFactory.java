@@ -1,5 +1,6 @@
-package javax.visrec.util;
+package javax.visrec.internal;
 
+import javax.visrec.util.ImageFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
