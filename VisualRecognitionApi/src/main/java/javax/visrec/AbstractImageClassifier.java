@@ -12,6 +12,8 @@ import javax.visrec.util.ImageFactory;
 
 /**
  * Skeleton abstract class to make it easier to implement image classifier.
+ * It provides implementation of Classifier interface for images, along with
+ * image factory for specific type of images.
  *
  * @param <IMAGE_CLASS>
  * @param <MODEL_CLASS>
@@ -19,12 +21,13 @@ import javax.visrec.util.ImageFactory;
  */
 public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS>, Builder<Classifier> { // could also implement binary classifier
 
-    private ImageFactory<IMAGE_CLASS> imageFactory; // get image factory for the specified image class
-    private MODEL_CLASS model; // th emodel could be injected from machine learning container
+    private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
+    private MODEL_CLASS model; // the model could be injected from machine learning container?
 
-    private float threshold;
+    private float threshold; // this should ba a part of every classifier
 
     protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls) {
+        // zoran: We should avoid using signleton here
         final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ImageFactoryProvider.getInstance().findImageFactory(cls);
         if (!optionalImageFactory.isPresent()) {
             throw new IllegalArgumentException(String.format("Could not find ImageFactory by '%s'", cls.getName()));
@@ -41,15 +44,12 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
         return classify(image);
     }
 
-//    public ClassificationResults<BoundingBox> classify(URL url) throws IOException {
-//        IMAGE_CLASS image = imageFactory.getImage(url);
-//         return classify(image);
-//    }
     public Map<String, Float> classify(InputStream inStream) throws IOException {
         IMAGE_CLASS image = imageFactory.getImage(inStream);
         return classify(image);
     }
 
+    // do we need this now, when impl is loaded using service provider?
     public void setImageFactory(ImageFactory<IMAGE_CLASS> imageFactory) {
         this.imageFactory = imageFactory;
     }

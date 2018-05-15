@@ -1,5 +1,5 @@
-/*
+/**
  * Visual recognition API provides reusable abstractions for visual recognition tasks based on machine learning,
- * and enables simple integratin of different machine learning models and image types.
+ * that simplify implementation and integration of various machine learning models and image types.
  */
 package javax.visrec;
