@@ -49,11 +49,6 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
         return classify(image);
     }
 
-    // do we need this now, when impl is loaded using service provider?
-    public void setImageFactory(ImageFactory<IMAGE_CLASS> imageFactory) {
-        this.imageFactory = imageFactory;
-    }
-
     public MODEL_CLASS getModel() {
         return model;
     }
