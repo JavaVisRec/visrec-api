@@ -3,7 +3,7 @@ package javax.visrec.spi;
 import java.util.*;
 
 /*
- * Special thanks to Wernel Keil and Martin Desruisseaux for the proven design of a service provider.
+ * Special thanks to Werner Keil and Martin Desruisseaux for the proven design of a service provider.
  * The ServiceProvider of JSR381 is heavily inspired by JSR 363/385.
  */
 
@@ -29,7 +29,7 @@ public abstract class ServiceProvider {
     /**
      * If multiple implementations of the {@link ServiceProvider} are found on the classpath, then the
      * {@link ServiceProvider} with the highest value of priority will be used by default.
-     * @return The priority (default = 0(
+     * @return The priority (default = 0)
      */
     public int getPriority() {
         return 0;
