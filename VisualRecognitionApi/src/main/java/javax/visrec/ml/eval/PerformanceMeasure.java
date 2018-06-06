@@ -4,7 +4,8 @@ import java.util.HashMap;
 
 /**
  *
- * @author Zoran
+ * @author Zoran Sevarac
+ * @since 1.0
  */
 public class PerformanceMeasure {
     public final static String MSE          = "MSE";
@@ -13,7 +14,7 @@ public class PerformanceMeasure {
     public final static String RECALL       = "Recall";
     public final static String F1SCORE      = "F1Score";
     
-    private final HashMap<String, Float> values = new HashMap();
+    private final HashMap<String, Float> values = new HashMap<>();
     
     public float get(String key) {
         return values.get(key);

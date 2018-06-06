@@ -2,7 +2,9 @@ package javax.visrec;
 
 /**
  * Exception thrown if a generic interface can not be found on the object's class.
- * @author Kevin Berendsen <info@kevinberendsen.nl>
+ *
+ * @author Kevin Berendsen
+ * @since 1.0
  */
 public class NoSuchGenericInterfaceException extends RuntimeException {
 

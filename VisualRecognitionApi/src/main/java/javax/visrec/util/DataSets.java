@@ -18,7 +18,11 @@ import java.util.zip.ZipFile;
  *
  * @author Jyothiprasad Buddha <jyothiprasadb@gmail.com>
  */
-public class DataSets {
+public final class DataSets {
+
+    private DataSets() {
+        // Prevent instantiation.
+    }
 
     /**
      * Downloads the testing data set of mnist and unzips them before returning the folder into which data is extracted

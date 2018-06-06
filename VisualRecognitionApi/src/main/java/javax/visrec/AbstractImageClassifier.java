@@ -4,21 +4,21 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
-import java.util.Optional;
-import javax.visrec.internal.ImageFactoryProvider;
 import javax.visrec.ml.classification.Classifier;
 import javax.visrec.util.Builder;
-import javax.visrec.util.ImageFactory;
 
 /**
  * Skeleton abstract class to make it easier to implement image classifier.
  * It provides implementation of Classifier interface for images, along with
  * image factory for specific type of images.
  *
+ * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  * @param <IMAGE_CLASS>
  * @param <MODEL_CLASS>
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ *
+ * @deprecated Kevin: We should rethink the necessary use of this class in the API. I think we should move this one to the RI.
  */
+@Deprecated(forRemoval = true)
 public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS>, Builder<Classifier> { // could also implement binary classifier
 
     private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
@@ -27,12 +27,13 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     private float threshold; // this should ba a part of every classifier
 
     protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls) {
-        // zoran: We should avoid using signleton here
-        final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ImageFactoryProvider.getInstance().findImageFactory(cls);
-        if (!optionalImageFactory.isPresent()) {
-            throw new IllegalArgumentException(String.format("Could not find ImageFactory by '%s'", cls.getName()));
-        }
-        imageFactory = optionalImageFactory.get();
+        // FIXME zoran: We should avoid using signleton here
+        // FIXME Kevin: We'll fix this with the new builder approach.
+//        final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ImageFactoryProvider.getInstance().findImageFactory(cls);
+//        if (!optionalImageFactory.isPresent()) {
+//            throw new IllegalArgumentException(String.format("Could not find ImageFactory by '%s'", cls.getName()));
+//        }
+//        imageFactory = optionalImageFactory.get();
     }
 
     public ImageFactory<IMAGE_CLASS> getImageFactory() {

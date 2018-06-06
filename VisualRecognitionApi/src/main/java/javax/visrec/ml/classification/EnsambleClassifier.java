@@ -9,8 +9,10 @@ import java.util.Map;
  * classifier. Usually average or most frequent answer is used as a final result.
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @param <INPUT_TYPE> The input type which is to be classified.
+ * @since 1.0
  */
-public class EnsambleClassifier<INPUT_TYPE> implements Classifier<INPUT_TYPE> {
+public final class EnsambleClassifier<INPUT_TYPE> implements Classifier<INPUT_TYPE> {
 
     Map<String, Classifier<INPUT_TYPE>> classifiers = new HashMap<>();
 
