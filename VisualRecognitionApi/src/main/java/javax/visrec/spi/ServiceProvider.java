@@ -53,7 +53,7 @@ public abstract class ServiceProvider {
      * @throws IllegalStateException If there are no service providers found.
      */
     public static ServiceProvider current() {
-        final ServiceProvider p = getProviders().get(0);
+        final ServiceProvider p = available().get(0);
         if (Objects.isNull(p)) {
             throw new IllegalStateException("No ServiceProvider found");
         }
@@ -71,7 +71,7 @@ public abstract class ServiceProvider {
         Objects.requireNonNull(provider);
 
         synchronized (LOCK) {
-            final List<ServiceProvider> foundProviders = getProviders();
+            final List<ServiceProvider> foundProviders = available();
             if (foundProviders.isEmpty()) {
                 throw new IllegalStateException("No providers found.");
             }
@@ -81,10 +81,11 @@ public abstract class ServiceProvider {
 
             // Copying list, removes the provider from the arguments and prepends it upfront
             // on the copied list.
-            final List<ServiceProvider> copiedProviders = new LinkedList<>();
+            final ArrayList<ServiceProvider> copiedProviders = new ArrayList<>();
             Collections.copy(copiedProviders, foundProviders);
             copiedProviders.remove(provider);
             copiedProviders.add(0, provider);
+            copiedProviders.trimToSize();
 
             // Make the list unmodifiable to prevent illegal modification
             providers = Collections.unmodifiableList(copiedProviders);
@@ -96,10 +97,6 @@ public abstract class ServiceProvider {
      * @return service providers.
      */
     public static List<ServiceProvider> available() {
-        return getProviders();
-    }
-
-    private static List<ServiceProvider> getProviders() {
         if (Objects.isNull(providers)) {
             synchronized(LOCK) {
                 if (Objects.nonNull(providers)) {
@@ -108,10 +105,11 @@ public abstract class ServiceProvider {
 
                 // Searches for implementations of the ServiceProvider using the ServiceLoader API
                 final ServiceLoader<ServiceProvider> serviceLoader = ServiceLoader.load(ServiceProvider.class);
-                final List<ServiceProvider> localProviders = new LinkedList<>();
+                final ArrayList<ServiceProvider> localProviders = new ArrayList<>();
                 for (ServiceProvider provider : serviceLoader) {
                     localProviders.add(provider);
                 }
+                localProviders.trimToSize();
 
                 // Sort the list based on priority. Highest priority comes first.
                 localProviders.sort((p1, p2) -> p2.getPriority() - p1.getPriority());
