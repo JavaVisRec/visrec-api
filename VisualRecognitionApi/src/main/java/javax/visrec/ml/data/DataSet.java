@@ -1,30 +1,33 @@
 package javax.visrec.ml.data;
 
 /**
- * @author Zoran
+ *
+ * @author Zoran Sevarac
+ * @param <ITEM_TYPE>
+ * @since 1.0
  */
 public interface DataSet<ITEM_TYPE extends DataSetItem> extends Iterable<ITEM_TYPE> {
 
-    public void add(ITEM_TYPE item);
+    void add(ITEM_TYPE item);
 
-    public void addAll(DataSet<ITEM_TYPE> items);
+    void addAll(DataSet<ITEM_TYPE> items);
 
-    public ITEM_TYPE get(int index);
+    ITEM_TYPE get(int index);
 
-    public void clear();
+    void clear();
 
-    public boolean isEmpty();
+    boolean isEmpty();
 
-    public int size();
+    int size();
 
-    public DataSet[] split(int parts);
+    DataSet[] split(int parts);
 
-    public DataSet[] split(int... parts);
+    DataSet[] split(int... parts);
 
-    public String[] getOutputLabels();
+    String[] getOutputLabels();
 
-    public void setColumnNames(String[] labels);
+    void setColumnNames(String[] labels);
 
-    public void shuffle();
+    void shuffle();
 
 }

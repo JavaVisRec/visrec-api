@@ -2,7 +2,9 @@ package javax.visrec;
 
 /**
  * Exception thrown if a type can not be found as argument in the generic interface.
- * @author Kevin Berendsen <info@kevinberendsen.nl>
+ *
+ * @author Kevin Berendsen
+ * @since 1.0
  */
 public class NoSuchGenericTypeArgumentException extends RuntimeException {
 

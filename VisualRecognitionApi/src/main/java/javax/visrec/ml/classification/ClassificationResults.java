@@ -15,6 +15,7 @@ import java.util.List;
  * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  * @param <T> Type of a single classification result
+ * @since 1.0
  */
 public class ClassificationResults<T extends ClassificationResult> {
 
