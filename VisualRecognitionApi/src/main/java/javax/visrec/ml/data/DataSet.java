@@ -3,16 +3,16 @@ package javax.visrec.ml.data;
 /**
  *
  * @author Zoran Sevarac
- * @param <ITEM_TYPE>
+ * @param <T>
  * @since 1.0
  */
-public interface DataSet<ITEM_TYPE extends DataSetItem> extends Iterable<ITEM_TYPE> {
+public interface DataSet<T extends DataSetItem> extends Iterable<T> {
 
-    void add(ITEM_TYPE item);
+    void add(T item);
 
-    void addAll(DataSet<ITEM_TYPE> items);
+    void addAll(DataSet<T> items);
 
-    ITEM_TYPE get(int index);
+    T get(int index);
 
     void clear();
 

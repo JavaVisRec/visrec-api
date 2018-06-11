@@ -10,11 +10,11 @@ import java.util.Map;
  * TODO Is this on image X? Does this image contains X?
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
- * @param <IMAGE_CLASS> Class used to represent image
+ * @param <T> Class used to represent image
  * @since 1.0
  */
 @FunctionalInterface
-public interface ObjectDetector<IMAGE_CLASS> {
+public interface ObjectDetector<T> {
 
     /**
      * Detects object in specified image
@@ -22,6 +22,6 @@ public interface ObjectDetector<IMAGE_CLASS> {
      * @param image image to search for object
      * @return
      */
-    Map<String, List<BoundingBox>> detectObject(IMAGE_CLASS image);
+    Map<String, List<BoundingBox>> detectObject(T image);
 
 }

@@ -26,14 +26,14 @@ package javax.visrec.ml.eval;
  *  Maybe move to visrec.ml.eval
  * CONSIDER: using more specific model type instead of general model class? Classifier, Regressor?
  *
- * @param <MODEL_CLASS>
- * @param <DATASET_CLASS>
+ * @param <T1> Model class
+ * @param <T2> Data set class
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  * @since 1.0
  */
 @FunctionalInterface
-public interface Evaluator<MODEL_CLASS, DATASET_CLASS> {
+public interface Evaluator<T1, T2> {
     
     /**
      * Evaluate model with specified data set.
@@ -44,6 +44,6 @@ public interface Evaluator<MODEL_CLASS, DATASET_CLASS> {
      * @param testSet Data to use for evaluation
      * @return performance measures of a model for the specified test set
      */    // evaluatePerformance       testDataSet
-    PerformanceMeasure evaluatePerformance(MODEL_CLASS model, DATASET_CLASS testSet); // kako ce da vrati rezultate testiranja - napraviti neku klasu za to?
+    PerformanceMeasure evaluatePerformance(T1 model, T2 testSet); // kako ce da vrati rezultate testiranja - napraviti neku klasu za to?
     
 }
