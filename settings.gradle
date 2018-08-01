@@ -1,1 +1,1 @@
-include "VisualRecognitionApi", "VisRecDeepNettsImpl"
+include "visrec-api", "visrec-deepnetts-impl"
