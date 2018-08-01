@@ -1,9 +1,0 @@
-apply plugin: 'java'
-apply plugin: 'application'
-
-mainClassName = "visrec.impl.watson.examples.WatsonImageClassifierExample"
-
-dependencies {
-    compile project(':VisualRecognitionApi')
-    compile 'com.ibm.watson.developer_cloud:visual-recognition:3.5.3'
-}

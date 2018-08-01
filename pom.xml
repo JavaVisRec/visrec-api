@@ -8,10 +8,6 @@
     <modules>
         <module>VisualRecognitionApi</module>
         <module>VisRecDeepNettsImpl</module>
-        <module>VisRecWatsonImpl</module>
-        <module>VisRecDl4jImpl</module>
-        <module>VisRecOpenImaj</module>
-        <module>tck</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
