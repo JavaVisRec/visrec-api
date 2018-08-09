@@ -3,7 +3,7 @@ package javax.visrec.ml.data;
 /**
  *
  * @author Zoran Sevarac
- * @param <T>
+ * @param <T> type which inherits {@link DataSetItem}
  * @since 1.0
  */
 public interface DataSet<T extends DataSetItem> extends Iterable<T> {

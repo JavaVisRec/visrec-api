@@ -5,7 +5,7 @@ package javax.visrec.ml.classification;
  * 
  * Ili da imam  ImageClassification result koji nasledjuje ClassificationResult i ima bounding box
  * 
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @since 1.0
  */
 public class BoundingBox extends ClassificationResult {

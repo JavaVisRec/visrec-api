@@ -8,7 +8,7 @@ import java.util.Map;
  * classification result, which gives better accuracy then each individual
  * classifier. Usually average or most frequent answer is used as a final result.
  *
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @param <T> The input type which is to be classified.
  * @since 1.0
  */

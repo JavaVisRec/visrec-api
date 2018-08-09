@@ -8,7 +8,7 @@ import java.net.URL;
 /**
  * This interface provides a standard way to get/read different(specified) kinds of image from file, url or input stream.
  *
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @param <T> the type of object to be returned after getting image from {@link File}, {@link URL} or {@link InputStream}
  * @since 1.0
  */

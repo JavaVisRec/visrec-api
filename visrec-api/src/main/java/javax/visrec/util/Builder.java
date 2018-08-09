@@ -5,7 +5,7 @@ import java.util.Properties;
 /**
  * Generic builder interface.
  *
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @param <T> type of the object to be returned by the builder.
  * @since 1.0
  */

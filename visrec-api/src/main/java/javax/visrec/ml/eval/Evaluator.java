@@ -29,7 +29,7 @@ package javax.visrec.ml.eval;
  * @param <T1> Model class
  * @param <T2> Data set class
  *
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @since 1.0
  */
 @FunctionalInterface
@@ -38,7 +38,7 @@ public interface Evaluator<T1, T2> {
     /**
      * Evaluate model with specified data set.
      * Return Map with performance metrics and values?
-     * Map<String, PerformanceMeasure> ili Map<Object, PerformanceMeasure>
+     * {@code Map<String, PerformanceMeasure>} ili {@code Map<Object, PerformanceMeasure>}
      *
      * @param model A model to evaluate
      * @param testSet Data to use for evaluation

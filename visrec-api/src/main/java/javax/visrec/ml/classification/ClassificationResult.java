@@ -4,7 +4,7 @@ package javax.visrec.ml.classification;
  * This class represents a single classification result with class label and 
  * corresponding score (confidence level).
  * 
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @since 1.0
  */
 public class ClassificationResult {

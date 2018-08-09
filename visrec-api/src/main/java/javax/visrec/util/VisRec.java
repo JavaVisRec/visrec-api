@@ -5,7 +5,7 @@ package javax.visrec.util;
  *
  * TODO Kevin: "Zoran do we still need this?"
  *
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @since 1.0
  */
 public final class VisRec {

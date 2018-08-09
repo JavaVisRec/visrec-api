@@ -9,7 +9,7 @@ import java.util.Map;
  *
  * TODO Is this on image X? Does this image contains X?
  *
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @param <T> Class used to represent image
  * @since 1.0
  */
@@ -20,7 +20,7 @@ public interface ObjectDetector<T> {
      * Detects object in specified image
      *
      * @param image image to search for object
-     * @return
+     * @return a map of multiple {@link BoundingBox}
      */
     Map<String, List<BoundingBox>> detectObject(T image);
 

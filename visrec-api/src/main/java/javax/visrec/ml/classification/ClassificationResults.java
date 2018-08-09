@@ -13,7 +13,7 @@ import java.util.List;
  * Use SortedSet to hold results?
  * This class should be collection also, maybe extend SortedSet
  * 
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @param <T> Type of a single classification result
  * @since 1.0
  */

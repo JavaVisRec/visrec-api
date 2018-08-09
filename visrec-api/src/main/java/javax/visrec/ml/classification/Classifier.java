@@ -7,7 +7,7 @@ import java.util.Map;
  * a method to classify instances of some class. Implementations should specify
  * type of objects (class) that are classified.
  *
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @author Zoran Sevarac
  * @param <T> type of input instance to classify (eg. User, Product,
  * Event, Transaction, Image, etc.)
  * @since 1.0
