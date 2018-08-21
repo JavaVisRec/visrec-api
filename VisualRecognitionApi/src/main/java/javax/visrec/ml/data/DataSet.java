@@ -33,6 +33,7 @@ public interface DataSet<E> extends Iterable<E> {
     //DataSet[] split(double... parts, Random rnd);
 
     DataSet shuffle(); // this could be default method
+    DataSet shuffle(Random rnd); // this could be default method
     
     String[] getOutputLabels(); 
 
