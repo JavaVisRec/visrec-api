@@ -13,7 +13,7 @@ import java.util.Map;
  * Event, Transaction, Image, etc.)
  */
 @FunctionalInterface
-public interface Classifier<INPUT_CLASS> {
+public interface Classifier<INPUT_CLASS, R> {
 
     /**
      * Classifies specified instance and returns classification results as
@@ -22,6 +22,6 @@ public interface Classifier<INPUT_CLASS> {
      * @param instance some instance to classify
      * @return classification results for the specified instance
      */
-    public Map<String, Float> classify(INPUT_CLASS instance);
+    public Map<R, Float> classify(INPUT_CLASS instance);
 
 }

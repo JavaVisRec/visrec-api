@@ -26,6 +26,8 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
 
     private float threshold; // this should ba a part of every classifier
 
+    // TODO: add constructor with model instance
+    
     protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls) {
         // zoran: We should avoid using signleton here
         final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ImageFactoryProvider.getInstance().findImageFactory(cls);
@@ -50,9 +52,10 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     }
 
     // do we need this now, when impl is loaded using service provider?
-    public void setImageFactory(ImageFactory<IMAGE_CLASS> imageFactory) {
-        this.imageFactory = imageFactory;
-    }
+    // Kevin and Zoran disussed: probably not needed now when we have service provider impl, and we dont want to allow user to mess with it
+//    public void setImageFactory(ImageFactory<IMAGE_CLASS> imageFactory) {
+//        this.imageFactory = imageFactory;
+//    }
 
     public MODEL_CLASS getModel() {
         return model;
