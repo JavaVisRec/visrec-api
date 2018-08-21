@@ -28,6 +28,8 @@ public interface DataSet<E> extends Iterable<E> {
 
     DataSet[] split(double... parts);
     
+    // split(DataSetSplitter splitter)
+    
     //DataSet[] split(double... parts, Random rnd);
 
     DataSet shuffle(); // this could be default method
