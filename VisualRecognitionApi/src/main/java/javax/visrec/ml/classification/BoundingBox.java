@@ -1,6 +1,4 @@
-package javax.visrec.util;
-
-import javax.visrec.ml.classification.ClassificationResult;
+package javax.visrec.ml.classification;
 
 /**
  * This class represents a bounding box over image at specified position, dimensions, label and score.
@@ -8,6 +6,7 @@ import javax.visrec.ml.classification.ClassificationResult;
  * Ili da imam  ImageClassification result koji nasledjuje ClassificationResult i ima bounding box
  * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @since 1.0
  */
 public class BoundingBox extends ClassificationResult {
     private int id;

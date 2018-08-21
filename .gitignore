@@ -7,3 +7,6 @@
 .gradle/
 gradle/
 */build/**
+/tck/target/
+VisualRecognitionApi/src/main/resources/META-INF/services/javax.visrec.*
+VisualRecognitionApi/src/main/java/jsr381/

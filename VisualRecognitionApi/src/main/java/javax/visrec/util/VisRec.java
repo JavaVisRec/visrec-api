@@ -1,10 +1,19 @@
 package javax.visrec.util;
 
 /**
+ * Shared constants to retrieve and set values in properties.
+ *
+ * TODO Kevin: "Zoran do we still need this?"
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @since 1.0
  */
-public class VisRec {
+public final class VisRec {
+
+    private VisRec() {
+        // Prevent instantiation.
+    }
+
     public static final String IMAGE_WIDTH          = "visrec.imageWidth"; 
     public static final String IMAGE_HEIGHT         = "visrec.imageHeight"; 
     public static final String SGD_LEARNING_RATE    = "visrec.sgd.learningRate"; 

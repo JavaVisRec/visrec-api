@@ -5,6 +5,7 @@ package javax.visrec.ml.classification;
  * corresponding score (confidence level).
  * 
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @since 1.0
  */
 public class ClassificationResult {
     private final String classLabel;

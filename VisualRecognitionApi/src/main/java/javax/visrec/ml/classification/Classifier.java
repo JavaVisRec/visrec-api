@@ -8,9 +8,9 @@ import java.util.Map;
  * type of objects (class) that are classified.
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
- *
- * @param <INPUT_CLASS> type of input instance to classify (eg. User, Product,
+ * @param <T> type of input instance to classify (eg. User, Product,
  * Event, Transaction, Image, etc.)
+ * @since 1.0
  */
 @FunctionalInterface
 public interface Classifier<INPUT_CLASS, R> {

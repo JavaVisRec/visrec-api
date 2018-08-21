@@ -9,13 +9,15 @@ import java.util.Map;
  * classifier. Usually average or most frequent answer is used as a final result.
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
+ * @param <T> The input type which is to be classified.
+ * @since 1.0
  */
-public class EnsambleClassifier<INPUT_TYPE> implements Classifier<INPUT_TYPE> {
+public final class EnsambleClassifier<T> implements Classifier<T> {
 
-    Map<String, Classifier<INPUT_TYPE>> classifiers = new HashMap<>();
+    Map<String, Classifier<T>> classifiers = new HashMap<>();
 
     @Override
-    public Map<String, Float> classify(INPUT_TYPE instance) {
+    public Map<String, Float> classify(T instance) {
         classifiers.values().stream() // or parallelStream
                 .forEach(c -> c.classify(instance));
         //.collect(); // get average scores? This method can be overriden, provide default impl here

@@ -1,32 +1,33 @@
 package javax.visrec.ml.data;
 
 /**
- * @author Zoran
+ *
+ * @author Zoran Sevarac
+ * @param <T>
+ * @since 1.0
  */
-public interface DataSet<ITEM_TYPE extends DataSetItem> extends Iterable<ITEM_TYPE> {
+public interface DataSet<T extends DataSetItem> extends Iterable<T> {
 
-    public void add(ITEM_TYPE item);
+    void add(T item);
 
-    public void addAll(DataSet<ITEM_TYPE> items);   // provide default impl of this method?
+    void addAll(DataSet<T> items);
 
-    public ITEM_TYPE get(int index);
+    T get(int index);
 
-    public void clear();
+    void clear();
 
-    public boolean isEmpty();
+    boolean isEmpty();
 
-    public int size();
+    int size();
 
-    public DataSet[] split(int parts);
+    DataSet[] split(int parts);
 
-    public DataSet[] split(double... parts);
+    DataSet[] split(int... parts);
 
-    public String[] getOutputLabels();
+    String[] getOutputLabels();
 
-    public void setColumnNames(String[] labels);    //meta data?    // cretae DefaultDataSetImpl or AbstractDataSet
+    void setColumnNames(String[] labels);
 
-    public void shuffle();
-    
-    // some method to easily get statistics summary
+    void shuffle();
 
 }
