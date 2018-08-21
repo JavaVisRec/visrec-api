@@ -1,18 +1,20 @@
 package javax.visrec.ml.data;
 
+import java.util.Random;
+
 /**
  *
  * @author Zoran Sevarac
- * @param <T>
+ * @param <E> tye of data set elements
  * @since 1.0
  */
-public interface DataSet<T extends DataSetItem> extends Iterable<T> {
+public interface DataSet<E> extends Iterable<E> {
 
-    void add(T item);
+    void add(E item);
 
-    void addAll(DataSet<T> items);
+    void addAll(DataSet<E> items);
 
-    T get(int index);
+    E get(int index);
 
     void clear();
 
@@ -21,13 +23,19 @@ public interface DataSet<T extends DataSetItem> extends Iterable<T> {
     int size();
 
     DataSet[] split(int parts);
+    
+    DataSet[] split(int parts, Random rnd);
 
-    DataSet[] split(int... parts);
+    DataSet[] split(double... parts);
+    
+    //DataSet[] split(double... parts, Random rnd);
 
-    String[] getOutputLabels();
+    DataSet shuffle(); // this could be default method
+    
+    String[] getOutputLabels(); 
 
     void setColumnNames(String[] labels);
 
-    void shuffle();
+    
 
 }

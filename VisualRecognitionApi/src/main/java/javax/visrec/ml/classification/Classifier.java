@@ -8,8 +8,9 @@ import java.util.Map;
  * type of objects (class) that are classified.
  *
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
- * @param <T> type of input instance to classify (eg. User, Product,
+ * @param <INPUT_CLASS> type of input instance to classify (eg. User, Product,
  * Event, Transaction, Image, etc.)
+ * @param <R> type of classification result map eg. String is commonly used , but Enum as well
  * @since 1.0
  */
 @FunctionalInterface
