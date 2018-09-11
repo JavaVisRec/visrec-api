@@ -5,21 +5,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Optional;
-import javax.visrec.internal.ImageFactoryProvider;
 import javax.visrec.ml.classification.Classifier;
+import javax.visrec.spi.ServiceProvider;
 import javax.visrec.util.Builder;
-import javax.visrec.util.ImageFactory;
 
 /**
  * Skeleton abstract class to make it easier to implement image classifier.
  * It provides implementation of Classifier interface for images, along with
  * image factory for specific type of images.
  *
+ * By default the return type of the {@link Classifier} is {@code String}
+ *
  * @param <IMAGE_CLASS>
  * @param <MODEL_CLASS>
  * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
-public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS>, Builder<Classifier> { // could also implement binary classifier
+public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String>, Builder<Classifier> { // could also implement binary classifier
 
     private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?
@@ -28,9 +29,10 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
 
     // TODO: add constructor with model instance
     
-    protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls, final Class) {
-        // zoran: We should avoid using signleton here
-        final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ImageFactoryProvider.getInstance().findImageFactory(cls);
+    protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls) {
+        final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ServiceProvider.current()
+                .getImageFactoryService()
+                .getByImageType(cls);
         if (!optionalImageFactory.isPresent()) {
             throw new IllegalArgumentException(String.format("Could not find ImageFactory by '%s'", cls.getName()));
         }

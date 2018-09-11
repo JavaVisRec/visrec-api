@@ -48,6 +48,12 @@ public abstract class ServiceProvider {
     public abstract ClassifierService getClassifierService();
 
     /**
+     * Get the {@link ImageFactoryService}
+     * @return image factory service.
+     */
+    public abstract ImageFactoryService getImageFactoryService();
+
+    /**
      * Get the current {@link ServiceProvider}
      * @return service provider.
      * @throws IllegalStateException If there are no service providers found.

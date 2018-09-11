@@ -33,11 +33,26 @@ public abstract class ClassifierBuilder {
     public abstract ClassifierBuilder trainedModel(Object trainedModel);
 
     /**
-     * Create the {@link Classifier} that is able to use {@code cls} as input/source type.
+     * Create the {@link Classifier} that is able to use {@code sourceClss} as input/source type and
+     * {@code returnCls} as return type of the {@link Classifier}
      *
-     * @param cls {@link Class} object of the incoming input/source.
-     * @param <T> the class used during the build method and parameterized type of the {@link Classifier}
+     * @param sourceCls {@link Class} object of the incoming input/source.
+     * @param returnCls {@link Class} object of the return type of the {@link Classifier}
+     * @param <T> source type class of the {@link Classifier}
+     * @param <R> return type class of the {@link Classifier}
      * @return {@link Classifier} object.
      */
-    public abstract <T> Classifier<T> buildWithSourceType(Class<T> cls);
+    public abstract <T, R> Classifier<T, R> buildWithSourceType(final Class<T> sourceCls, final Class<R> returnCls);
+
+    /**
+     * Create the {@link Classifier} that is able to use {@code sourceClss} as input/source type and
+     * {@link String} as default return type of the {@link Classifier}
+     *
+     * @param sourceCls {@link Class} object of the incoming input/source.
+     * @param <T> source type class of the {@link Classifier}
+     * @return {@link Classifier} object.
+     */
+    public final <T> Classifier<T, String> buildWithSourceType(final Class<T> sourceCls) {
+        return buildWithSourceType(sourceCls, String.class);
+    }
 }
