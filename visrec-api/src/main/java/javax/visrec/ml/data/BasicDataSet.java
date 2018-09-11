@@ -59,6 +59,31 @@ public class BasicDataSet<E> implements DataSet<E>{
     }
 
     @Override
+    public DataSet[] split(int parts) {
+        return new DataSet[0];
+    }
+
+    @Override
+    public DataSet[] split(int parts, Random rnd) {
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    @Override
+    public DataSet[] split(double part) {
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    @Override
+    public DataSet[] split(double... parts) {
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    @Override
+    public DataSet[] split(Random rnd, double... parts) {
+        throw new UnsupportedOperationException("not implemented");
+    }
+
+    @Override
     public DataSet<E> shuffle() {
         Collections.shuffle(elements);
         return this;

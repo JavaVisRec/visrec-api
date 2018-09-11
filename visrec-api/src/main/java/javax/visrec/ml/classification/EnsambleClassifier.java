@@ -27,7 +27,7 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
     }
 
     // or just provide method for adding swith some intrenal id?
-    public void addClassifier(String classifierId, Classifier classifier) {
+    public void addClassifier(String classifierId, Classifier<T, R> classifier) {
         classifiers.put(classifierId, classifier);
     }
 

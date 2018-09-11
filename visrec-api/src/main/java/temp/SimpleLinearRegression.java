@@ -20,7 +20,7 @@ public class SimpleLinearRegression implements Regressor<double[], Double> {
     
     public static class SimpleLinearRegressionBuilder {
         public SimpleLinearRegressionBuilder withInputs(int inputsCount) {
-            
+            throw new UnsupportedOperationException("not implemented");
         }
     }
     
