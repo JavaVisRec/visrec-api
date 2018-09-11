@@ -28,7 +28,7 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
 
     // TODO: add constructor with model instance
     
-    protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls) {
+    protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls, final Class) {
         // zoran: We should avoid using signleton here
         final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ImageFactoryProvider.getInstance().findImageFactory(cls);
         if (!optionalImageFactory.isPresent()) {
