@@ -1,18 +1,21 @@
 package javax.visrec.ml.data;
 
+import java.util.Random;
+
 /**
  *
  * @author Zoran Sevarac
- * @param <T> type which inherits {@link DataSetItem}
+ * @param <E> type of data set elements
  * @since 1.0
  */
-public interface DataSet<T extends DataSetItem> extends Iterable<T> {
+public interface DataSet<E> extends Iterable<E> {
 
-    void add(T item);
+    DataSet<E> add(E item);
 
-    void addAll(DataSet<T> items);
+    DataSet<E> addAll(DataSet<E> items);
 
-    T get(int index);
+    // remove?
+    E get(int index);
 
     void clear();
 
@@ -20,14 +23,81 @@ public interface DataSet<T extends DataSetItem> extends Iterable<T> {
 
     int size();
 
+    /**
+     * Split dataset into specified number of equaly sized parts
+     * @param parts
+     * @return 
+     */
     DataSet[] split(int parts);
 
-    DataSet[] split(int... parts);
+    /**
+     * Split dataset into specified number of equaly sized parts, using specified random generator 
+     * @param parts
+     * @return 
+     */
+    DataSet[] split(int parts, Random rnd);
 
-    String[] getOutputLabels();
+    
+    /**
+     * Split data set in two parts, one with size of specified percantage, and other with rest of the data set 
+     * @param part
+     * @return 
+     */
+    DataSet[] split(double part);
+    
+    /**
+     * Split data set into parts of specified sizes
+     * @param parts
+     * @return array of {@link DataSet}
+     */    
+    DataSet[] split(double... parts);
+    
+    /**
+     * Split data set into parts of specified sizes using specified random generator
+     * @param parts
+     * @return array of {@link DataSet}
+     */        
+    DataSet[] split(Random rnd, double... parts);    
 
-    void setColumnNames(String[] labels);
+    
+    // split(Splitter splitter) Splitter can be abstract class
+    //DataSet[] split(double... parts, Random rnd);
+    DataSet shuffle(); // this could be default method
 
-    void shuffle();
+    DataSet shuffle(Random rnd); // this could be default method
+
+//    String[] getOutputLabels(); 
+//
+//    void setColumnNames(String[] labels);
+    // this can be move to interface DataSet
+    class Column {
+
+        String name;
+        ColumnType columnType;
+        boolean isTarget;
+
+        public Column(String name, ColumnType columnType, boolean isTarget) {
+            this.name = name;
+            this.columnType = columnType;
+            this.isTarget = isTarget;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public ColumnType getColumnType() {
+            return columnType;
+        }
+
+        public boolean isTarget() {
+            return isTarget;
+        }
+
+    }
+
+    enum ColumnType {
+        REAL, INTEGER, BINARY, STRING;
+    }
 
 }

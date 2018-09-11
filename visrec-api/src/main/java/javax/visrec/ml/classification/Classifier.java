@@ -10,10 +10,11 @@ import java.util.Map;
  * @author Zoran Sevarac
  * @param <T> type of input instance to classify (eg. User, Product,
  * Event, Transaction, Image, etc.)
+ * @param <R> type of classification result map eg. String is commonly used , but Enum as well
  * @since 1.0
  */
 @FunctionalInterface
-public interface Classifier<T> {
+public interface Classifier<T, R> {
 
     /**
      * Classifies specified instance and returns classification results as
@@ -22,6 +23,6 @@ public interface Classifier<T> {
      * @param instance some instance to classify
      * @return classification results for the specified instance
      */
-    Map<String, Float> classify(T instance);
+    public Map<R, Float> classify(T instance);
 
 }

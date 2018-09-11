@@ -22,7 +22,7 @@ public class ClassificationResults<T extends ClassificationResult> {
     private List<T> results;
 
     public ClassificationResults() {
-        results = new ArrayList();
+        results = new ArrayList<>();
     }
 
     public void add(T result) {
