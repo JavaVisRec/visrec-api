@@ -54,6 +54,7 @@ public interface DataSet<E> extends Iterable<E> {
     
     /**
      * Split data set into parts of specified sizes using specified random generator
+     * @param rnd
      * @param parts
      * @return array of {@link DataSet}
      */        
@@ -97,7 +98,7 @@ public interface DataSet<E> extends Iterable<E> {
     }
 
     enum ColumnType {
-        REAL, INTEGER, BINARY, STRING;
+        DECIMAL, INTEGER, BINARY, STRING;
     }
 
 }

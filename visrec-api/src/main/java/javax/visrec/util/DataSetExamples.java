@@ -15,12 +15,12 @@ import java.util.zip.ZipFile;
 
 /**
  * This is a utility class that downloads various datasets such as mnist and stores them in user home folder
- *
+ * Note: this should not go into api but in implementation projec
  * @author Jyothiprasad Buddha
  */
-public final class DataSets {
+public final class DataSetExamples {
 
-    private DataSets() {
+    private DataSetExamples() {
         // Prevent instantiation.
     }
 

@@ -8,13 +8,16 @@ package javax.visrec.ml.classification;
  * @author Zoran Sevarac
  * @since 1.0
  */
-public class BoundingBox extends ClassificationResult {
+public class BoundingBox {
     private int id;
     private final int x, y, width, height;
+    private final String label;
+    private final float score;
 
 
     public BoundingBox(String label, float score, int x, int y, int width, int height) {
-        super(label, score);
+        this.label =label;
+        this.score  = score;
         this.x = x;
         this.y = y;
         this.width = width;
