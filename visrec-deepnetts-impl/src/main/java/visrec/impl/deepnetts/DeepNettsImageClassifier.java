@@ -21,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.visrec.AbstractImageClassifier;
 import javax.visrec.ml.classification.Classifier;
-import javax.visrec.util.BufferedImageFactory;
 import javax.visrec.util.VisRec;
 
 /**
@@ -108,8 +107,9 @@ public class DeepNettsImageClassifier extends AbstractImageClassifier<BufferedIm
                 .addMaxPoolingLayer(2, 2, 2)
                 .addConvolutionalLayer(3, 3, 6, ActivationType.RELU)
                 .addMaxPoolingLayer(2, 2, 2)
-                .addDenseLayer(30, ActivationType.RELU)
-                .addDenseLayer(20, ActivationType.RELU)
+                // TODO Kevin to Zoran: "I can't find these methods in DeepNetts."
+//                .addDenseLayer(30, ActivationType.RELU)
+//                .addDenseLayer(20, ActivationType.RELU)
                 .addOutputLayer(classCount, SoftmaxOutputLayer.class)
                 .withLossFunction(CrossEntropyLoss.class)
                 .withRandomSeed(123)
