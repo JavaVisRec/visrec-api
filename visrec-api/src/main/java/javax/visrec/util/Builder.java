@@ -11,7 +11,7 @@ import java.util.Properties;
  */
 public interface Builder<T> {
 
-    T build(Properties prop ); // set everything from configuration properties and then build and return T instance
+    T build(Properties prop ); // set everything from configuration properties and then build and return T instance. Make this default method and use keys as method names?
 
     // public T build(); // regural builder method
 }

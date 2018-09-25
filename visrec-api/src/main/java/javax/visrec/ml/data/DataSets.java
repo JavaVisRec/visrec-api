@@ -3,12 +3,12 @@ package javax.visrec.ml.data;
 import javax.visrec.ml.data.norm.Normalizer;
 
 /**
- *
+ * Utility class that provides commmon operations on data sets
  * @author zoran
  */
-public class DataSetUtil {
+public class DataSets {
     
-    private DataSetUtil() { } 
+    private DataSets() { } 
     
     // scale values 
     // maybe just provide DataSet.normalize(new MaxNormalizer) , and dataSet injects itself into normalizer

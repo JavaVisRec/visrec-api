@@ -9,7 +9,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
- *
+ * Implementation of basic data set class
+ * 
  * @author zoran
  */
 public class BasicDataSet<E> implements DataSet<E>{
