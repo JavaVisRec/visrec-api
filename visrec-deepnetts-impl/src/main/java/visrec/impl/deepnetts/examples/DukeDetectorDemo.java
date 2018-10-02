@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 import javax.visrec.AbstractImageClassifier;
-import javax.visrec.detection.ObjectDetector;
-import javax.visrec.detection.SimpleObjectDetector;
+import javax.visrec.ml.detection.ObjectDetector;
+
 import visrec.impl.deepnetts.DeepNettsImageClassifier;
+import visrec.impl.deepnetts.ml.detection.SimpleObjectDetector;
 
 /**
  *
