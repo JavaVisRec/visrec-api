@@ -71,7 +71,7 @@ public interface DataSet<E> extends Iterable<E> {
 //
 //    void setColumnNames(String[] labels);
     // this can be move to interface DataSet
-    class Column {
+    public static class Column {
 
         String name;
         ColumnType columnType;
