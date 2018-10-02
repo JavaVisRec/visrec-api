@@ -19,8 +19,8 @@ public class DataSets {
 
     // how about moving thes estatic methods to coresponding interface?
 //    public static <E> DataSet normalizMax(DataSet<E> dataSet) {
-//        Normalizer norm = new MaxNormalizer(dataSet);
-//        return norm.normalize(dataSet, false);
+//        Normalizer norm = new MaxNormalizer(dataSet); // perform analysys of data set (find max values)
+//        return norm.normalize(dataSet, false); // perfrom normalization and return as new data set
 //    }
     
     // normalizeMinMax
