@@ -14,6 +14,7 @@ public interface ClassifierService {
      * Get the {@link Classifier} which is able to classify images by the {@code sourceType} object.
      *
      * @param sourceType {@link Class} object of the source type.
+     * @param resultMapType {@link Class} object of the result map.
      * @param <T> the class which is able to be handled by the {@link Classifier} and given as {@link Class} object.
      * @param <R> type of classification result map eg. String is commonly used , but Enum as well
      * @return {@link Classifier} which is able to classify images of {@code T}

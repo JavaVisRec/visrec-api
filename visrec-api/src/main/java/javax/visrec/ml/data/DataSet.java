@@ -24,38 +24,39 @@ public interface DataSet<E> extends Iterable<E> {
     int size();
 
     /**
-     * Split dataset into specified number of equaly sized parts
-     * @param parts
-     * @return 
+     * Split dataset into specified number of equally sized parts
+     * @param parts amount of parts to be returned
+     * @return multiple {@link DataSet} in an array.
      */
     DataSet[] split(int parts);
 
     /**
-     * Split dataset into specified number of equaly sized parts, using specified random generator 
-     * @param parts
-     * @return 
+     * Split dataset into specified number of equally sized parts, using specified random generator
+     * @param parts amount of parts to be returned
+     * @param rnd random generator
+     * @return multiple {@link DataSet} in an array.
      */
     DataSet[] split(int parts, Random rnd);
 
     
     /**
-     * Split data set in two parts, one with size of specified percantage, and other with rest of the data set 
-     * @param part
-     * @return 
+     * Split data set in two parts, one with size of specified percentage, and other with rest of the data set
+     * @param part specified percentage of the first {@link DataSet}
+     * @return multiple {@link DataSet} in an array.
      */
     DataSet[] split(double part);
     
     /**
      * Split data set into parts of specified sizes
-     * @param parts
+     * @param parts specific sizes of {@link DataSet}
      * @return array of {@link DataSet}
      */    
     DataSet[] split(double... parts);
     
     /**
      * Split data set into parts of specified sizes using specified random generator
-     * @param rnd
-     * @param parts
+     * @param rnd random generator
+     * @param parts specific sizes of {@link DataSet}
      * @return array of {@link DataSet}
      */        
     DataSet[] split(Random rnd, double... parts);    
