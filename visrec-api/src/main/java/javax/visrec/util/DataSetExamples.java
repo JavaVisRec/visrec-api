@@ -15,7 +15,9 @@ import java.util.zip.ZipFile;
 
 /**
  * This is a utility class that downloads various datasets such as mnist and stores them in user home folder
- * Note: this should not go into api but in implementation projec
+ * 
+ * Note: this should not go into api but in implementation project as discussed on one of the skype meetings
+ * 
  * @author Jyothiprasad Buddha
  */
 public final class DataSetExamples {

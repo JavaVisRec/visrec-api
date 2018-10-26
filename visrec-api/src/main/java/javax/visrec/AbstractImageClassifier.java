@@ -20,7 +20,7 @@ import javax.visrec.util.Builder;
  * @param <MODEL_CLASS> model type
  * @author Zoran Sevarac
  */
-public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String>, Builder<Classifier> { // could also implement binary classifier
+public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String>, Builder<Classifier<IMAGE_CLASS, String>> { // could also implement binary classifier
 
     private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?

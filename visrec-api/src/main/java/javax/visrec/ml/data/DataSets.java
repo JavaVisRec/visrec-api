@@ -14,8 +14,14 @@ public class DataSets {
     // maybe just provide DataSet.normalize(new MaxNormalizer) , and dataSet injects itself into normalizer
     // or even better norm= new MaxNormalizer(dataSet); norm.normalize(); also separate construction from analysis
     public static <E> DataSet normalize(DataSet<E> dataSet, Normalizer norm) {
-        return norm.normalize(dataSet);
+        return norm.normalize(dataSet, false);
     }
+
+    // how about moving thes estatic methods to coresponding interface?
+//    public static <E> DataSet normalizMax(DataSet<E> dataSet) {
+//        Normalizer norm = new MaxNormalizer(dataSet); // perform analysys of data set (find max values)
+//        return norm.normalize(dataSet, false); // perfrom normalization and return as new data set
+//    }
     
     // normalizeMinMax
     // normalizeRange

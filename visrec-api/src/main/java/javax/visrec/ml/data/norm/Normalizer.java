@@ -7,6 +7,6 @@ import javax.visrec.ml.data.DataSet;
  * @author zoran
  */
 public interface Normalizer {
-    // specify param to determine inplac eor copy normalization?
-    DataSet normalize(DataSet dataSet);   // perfrom inplace normalization or return new data set?
+    // specify param to determine inplace or copy normalization?
+    public DataSet normalize(DataSet dataSet, boolean inplace);
 }
