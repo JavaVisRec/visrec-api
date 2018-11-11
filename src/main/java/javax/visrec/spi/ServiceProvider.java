@@ -59,11 +59,10 @@ public abstract class ServiceProvider {
      * @throws IllegalStateException If there are no service providers found.
      */
     public static ServiceProvider current() {
-        final ServiceProvider p = available().get(0);
-        if (Objects.isNull(p)) {
-            throw new IllegalStateException("No ServiceProvider found");
+        if (available().size() == 0) {
+            throw new IllegalStateException("No service provider found");
         }
-        return p;
+        return available().get(0);
     }
 
     /**
