@@ -1,14 +1,9 @@
 apply plugin: 'java'
 
-version = '1.0-SNAPSHOT'
-group = 'javax.visrec'
+sourceCompatibility = 1.8
 
-subprojects {
+dependencies {
+    compile 'org.json:json:20160212'
 
-    group = rootProject.group
-    version = rootProject.version
-
-    repositories {
-        mavenCentral()
-    }
+    testCompile 'junit:junit:4.0'
 }

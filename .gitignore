@@ -4,5 +4,5 @@
 gradle/
 */build/**
 */target/**
-visrec-api/src/main/resources/META-INF/services/javax.visrec.*
-visrec-api/src/main/java/jsr381/
+target/
+build/

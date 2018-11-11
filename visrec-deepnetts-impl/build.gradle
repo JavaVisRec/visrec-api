@@ -1,9 +1,0 @@
-apply plugin: 'java'
-apply plugin: 'application'
-
-mainClassName = "visrec.impl.deepnetts.examples.DukeDetectorDemo"
-
-dependencies {
-    compile project(':VisualRecognitionApi')
-    compile 'deepnetts:deepnetts-core:1.0-SNAPSHOT'
-}
