@@ -16,9 +16,9 @@ import javax.visrec.util.Builder;
  *
  * By default the return type of the {@link Classifier} is {@code String}
  *
+ * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  * @param <IMAGE_CLASS>
  * @param <MODEL_CLASS>
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
  */
 public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String>, Builder<Classifier<IMAGE_CLASS, String>> { // could also implement binary classifier
 
