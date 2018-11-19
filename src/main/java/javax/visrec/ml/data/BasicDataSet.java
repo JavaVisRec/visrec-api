@@ -2,6 +2,7 @@ package javax.visrec.ml.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -15,48 +16,48 @@ import java.util.stream.Collectors;
  */
 public class BasicDataSet<E> implements DataSet<E>{
         
-    List<E> elements;
+    List<E> items;
     Column[] columns;
 
     public BasicDataSet(Column[] cols) {
         this.columns = cols;
-        elements = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     public BasicDataSet(List<E> elements) {
-        this.elements = elements;
+        this.items = elements;
     }
     
     @Override
     public DataSet<E> add(E item) {
-        elements.add(item);
+        items.add(item);
         return this;
     }
 
     @Override
     public DataSet<E>  addAll(DataSet<E> items) {
-        elements.addAll(elements);
+        this.items.addAll(this.items);
         return this;
     }
 
     @Override
     public E get(int index) {
-        return elements.get(index);
+        return items.get(index);
     }
 
     @Override
     public void clear() {
-        elements.clear();
+        items.clear();
     }
 
     @Override
     public boolean isEmpty() {
-        return elements.isEmpty();
+        return items.isEmpty();
     }
 
     @Override
     public int size() {
-        return elements.size();
+        return items.size();
     }
 
     @Override
@@ -86,13 +87,13 @@ public class BasicDataSet<E> implements DataSet<E>{
 
     @Override
     public DataSet<E> shuffle() {
-        Collections.shuffle(elements);
+        Collections.shuffle(items);
         return this;
     }
 
     @Override
     public DataSet shuffle(Random rnd) {
-        Collections.shuffle(elements, rnd);
+        Collections.shuffle(items, rnd);
         return this;
     }
 
@@ -111,7 +112,12 @@ public class BasicDataSet<E> implements DataSet<E>{
 
     @Override
     public Iterator<E> iterator() {
-        return elements.iterator();
+        return items.iterator();
+    }
+
+    @Override
+    public Collection<E> getItems() {
+        return items;
     }
     
 
