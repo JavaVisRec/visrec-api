@@ -100,7 +100,7 @@ public class BasicDataSet<E> implements DataSet<E>{
     }
 
     @Override
-    public DataSet shuffle(Random rnd) {
+    public DataSet<E> shuffle(Random rnd) {
         Collections.shuffle(items, rnd);
         return this;
     }
