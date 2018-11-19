@@ -16,21 +16,47 @@ public interface DataSet<E> extends Iterable<E> {
     /**
      * Adds an element to this data set.
      * 
-     * @param item
-     * @return 
+     * @param item data set item to add to the data set
+     * @return current instance of {@link DataSet}
      */
     DataSet<E> add(E item);
 
+    /**
+     * Add an existing {@link DataSet} to the current {@link DataSet}
+     * @param items existing {@link DataSet}
+     * @return current instance of {@link DataSet}
+     */
     DataSet<E> addAll(DataSet<E> items);
 
+    /**
+     * Get an item from the {@link DataSet}
+     * @param index index as {@code int} which corresponds with
+     *              the index of the {@link DataSet}
+     * @return item from the {@link DataSet}
+     */
     E get(int index);
-    
+
+    /**
+     * Get a collection of the items in the {@link DataSet}
+     * @return {@link Collection}
+     */
     Collection<E> getItems();
 
+    /**
+     * Clear items of the {@link DataSet}
+     */
     void clear();
 
+    /**
+     * Determines whether the {@link DataSet} is empty or not.
+     * @return {@code true} if the {@link DataSet} is empty, otherwise {@code false}
+     */
     boolean isEmpty();
 
+    /**
+     * Get the current size of the {@link DataSet}
+     * @return size in {@code int}
+     */
     int size();
 
     /**
@@ -38,7 +64,7 @@ public interface DataSet<E> extends Iterable<E> {
      * @param parts amount of parts to be returned
      * @return multiple {@link DataSet} in an array.
      */
-    public <E> DataSet<E>[] split(int parts);
+    DataSet<E>[] split(int parts);
 
     /**
      * Split dataset into specified number of equally sized parts, using specified random generator
@@ -77,24 +103,22 @@ public interface DataSet<E> extends Iterable<E> {
     
     /**
      * Shuffles the data set.
-     * 
-     * @return 
+     * @return current {@link DataSet}
      */
-    DataSet<E> shuffle(); // this could be default method
+    DataSet<E> shuffle(); // TODO this could be default method
 
     /**
      * Shuffles the data set using the specified random number generator.
-     * 
-     * @param rnd
-     * @return 
+     * @param rnd random generator
+     * @return current {@link DataSet}
      */
-    DataSet<E> shuffle(Random rnd); // this could be default method
+    DataSet<E> shuffle(Random rnd); // TODO this could be default method
 
-//    String[] getOutputLabels(); 
-//
-//    void setColumnNames(String[] labels);
-    // this can be move to interface DataSet
-    public static class Column {
+//    TODO String[] getOutputLabels();
+
+//    TODO void setColumnNames(String[] labels);
+
+    class Column {
         private final String name;
         private final ColumnType columnType;
         private final boolean isTarget;
@@ -119,7 +143,7 @@ public interface DataSet<E> extends Iterable<E> {
 
     }
 
-    public static enum ColumnType {
+    enum ColumnType {
         DECIMAL, INTEGER, BINARY, STRING;
     }
 

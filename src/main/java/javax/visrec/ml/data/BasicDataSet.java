@@ -10,20 +10,28 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of basic data set class
+ * Basic implementation of {@link DataSet} interface
  * 
- * @author zoran
+ * @author Zoran Sevarac
  */
 public class BasicDataSet<E> implements DataSet<E>{
         
-    List<E> items;
-    Column[] columns;
+    private List<E> items;
+    private Column[] columns;
 
+    /**
+     * Creates an instance of {@link BasicDataSet}
+     * @param cols columns of the data set.
+     */
     public BasicDataSet(Column[] cols) {
         this.columns = cols;
         items = new ArrayList<>();
     }
 
+    /**
+     * Creates an instance of {@link BasicDataSet}
+     * @param elements items of the data set.
+     */
     public BasicDataSet(List<E> elements) {
         this.items = elements;
     }

@@ -8,8 +8,8 @@ import java.util.Random;
 
 /**
  * Not used at the moment but all data sets should extend thos it will be easier to create custm data set
- * @author zoran
- * @param <E>
+ * @author Zoran Sevarac
+ * @param <E> type of data set elements
  */
 public class AbstractDataSet<E> implements DataSet<E> {
 
