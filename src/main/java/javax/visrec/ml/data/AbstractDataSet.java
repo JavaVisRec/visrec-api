@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Zoran Sevarac
  * @param <E> type of data set elements
  */
-public class AbstractDataSet<E> implements DataSet<E> {
+public abstract class AbstractDataSet<E> implements DataSet<E> {
 
     protected List<E> elements;
 
@@ -52,7 +52,7 @@ public class AbstractDataSet<E> implements DataSet<E> {
     }
 
     @Override
-    public <E> DataSet<E>[] split(int parts) {
+    public DataSet<E>[] split(int parts) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
