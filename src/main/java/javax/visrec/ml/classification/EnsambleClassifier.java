@@ -18,9 +18,10 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
     private final Map<String, Classifier<T, R>> classifiers = new HashMap<>();
 
     @Override
-    public Map<R, Float> classify(T instance) {
+    public Map<R, Float> classify(T input) {
         classifiers.values().stream() // or parallelStream
-                .forEach(c -> c.classify(instance));
+                .forEach(c -> c.classify(input));
+        // get the highest class frequency
         //.collect(); // get average scores? This method can be overriden, provide default impl here
         // return merged classification result of all classifiers  - mean or most frequent?
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -1,4 +1,4 @@
-package javax.visrec.ml.classification;
+package javax.visrec.util;
 
 /**
  * This class represents a bounding box over image at specified position, dimensions, label and score.

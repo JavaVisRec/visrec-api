@@ -3,7 +3,8 @@ package javax.visrec.ml.data;
 import java.util.Random;
 
 /**
- *
+ * Generic interface for all tzpe of data sets.
+ * 
  * @author Zoran Sevarac
  * @param <E> type of data set elements
  * @since 1.0
