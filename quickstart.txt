@@ -6,7 +6,7 @@
 	Clone https://github.com/sevarac/deepnetts
 		this is the deep netts library which is a deep learning library used to implement visrec api
 		
-	Run deepnetts.examples.Mnist 	Typical hello world classification example - recognize hand written letter didgit
+	Run Mnist 	Typical hello world classification example - recognize hand written letter didgit
 	
 	TODO:
 		move data set txt file to resources dir
