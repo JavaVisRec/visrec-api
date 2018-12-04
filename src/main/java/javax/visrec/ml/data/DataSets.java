@@ -13,32 +13,41 @@ public class DataSets {
     // scale values 
     // maybe just provide DataSet.normalize(new MaxNormalizer) , and dataSet injects itself into normalizer
     // or even better norm= new MaxNormalizer(dataSet); norm.normalize(); also separate construction from analysis
-    public static <E> DataSet normalize(DataSet<E> dataSet, Normalizer norm) {
+
+    public static <E> DataSet<E> normalize(DataSet<E> dataSet, Normalizer norm) {
         return norm.normalize(dataSet, false);
     }
 
     // how about moving thes estatic methods to coresponding interface?
-//    public static <E> DataSet normalizMax(DataSet<E> dataSet) {
+//    public static <E> DataSet<E> normalizeMax(DataSet<E> dataSet) {
 //        Normalizer norm = new MaxNormalizer(dataSet); // perform analysys of data set (find max values)
 //        return norm.normalize(dataSet, false); // perfrom normalization and return as new data set
 //    }
     
-    // normalizeMinMax
-    // normalizeRange
-    // how to specify which columns to normalize?
+//    public static <E> DataSet<E> normalizeMinMax(DataSet<E> dataSet) {
+//        Normalizer norm = new MinMaxNormalizer(dataSet); // perform analysys of data set (find max values)
+//        return norm.normalize(dataSet, false); // perfrom normalization and return as new data set
+//    }    
+
+//    public static <E> DataSet<E> normalizeRange(DataSet<E> dataSet, float low, float high) {
+//        Normalizer norm = new MinMaxNormalizer(dataSet); // perform analysys of data set (find max values)
+//        return norm.normalize(dataSet, false); // perfrom normalization and return as new data set
+//    }    
     
-        // how will this method know about how to normalize specific type of elemeents?
+
+    // how to specify which columns to normalize? do we need to? just normalize all
+    // how will this method know about how to normalize specific type of elemeents? eg. User? or  this assumes only numeric values
         
     
     // retrun data set whith ddesired statistical properties
     // zero mean, one std
-    public static <E> DataSet standardize(DataSet<E> dataSet) { // apply to all numer columns
+    public static <E> DataSet<E> standardize(DataSet<E> dataSet) { // apply to all numer columns
         // how will this method know about how to normalize specific type of elemeents?
         throw new UnsupportedOperationException("not implemented");
     }
     
     // this shoul ddefinitely be utility method
-    public static DataSet removeDuplicates() {
+    public static <E> DataSet<E> removeDuplicates() {
         throw new UnsupportedOperationException("not implemented");
     }
 

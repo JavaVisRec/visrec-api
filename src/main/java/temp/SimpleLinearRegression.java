@@ -10,9 +10,8 @@ public class SimpleLinearRegression implements Regressor<double[], Double> {
 
     @Override
     public Double predict(double[] inputs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-    
     
     public static SimpleLinearRegressionBuilder builder() {
         return new SimpleLinearRegressionBuilder();

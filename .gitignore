@@ -5,4 +5,11 @@ gradle/
 */build/**
 */target/**
 target/
+<<<<<<< HEAD
 build/
+=======
+build/
+*.class
+target\
+*.lst
+>>>>>>> origin/master

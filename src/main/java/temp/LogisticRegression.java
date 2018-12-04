@@ -9,8 +9,7 @@ import javax.visrec.ml.classification.Classifier;
  */
 public class LogisticRegression implements Classifier<double[], Boolean>{
 
-    @Override
-    public Map<Boolean, Float> classify(double[] instance) {
+    public Map<Boolean, Float> classify(double[] someInput) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

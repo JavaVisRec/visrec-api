@@ -5,12 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Detect some object in image
- *
- * TODO Is this on image X? Does this image contains X?
+ * Interface to perform object detection in image.
+ * Returns a map of object labels/classes and corresponding location in image outlined by BoundingBox-es
  *
  * @author Zoran Sevarac
- * @param <T> Class used to represent image
+ * @param <T> Class used to represent image that will be analyzed
  * @since 1.0
  */
 @FunctionalInterface
