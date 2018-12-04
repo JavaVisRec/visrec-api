@@ -17,7 +17,7 @@ public class LogistiRegressionExample {
     public static void main(String[] args) {
         // get data set
         DataSet<double[]> dataSet= null;// get data set from somewhere  -  usually csv file
-        DataSet<double[]> trainAndTestSet[] = dataSet.split(60);
+        DataSet<double[]> trainAndTestSet[] = dataSet.split(0.6);
         
         // build logistic regression classifier
         LogisticRegression logReg  = LogisticRegression.builder()
