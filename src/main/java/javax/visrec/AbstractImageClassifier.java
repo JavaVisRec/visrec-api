@@ -13,18 +13,18 @@ import javax.visrec.util.Builder;
  * Skeleton abstract class to make it easier to implement image classifier.
  * It provides implementation of Classifier interface for images, along with
  * image factory for specific type of images.
+ * This class solves the problem of using various implementation of images and machine learning models in Java,
+ * and provides standard Classifier API for clients.
+ * 
+ * By default the type of key in the Map the {@link Classifier} is {@code String}
  *
- * By default the return type of the {@link Classifier} is {@code String}
- *
-<<<<<<< HEAD
- * @param <IMAGE_CLASS> image type
- * @param <MODEL_CLASS> model type
  * @author Zoran Sevarac
-=======
- * @author Zoran Sevarac
- * @param <IMAGE_CLASS> image type
- * @param <MODEL_CLASS> model type
->>>>>>> origin/master
+ * 
+ * @param <IMAGE_CLASS> class of images
+ * @param <MODEL_CLASS> class of machine learning model
+ * 
+ * TODO: maybe instead of impementig Builder as an interface we should use static builder() method as a convention
+ * 
  */
 public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String>, Builder<Classifier<IMAGE_CLASS, String>> { // could also implement binary classifier
 

@@ -4,8 +4,7 @@ import java.util.Collection;
 import java.util.Random;
 
 /**
- * Generic interface for all type of data sets for machine learning, independent 
- * of type of elements so it has the ability to be reused.
+ * Generic interface for all data sets for machine learning, independent of type of elements.
  * 
  * @author Zoran Sevarac
  * @param <E> type of data set elements
@@ -105,26 +104,26 @@ public interface DataSet<E> extends Iterable<E> {
      * Shuffles the data set.
      * @return current {@link DataSet}
      */
-    DataSet<E> shuffle(); // TODO this could be default method
+    DataSet<E> shuffle(); // NOTE: this could be default method
 
     /**
      * Shuffles the data set using the specified random number generator.
      * @param rnd random generator
      * @return current {@link DataSet}
      */
-    DataSet<E> shuffle(Random rnd); // TODO this could be default method
+    DataSet<E> shuffle(Random rnd); // NOTE this could be default method
 
 //    TODO String[] getOutputLabels();
 //    TODO void setColumnNames(String[] labels);
 
     class Column {
         private final String name;
-        private final ColumnType columnType;
+        private final ColumnType type;
         private final boolean isTarget;
 
-        public Column(String name, ColumnType columnType, boolean isTarget) {
+        public Column(String name, ColumnType type, boolean isTarget) {
             this.name = name;
-            this.columnType = columnType;
+            this.type = type;
             this.isTarget = isTarget;
         }
 
@@ -132,14 +131,13 @@ public interface DataSet<E> extends Iterable<E> {
             return name;
         }
 
-        public ColumnType getColumnType() {
-            return columnType;
+        public ColumnType getType() {
+            return type;
         }
 
         public boolean isTarget() {
             return isTarget;
         }
-
     }
 
     enum ColumnType {
