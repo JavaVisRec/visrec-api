@@ -16,12 +16,12 @@ public class LogistiRegressionExample {
     
     public static void main(String[] args) {
         // get data set
-        DataSet<double[]> dataSet= null;// get data set from somewhere  -  usually csv file
+        DataSet<double[]> dataSet= null;// get data set from somewhere  -  usually csv file  BasicDataSet.fromCSVFile()
         DataSet<double[]> trainAndTestSet[] = dataSet.split(0.6);
         
         // build logistic regression classifier
         LogisticRegression logReg  = LogisticRegression.builder()
-                                            .trainingSet(trainAndTestSet[0])    // with use? naming?
+                                            .trainingSet(trainAndTestSet[0])    // naming: fromTrainingSet,withTrainingSet, forTrainingSet, with, use? 
                                             .build();
         
         // use to classify
