@@ -3,7 +3,8 @@ package javax.visrec.ml.eval;
 import java.util.HashMap;
 
 /**
- *
+ * This class holds information about various classification performance measures.
+ * 
  * @author Zoran Sevarac
  * @since 1.0
  */
