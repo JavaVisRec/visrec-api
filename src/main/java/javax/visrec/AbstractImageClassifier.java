@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import javax.visrec.ml.classification.Classifier;
 import javax.visrec.spi.ServiceProvider;
@@ -23,10 +24,9 @@ import javax.visrec.util.Builder;
  * @param <IMAGE_CLASS> class of images
  * @param <MODEL_CLASS> class of machine learning model
  * 
- * TODO: maybe instead of impementig Builder as an interface we should use static builder() method as a convention
  * 
  */
-public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String>, Builder<Classifier<IMAGE_CLASS, String>> { // could also implement binary classifier
+public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String> { // could also implement binary classifier
 
     private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?
@@ -70,6 +70,7 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     }
 
     protected void setModel(MODEL_CLASS model) {
+        Objects.requireNonNull(model, "Model cannot bu null!");
         this.model = model;
     }
 

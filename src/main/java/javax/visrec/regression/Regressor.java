@@ -5,8 +5,8 @@ package javax.visrec.regression;
  * Regressors try to predict a continual value(s) (a decimal number) based on a set of inputs.
  * 
  * @author Zoran Sevarac
- * @param <I> input type
- * @param <R> return/result tupe
+ * @param <I> type of inputs / features
+ * @param <R> return/result type
  */
 public interface Regressor<I, R> {    
     
