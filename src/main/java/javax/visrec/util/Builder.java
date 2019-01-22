@@ -25,6 +25,6 @@ public interface Builder<T> {
      * @param prop
      * @return 
      */
-    public T build(Properties prop ); // set everything from configuration properties and then build and return T instance. Make this default method and use keys as method names?
+    public T build(Properties prop); // set everything from configuration properties and then build and return T instance. Make this default method and use keys as method names?
   
 }
