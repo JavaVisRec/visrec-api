@@ -54,6 +54,12 @@ public abstract class ServiceProvider {
     public abstract ImageFactoryService getImageFactoryService();
 
     /**
+     * Get the {@link ImplementationService}
+     * @return implementation service.
+     */
+    public abstract ImplementationService getImplementationService();
+
+    /**
      * Get the current {@link ServiceProvider}
      * @return service provider.
      * @throws IllegalStateException If there are no service providers found.

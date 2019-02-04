@@ -3,9 +3,6 @@ package javax.visrec.util;
 /**
  * Shared constants to retrieve and set values in properties.
  *
- * TODO Kevin: "Zoran do we still need this?"
- *      Zoran: Yes
- *
  * @author Zoran Sevarac
  * @since 1.0
  */
