@@ -9,7 +9,7 @@ import java.util.Map;
  *
  * @author Zoran Sevarac
  * @param <T> type of input objects to classify (eg. User, Product, Transaction, Image, etc.)
- * @param <R> type of classification result map eg. String is commonly used , but Enum or Boolean as well. 
+ * @param <R> type of classification result map eg. String is commonly used , but Enum or Boolean as well.
  * In general Enums should be used when there is a small number of categories and String for more categories.
  * @since 1.0
  */
@@ -24,6 +24,5 @@ public interface Classifier<T, R> {
      * @return classification results for the specified instance
      */
     public Map<R, Float> classify(T input);
-        
-
+       
 }

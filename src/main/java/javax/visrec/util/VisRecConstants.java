@@ -9,9 +9,9 @@ package javax.visrec.util;
  * @author Zoran Sevarac
  * @since 1.0
  */
-public final class VisRec {
+public final class VisRecConstants {
 
-    private VisRec() {
+    private VisRecConstants() {
         // Prevent instantiation.
     }
 
