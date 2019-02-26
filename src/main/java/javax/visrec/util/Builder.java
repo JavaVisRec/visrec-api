@@ -1,5 +1,6 @@
 package javax.visrec.util;
 
+import java.util.Map;
 import java.util.Properties;
 import javax.visrec.ml.data.DataSet;
 
@@ -11,20 +12,20 @@ import javax.visrec.ml.data.DataSet;
  * @since 1.0
  */
 public interface Builder<T> {
-    
+
     /**
      * Builds and returns an object using properties set using available builder methods.
-     * 
+     *
      * @return object specified by the builder to build
      */
     T build();
-    
+
     /**
      * Builds an object using properties from the specified input argument
-     * 
-     * @param prop configuration properties for the builder.
+     *
+     * @param prop configuration properties for the builder, a map of key, value pairs. Can use Properties but any other implementation too.
      * @return object specified by the builder to build
      */
-    T build(Properties prop); // set everything from configuration properties and then build and return T instance. Make this default method and use keys as method names?
-  
+    T build(Map prop); // set everything from configuration properties and then build and return T instance. Make this default method and use keys as method names?
+
 }
