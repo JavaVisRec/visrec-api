@@ -1,8 +1,6 @@
 package javax.visrec.util;
 
 import java.util.Map;
-import java.util.Properties;
-import javax.visrec.ml.data.DataSet;
 
 /**
  * Generic builder interface, that all builders for machine learning algorithms implement.
@@ -23,9 +21,9 @@ public interface Builder<T> {
     /**
      * Builds an object using properties from the specified input argument
      *
-     * @param prop configuration properties for the builder, a map of key, value pairs. Can use Properties but any other implementation too.
+     * @param configuration properties for the builder, a map of key, value pairs.
      * @return object specified by the builder to build
      */
-    T build(Map prop); // set everything from configuration properties and then build and return T instance. Make this default method and use keys as method names?
+    T build(Map<String, Object> configuration);
 
 }
