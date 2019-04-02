@@ -3,19 +3,17 @@ package javax.visrec.util;
 /**
  * This class represents a bounding box over image at specified position, dimensions, label and score.
  * 
- * Ili da imam  ImageClassification result koji nasledjuje ClassificationResult i ima bounding box
- * 
  * @author Zoran Sevarac
  * @since 1.0
  */
 public class BoundingBox {
     private int id;
-    private final int x, y, width, height;
+    private final float x, y, width, height;
     private final String label;
     private final float score;
 
 
-    public BoundingBox(String label, float score, int x, int y, int width, int height) {
+    public BoundingBox(String label, float score, int x, int y, float width, float height) {
         this.label =label;
         this.score  = score;
         this.x = x;
@@ -23,28 +21,20 @@ public class BoundingBox {
         this.width = width;
         this.height = height;
     }
-    
-//    public BoundingBox(int x, int y, int width, int height) {
-//        super("", -1);
-//        this.x = x;
-//        this.y = y;
-//        this.width = width;
-//        this.height = height;
-//    }    
-        
-    public int getX() {
+          
+    public float getX() {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
-    public int getWidth() {
+    public float getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 
@@ -56,11 +46,19 @@ public class BoundingBox {
         this.id = id;
     }
 
-    public String toString() {
-        return "BoundingBox{" + "id=" + id + ", x=" + x + ", y=" + y + ", width=" + width + ", height=" + height + '}';
+    public float getScore() {
+        return score;
     }
 
+    public String getLabel() {
+        return label;
+    }
 
+    @Override
+    public String toString() {
+        return "BoundingBox{" + "id=" + id + ", x=" + x + ", y=" + y + ", width=" + width + ", height=" + height + ", label=" + label + ", score=" + score + '}';
+    }
     
-            
+    
+       
 }
