@@ -8,6 +8,7 @@ import java.util.Map;
  * Generic builder interface, that all builders for machine learning algorithms implement.
  *
  * @author Zoran Sevarac
+ * @author Kevin Berendsen
  * @param <T> type of the object to be returned by the builder.
  * @since 1.0
  */
