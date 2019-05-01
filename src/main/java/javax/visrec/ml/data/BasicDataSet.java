@@ -2,8 +2,6 @@ package javax.visrec.ml.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -11,11 +9,11 @@ import java.util.stream.Collectors;
 
 /**
  * Basic implementation of {@link DataSet} interface
- * 
+ *
  * @author Zoran Sevarac
  */
 public class BasicDataSet<E> implements DataSet<E>{
-        
+
     private List<E> items;
     private Column[] columns;
 
@@ -35,7 +33,7 @@ public class BasicDataSet<E> implements DataSet<E>{
     public BasicDataSet(List<E> elements) {
         this.items = elements;
     }
-    
+
     @Override
     public DataSet<E> add(E item) {
         items.add(item);
@@ -69,22 +67,17 @@ public class BasicDataSet<E> implements DataSet<E>{
     }
 
     @Override
-    public DataSet[] split(int parts) {
-        return new DataSet[0];
-    }
-
-    @Override
-    public DataSet[] split(int parts, Random rnd) {
+    public DataSet<E>[]  split(int parts) {
         throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
-    public DataSet[] split(double part) {
+    public DataSet<E>[]  split(int parts, Random rnd) {
         throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
-    public DataSet[] split(double... parts) {
+    public DataSet<E>[] split(double... parts) {
         throw new UnsupportedOperationException("not implemented");
     }
 
@@ -93,17 +86,6 @@ public class BasicDataSet<E> implements DataSet<E>{
         throw new UnsupportedOperationException("not implemented");
     }
 
-    @Override
-    public DataSet<E> shuffle() {
-        Collections.shuffle(items);
-        return this;
-    }
-
-    @Override
-    public DataSet<E> shuffle(Random rnd) {
-        Collections.shuffle(items, rnd);
-        return this;
-    }
 
     // this shuld go to utilities class or default method?
     public String[] getTargetLabels() {
@@ -124,10 +106,10 @@ public class BasicDataSet<E> implements DataSet<E>{
     }
 
     @Override
-    public Collection<E> getItems() {
+    public List<E> getItems() {
         return items;
     }
-    
 
-    
+
+
 }

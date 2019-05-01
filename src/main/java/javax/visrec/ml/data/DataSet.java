@@ -1,31 +1,50 @@
 package javax.visrec.ml.data;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 /**
  * Generic interface for all data sets for machine learning, independent of type of elements.
- * 
+ *
  * @author Zoran Sevarac
  * @param <E> type of data set elements
  * @since 1.0
  */
 public interface DataSet<E> extends Iterable<E> {
-    
+
+    // TODO: add stream for filtering elements in data set
+
+    /**
+     * Get a collection of the items in the {@link DataSet}
+     * @return {@link Collection}
+     */
+    List<E> getItems();
+
     /**
      * Adds an element to this data set.
-     * 
+     *
      * @param item data set item to add to the data set
      * @return current instance of {@link DataSet}
      */
-    DataSet<E> add(E item);
+    default DataSet<E> add(E item) {
+        Objects.requireNonNull(item, "Null items are not allowed in dataset");
+        getItems().add(item);
+        return this;
+    }
 
     /**
      * Add an existing {@link DataSet} to the current {@link DataSet}
-     * @param items existing {@link DataSet}
+     * @param dataSet existing {@link DataSet}
      * @return current instance of {@link DataSet}
      */
-    DataSet<E> addAll(DataSet<E> items);
+    default DataSet<E> addAll(DataSet<E> dataSet) {
+        Objects.requireNonNull(dataSet, "Dataset is null. Cannot add items from null dataset");
+        getItems().addAll(dataSet.getItems());
+        return this;
+    }
 
     /**
      * Get an item from the {@link DataSet}
@@ -33,85 +52,89 @@ public interface DataSet<E> extends Iterable<E> {
      *              the index of the {@link DataSet}
      * @return item from the {@link DataSet}
      */
-    E get(int index);
-
-    /**
-     * Get a collection of the items in the {@link DataSet}
-     * @return {@link Collection}
-     */
-    Collection<E> getItems();
+    default E get(int index) {
+        return getItems().get(index);
+    }
 
     /**
      * Clear items of the {@link DataSet}
      */
-    void clear();
+    default  void clear() {
+        getItems().clear();
+    }
 
     /**
      * Determines whether the {@link DataSet} is empty or not.
      * @return {@code true} if the {@link DataSet} is empty, otherwise {@code false}
      */
-    boolean isEmpty();
+    default boolean isEmpty() {
+        return getItems().isEmpty();
+    }
 
     /**
-     * Get the current size of the {@link DataSet}
+     * Get the number of elements in {@link DataSet}
      * @return size in {@code int}
      */
-    int size();
+    default int size() {
+        return getItems().size();
+    }
 
     /**
-     * Split dataset into specified number of equally sized parts
-     * @param parts amount of parts to be returned
+     * Split dataset into specified number of equally sized parts.
+     *
+     * @param numParts number of parts to be returned
      * @return multiple {@link DataSet} in an array.
      */
-    DataSet<E>[] split(int parts);
+    DataSet<E>[] split(int numParts);
 
     /**
-     * Split dataset into specified number of equally sized parts, using specified random generator
-     * @param parts parts number of parts/subsets to return
+     * Split dataset into specified number of equally sized parts, using specified random generator.
+     * @param numParts number of parts/subsets to return
      * @param rnd random number generator
      * @return multiple {@link DataSet} in an array.
      */
-    DataSet<E>[] split(int parts, Random rnd);
+    DataSet<E>[] split(int numParts, Random rnd);
 
-    
     /**
      * Split data set in two parts, one with size of specified percentage, and other with rest of the data set
+     *
      * @param part specified percentage of the first {@link DataSet}
      * @return multiple {@link DataSet} in an array.
      */
-    DataSet<E>[] split(double part);
-    
+    default DataSet<E>[] split(double part) {
+        return split(part, 1-part);
+    }
+
     /**
      * Split data set into parts of specified sizes
      * @param parts specific sizes of {@link DataSet}
      * @return array of {@link DataSet}
-     */    
+     */
     DataSet<E>[] split(double... parts);
-    
+
     /**
      * Split data set into parts of specified sizes using specified random generator
      * @param rnd random generator
      * @param parts specific sizes of {@link DataSet}
      * @return array of {@link DataSet}
-     */        
-    DataSet<E>[] split(Random rnd, double... parts);    
+     */
+    DataSet<E>[] split(Random rnd, double... parts);
 
-    
-    // split(Splitter splitter) Splitter can be abstract class
-    //DataSet[] split(double... parts, Random rnd);
-    
+
     /**
      * Shuffles the data set.
-     * @return current {@link DataSet}
      */
-    DataSet<E> shuffle(); // NOTE: this could be default method
+    default void shuffle() {
+        Collections.shuffle(getItems());
+    }
 
     /**
      * Shuffles the data set using the specified random number generator.
      * @param rnd random generator
-     * @return current {@link DataSet}
      */
-    DataSet<E> shuffle(Random rnd); // NOTE this could be default method
+    default void shuffle(Random rnd) {
+        Collections.shuffle(getItems(), rnd);
+    }
 
 //    TODO String[] getOutputLabels();
 //    TODO void setColumnNames(String[] labels);

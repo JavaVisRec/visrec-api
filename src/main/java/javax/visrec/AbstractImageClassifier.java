@@ -16,15 +16,15 @@ import javax.visrec.util.Builder;
  * image factory for specific type of images.
  * This class solves the problem of using various implementation of images and machine learning models in Java,
  * and provides standard Classifier API for clients.
- * 
+ *
  * By default the type of key in the Map the {@link Classifier} is {@code String}
  *
  * @author Zoran Sevarac
- * 
+ *
  * @param <IMAGE_CLASS> class of images
  * @param <MODEL_CLASS> class of machine learning model
- * 
- * 
+ *
+ *
  */
 public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String> { // could also implement binary classifier
 
@@ -34,7 +34,10 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     private float threshold; // this should ba a part of every classifier
 
     // TODO: add constructor with model instance
-    
+    public AbstractImageClassifier(MODEL_CLASS model) {
+        setModel(model);
+    }
+
     protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls) {
         final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ServiceProvider.current()
                 .getImageFactoryService()
