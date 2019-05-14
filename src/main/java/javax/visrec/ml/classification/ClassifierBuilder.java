@@ -15,14 +15,6 @@ public abstract class ClassifierBuilder {
     }
 
     /**
-     * Creates a new instance of the builder.
-     * @return the builder
-     */
-    public static ClassifierBuilder newBuilder() {
-        return ServiceProvider.current().getBuilderService().newClassifierBuilder();
-    }
-
-    /**
      * Set the trained model to be used during the image classification.
      *
      * TODO Add the proper class to the method signature.

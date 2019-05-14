@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.visrec.ml.classification.Classifier;
+import javax.visrec.ml.classification.ImageClassifier;
 import javax.visrec.spi.ServiceProvider;
 import javax.visrec.util.Builder;
 
@@ -26,19 +27,14 @@ import javax.visrec.util.Builder;
  *
  *
  */
-public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements Classifier<IMAGE_CLASS, String> { // could also implement binary classifier
+public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements ImageClassifier<IMAGE_CLASS, String> { // could also implement binary classifier
 
     private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?
 
     private float threshold; // this should ba a part of every classifier
 
-    // TODO: add constructor with model instance
-    public AbstractImageClassifier(MODEL_CLASS model) {
-        setModel(model);
-    }
-
-    protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls) {
+    protected AbstractImageClassifier(final Class<IMAGE_CLASS> cls, final MODEL_CLASS model) {
         final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ServiceProvider.current()
                 .getImageFactoryService()
                 .getByImageType(cls);
@@ -46,6 +42,7 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
             throw new IllegalArgumentException(String.format("Could not find ImageFactory by '%s'", cls.getName()));
         }
         imageFactory = optionalImageFactory.get();
+        setModel(model);
     }
 
     public ImageFactory<IMAGE_CLASS> getImageFactory() {

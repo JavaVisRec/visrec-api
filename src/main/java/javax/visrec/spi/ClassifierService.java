@@ -1,6 +1,7 @@
 package javax.visrec.spi;
 
 import javax.visrec.ml.classification.Classifier;
+import javax.visrec.ml.classification.ImageClassifier;
 
 /**
  * Service to provide the correct {@link Classifier} implementation.
@@ -11,13 +12,10 @@ import javax.visrec.ml.classification.Classifier;
 public interface ClassifierService {
 
     /**
-     * Get the {@link Classifier} which is able to classify images by the {@code sourceType} object.
-     *
-     * @param sourceType {@link Class} object of the source type.
-     * @param resultMapType {@link Class} object of the result map.
-     * @param <T> the class which is able to be handled by the {@link Classifier} and given as {@link Class} object.
-     * @param <R> type of classification result map eg. String is commonly used , but Enum as well
-     * @return {@link Classifier} which is able to classify images of {@code T}
+     * Creates a new {@link ImageClassifier} by providing the {@link ImageClassifier.BuildingBlock} to tune
+     * the implementation's image classifier.
+     * @param block {@link ImageClassifier.BuildingBlock} is provided to tune the building of the image classifier.
+     * @return {@link ImageClassifier}
      */
-    <T, R> Classifier<T, R> getBySource(Class<T> sourceType, Class<R> resultMapType);
+    ImageClassifier createImageClassifier(ImageClassifier.BuildingBlock block);
 }

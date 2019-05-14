@@ -23,6 +23,6 @@ public interface Classifier<T, R> {
      * @param input some instance to classify
      * @return classification results for the specified instance
      */
-    public Map<R, Float> classify(T input);
+    Map<R, Float> classify(T input);
        
 }
