@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  */
 public class BasicDataSet<E> implements DataSet<E>{
 
-    private List<E> items;
+    private List<E> items;  //this should be a data frame map of lists, even better us evalue types!
     private Column[] columns;
 
     /**
@@ -108,6 +108,22 @@ public class BasicDataSet<E> implements DataSet<E>{
     @Override
     public List<E> getItems() {
         return items;
+    }
+
+    @Override
+    public String[] getOutputLabels() {
+        // get onlu columns marked as target / output
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setColumnNames(String[] columnNames) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String[] getColumnNames() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

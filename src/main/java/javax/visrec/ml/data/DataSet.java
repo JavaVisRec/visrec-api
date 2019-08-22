@@ -81,11 +81,20 @@ public interface DataSet<E> extends Iterable<E> {
 
     /**
      * Split dataset into specified number of equally sized parts.
-     *
+     * Moze d abude defaultna , podeli na jednkae delove/decimalne i pozovi onu jednu 
      * @param numParts number of parts to be returned
      * @return multiple {@link DataSet} in an array.
      */
-    DataSet<E>[] split(int numParts);
+    default DataSet<E>[] split(int numParts) {
+        double part = 1.0 / (double)numParts;
+        double[] parts = new double[numParts];
+        
+        for (int i=0; i<numParts; i++) {
+            parts[i] = part;
+        }
+        
+        return split(parts);
+    }
 
     /**
      * Split dataset into specified number of equally sized parts, using specified random generator.
@@ -93,7 +102,16 @@ public interface DataSet<E> extends Iterable<E> {
      * @param rnd random number generator
      * @return multiple {@link DataSet} in an array.
      */
-    DataSet<E>[] split(int numParts, Random rnd);
+    default DataSet<E>[] split(int numParts, Random rnd) {
+        double part = 1.0 / (double)numParts;
+        double[] parts = new double[numParts];
+        
+        for (int i=0; i<numParts; i++) {
+            parts[i] = part;
+        }
+        
+        return split(rnd, parts);
+    }
 
     /**
      * Split data set in two parts, one with size of specified percentage, and other with rest of the data set
@@ -118,7 +136,10 @@ public interface DataSet<E> extends Iterable<E> {
      * @param parts specific sizes of {@link DataSet}
      * @return array of {@link DataSet}
      */
-    DataSet<E>[] split(Random rnd, double... parts);
+    default DataSet<E>[] split(Random rnd, double... parts) {
+        shuffle(rnd);
+        return split(parts);
+    }
 
 
     /**
@@ -136,8 +157,11 @@ public interface DataSet<E> extends Iterable<E> {
         Collections.shuffle(getItems(), rnd);
     }
 
-//    TODO String[] getOutputLabels();
-//    TODO void setColumnNames(String[] labels);
+    public String[] getOutputLabels();
+
+    public void setColumnNames(String[] columnNames);
+    public String[] getColumnNames();
+
 
     class Column {
         private final String name;
