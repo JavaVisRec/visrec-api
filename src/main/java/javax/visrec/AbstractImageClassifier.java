@@ -28,17 +28,17 @@ import javax.visrec.util.Builder;
  *
  *
  */
-public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements ImageClassifier { // could also implement binary classifier
+public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements ImageClassifier<IMAGE_CLASS> { // could also implement binary classifier
 
-    private ImageFactory<BufferedImage> imageFactory; // image factory impl for the specified image class
+    private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?
 
     private float threshold; // this should ba a part of every classifier
 
     protected AbstractImageClassifier(@Deprecated final Class<IMAGE_CLASS> cls, final MODEL_CLASS model) {
-        final Optional<ImageFactory<BufferedImage>> optionalImageFactory = ServiceProvider.current()
+        final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ServiceProvider.current()
                 .getImageFactoryService()
-                .getByImageType(BufferedImage.class);
+                .getByImageType(cls); // BufferedImage.class
         if (!optionalImageFactory.isPresent()) {
             throw new IllegalArgumentException(String.format("Could not find ImageFactory by '%s'", BufferedImage.class.getName()));
         }
@@ -46,17 +46,17 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
         setModel(model);
     }
 
-    public ImageFactory<BufferedImage> getImageFactory() {
+    public ImageFactory<IMAGE_CLASS> getImageFactory() {
         return imageFactory;
     }
 
     public Map<String, Float> classify(File file) throws IOException {
-        BufferedImage image = imageFactory.getImage(file);
+        IMAGE_CLASS image = imageFactory.getImage(file);
         return classify(image);
     }
 
     public Map<String, Float> classify(InputStream inStream) throws IOException {
-        BufferedImage image = imageFactory.getImage(inStream);
+        IMAGE_CLASS image = imageFactory.getImage(inStream);
         return classify(image);
     }
 

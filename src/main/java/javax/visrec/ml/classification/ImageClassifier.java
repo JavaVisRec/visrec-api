@@ -4,7 +4,7 @@ import javax.visrec.spi.ServiceProvider;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public interface ImageClassifier extends Classifier<BufferedImage, String> {
+public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, String> {
 
     static ImageClassifier.Builder newBuilder() {
         return new Builder();

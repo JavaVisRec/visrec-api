@@ -22,28 +22,25 @@
 package javax.visrec.ml.eval;
 
 /**
+ * Evaluation method for specified types of machine learning model and data set.
  * All evaluators implement this interface.
- *  Maybe move to visrec.ml.eval
- * CONSIDER: using more specific model type instead of general model class? Classifier, Regressor?
  *
- * @param <T1> Model class
- * @param <T2> Data set class
+ * @param <MODEL_CLASS> Model class
+ * @param <DATASET_CLASS> Data set class
  *
  * @author Zoran Sevarac
  * @since 1.0
  */
 @FunctionalInterface
-public interface Evaluator<T1, T2> {
+public interface Evaluator<MODEL_CLASS, DATASET_CLASS> {
     
     /**
-     * Evaluate model with specified data set.
-     * Return Map with performance metrics and values?
-     * {@code Map<String, PerformanceMeasure>} ili {@code Map<Object, PerformanceMeasure>}
+     * Evaluate a model with specified test set.
      *
      * @param model A model to evaluate
      * @param testSet Data to use for evaluation
-     * @return performance measures of a model for the specified test set
-     */    // evaluatePerformance       testDataSet
-    PerformanceMeasure evaluatePerformance(T1 model, T2 testSet); // kako ce da vrati rezultate testiranja - napraviti neku klasu za to?
+     * @return evaluation metrics for the model for the specified test set
+     */ 
+    public EvaluationMetrics evaluate(MODEL_CLASS model, DATASET_CLASS testSet);
     
 }

@@ -1,4 +1,4 @@
-package javax.visrec.regression;
+package javax.visrec.ml.regression;
 
 import javax.visrec.ml.classification.Classifier;
 

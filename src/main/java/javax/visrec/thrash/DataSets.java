@@ -1,10 +1,12 @@
-package javax.visrec.ml.data;
+package javax.visrec.thrash;
 
-import javax.visrec.ml.data.norm.Normalizer;
+import javax.visrec.ml.data.DataSet;
+import javax.visrec.ml.data.Normalizer;
 
 /**
- * Utility class that provides commmon operations on data sets
- * @author zoran
+ * Utility methods that provides common operations on data sets.
+ * 
+ * @author Zoran Sevarac
  */
 public class DataSets {
     
@@ -14,12 +16,12 @@ public class DataSets {
     // maybe just provide DataSet.normalize(new MaxNormalizer) , and dataSet injects itself into normalizer
     // or even better norm= new MaxNormalizer(dataSet); norm.normalize(); also separate construction from analysis
 
-    public static <E> DataSet<E> normalize(DataSet<E> dataSet, Normalizer norm) {
-        return norm.normalize(dataSet, false);
+    public static <T extends DataSet<?>> void normalize(T dataSet, Normalizer<T> norm) {
+        norm.normalize(dataSet);
     }
 
     // how about moving thes estatic methods to coresponding interface?
-//    public static <E> DataSet<E> normalizeMax(DataSet<E> dataSet) {
+//    public static <T extends DataSet<?>> void normalizeMax(DataSet<E> dataSet) {
 //        Normalizer norm = new MaxNormalizer(dataSet); // perform analysys of data set (find max values)
 //        return norm.normalize(dataSet, false); // perfrom normalization and return as new data set
 //    }
@@ -41,7 +43,7 @@ public class DataSets {
     
     // retrun data set whith ddesired statistical properties
     // zero mean, one std
-    public static <E> DataSet<E> standardize(DataSet<E> dataSet) { // apply to all numer columns
+    public static <T extends DataSet<?>> void standardize(T dataSet) { // apply to all numer columns
         // how will this method know about how to normalize specific type of elemeents?
         throw new UnsupportedOperationException("not implemented");
     }

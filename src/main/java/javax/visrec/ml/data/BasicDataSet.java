@@ -8,15 +8,24 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
- * Basic implementation of {@link DataSet} interface
- *
+ * Basic implementation of {@link DataSet} interface.
+ * Provides a list of data set items with column info.
+ * 
+ * @param <E> Type of elements in data set
  * @author Zoran Sevarac
  */
-public class BasicDataSet<E> implements DataSet<E>{
+public class BasicDataSet<E> implements DataSet<E> {
 
-    private List<E> items;  //this should be a data frame map of lists, even better us evalue types!
+   /**
+    * List of data set items in this data set
+    */
+    protected List<E> items;  //this should be a data frame map of lists, even better us evalue types!
     private Column[] columns;
 
+    protected BasicDataSet() {
+       items = new ArrayList<>();
+    }
+    
     /**
      * Creates an instance of {@link BasicDataSet}
      * @param cols columns of the data set.
@@ -33,62 +42,15 @@ public class BasicDataSet<E> implements DataSet<E>{
     public BasicDataSet(List<E> elements) {
         this.items = elements;
     }
-
+    
     @Override
-    public DataSet<E> add(E item) {
-        items.add(item);
-        return this;
-    }
+    public List<E> getItems() {
+        return items;
+    }       
 
+        
     @Override
-    public DataSet<E>  addAll(DataSet<E> items) {
-        this.items.addAll(this.items);
-        return this;
-    }
-
-    @Override
-    public E get(int index) {
-        return items.get(index);
-    }
-
-    @Override
-    public void clear() {
-        items.clear();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return items.isEmpty();
-    }
-
-    @Override
-    public int size() {
-        return items.size();
-    }
-
-    @Override
-    public DataSet<E>[]  split(int parts) {
-        throw new UnsupportedOperationException("not implemented");
-    }
-
-    @Override
-    public DataSet<E>[]  split(int parts, Random rnd) {
-        throw new UnsupportedOperationException("not implemented");
-    }
-
-    @Override
-    public DataSet<E>[] split(double... parts) {
-        throw new UnsupportedOperationException("not implemented");
-    }
-
-    @Override
-    public DataSet[] split(Random rnd, double... parts) {
-        throw new UnsupportedOperationException("not implemented");
-    }
-
-
-    // this shuld go to utilities class or default method?
-    public String[] getTargetLabels() {
+    public String[] getTargetNames() {
         List<String> targetLabels = Arrays.asList(columns).stream()
                         .filter((col) -> col.isTarget())
                         .map((col) -> col.getName() )
@@ -96,36 +58,26 @@ public class BasicDataSet<E> implements DataSet<E>{
         return targetLabels.toArray(new String[0]);
     }
 
-//    public void setColumnNames(String[] labels) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-
-    @Override
-    public Iterator<E> iterator() {
-        return items.iterator();
-    }
-
-    @Override
-    public List<E> getItems() {
-        return items;
-    }
-
-    @Override
-    public String[] getOutputLabels() {
-        // get onlu columns marked as target / output
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public void setColumnNames(String[] columnNames) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(int i=0; i<columns.length; i++) {
+             columns[i] = new DataSet.Column(columnNames[i]);
+        }   
     }
+
 
     @Override
     public String[] getColumnNames() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[] colNames = new String[columns.length];
+        for(int i=0; i<columns.length; i++) {
+             colNames[i] = columns[i].getName();
+        }        
+        return colNames;
     }
 
-
+    @Override
+    public DataSet<E>[] split(double... parts) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

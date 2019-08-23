@@ -1,4 +1,4 @@
-package javax.visrec.regression;
+package javax.visrec.ml.regression;
 
 /**
  * Base interface for all regressors.

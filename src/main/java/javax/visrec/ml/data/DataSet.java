@@ -2,6 +2,7 @@ package javax.visrec.ml.data;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -48,12 +49,12 @@ public interface DataSet<E> extends Iterable<E> {
 
     /**
      * Get an item from the {@link DataSet}
-     * @param index index as {@code int} which corresponds with
+     * @param idx index as {@code int} which corresponds with
      *              the index of the {@link DataSet}
      * @return item from the {@link DataSet}
      */
-    default E get(int index) {
-        return getItems().get(index);
+    default E get(int idx) {
+        return getItems().get(idx);
     }
 
     /**
@@ -62,7 +63,7 @@ public interface DataSet<E> extends Iterable<E> {
     default  void clear() {
         getItems().clear();
     }
-
+ 
     /**
      * Determines whether the {@link DataSet} is empty or not.
      * @return {@code true} if the {@link DataSet} is empty, otherwise {@code false}
@@ -78,10 +79,14 @@ public interface DataSet<E> extends Iterable<E> {
     default int size() {
         return getItems().size();
     }
-
+    
+    @Override
+    default Iterator<E> iterator() {
+        return getItems().iterator();
+    }
+       
     /**
      * Split dataset into specified number of equally sized parts.
-     * Moze d abude defaultna , podeli na jednkae delove/decimalne i pozovi onu jednu 
      * @param numParts number of parts to be returned
      * @return multiple {@link DataSet} in an array.
      */
@@ -157,18 +162,30 @@ public interface DataSet<E> extends Iterable<E> {
         Collections.shuffle(getItems(), rnd);
     }
 
-    public String[] getOutputLabels();
+    /**
+     * Get labels of target/output columns.
+     * @return array with labels of target/output columns
+     */
+    public String[] getTargetNames();
+    // also add setTargetNames(String ...) and setTargetColumns(int ...)
 
     public void setColumnNames(String[] columnNames);
+    
     public String[] getColumnNames();
 
 
-    class Column {
+    public static class Column {
         private final String name;
-        private final ColumnType type;
+        private final Type type;
         private final boolean isTarget;
 
-        public Column(String name, ColumnType type, boolean isTarget) {
+        public Column(String name) {
+            this.name = name;
+            this.type = null;
+            this.isTarget = false;
+        }
+
+        public Column(String name, Type type, boolean isTarget) {
             this.name = name;
             this.type = type;
             this.isTarget = isTarget;
@@ -178,7 +195,7 @@ public interface DataSet<E> extends Iterable<E> {
             return name;
         }
 
-        public ColumnType getType() {
+        public Type getType() {
             return type;
         }
 
@@ -187,8 +204,8 @@ public interface DataSet<E> extends Iterable<E> {
         }
     }
 
-    enum ColumnType {
-        DECIMAL, INTEGER, BINARY, STRING;
+    public static enum Type {
+        DECIMAL, INTEGER, BINARY, STRING; // ENUM?
     }
 
 }

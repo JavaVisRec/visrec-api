@@ -1,6 +1,6 @@
-package javax.visrec.regression;
+package javax.visrec.ml.regression;
 
-import javax.visrec.regression.Regressor;
+import javax.visrec.ml.regression.Regressor;
 
 /**
  * Simple linear regression finds the best possible straight line that tries to explain given training set.
