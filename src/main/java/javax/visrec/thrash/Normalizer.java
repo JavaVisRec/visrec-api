@@ -1,5 +1,6 @@
-package javax.visrec.ml.data;
+package javax.visrec.thrash;
 
+import javax.visrec.ml.data.DataSet;
 import javax.visrec.ml.data.DataSet;
 
 /**

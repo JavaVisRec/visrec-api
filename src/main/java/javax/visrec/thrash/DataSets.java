@@ -1,7 +1,6 @@
 package javax.visrec.thrash;
 
 import javax.visrec.ml.data.DataSet;
-import javax.visrec.ml.data.Normalizer;
 
 /**
  * Utility methods that provides common operations on data sets.
@@ -11,6 +10,8 @@ import javax.visrec.ml.data.Normalizer;
 public class DataSets {
     
     private DataSets() { } 
+    
+    // method to get basic statistics - summary() mead median, mi , max std, qt
     
     // scale values 
     // maybe just provide DataSet.normalize(new MaxNormalizer) , and dataSet injects itself into normalizer

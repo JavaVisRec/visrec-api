@@ -1,13 +1,13 @@
 package javax.visrec.ml.regression;
 
-import javax.visrec.ml.regression.Regressor;
+import javax.visrec.util.ModelProvider;
 
 /**
  * Simple linear regression finds the best possible straight line that tries to explain given training set.
  * 
  * @author zoran
  */
-public abstract class SimpleLinearRegression<MODEL_CLASS> implements Regressor<Float, Float> {
+public abstract class SimpleLinearRegression<MODEL_CLASS> implements Regressor<Float, Float>, ModelProvider<MODEL_CLASS> {
 
     private MODEL_CLASS model;
     
