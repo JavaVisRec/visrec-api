@@ -6,7 +6,7 @@ import java.io.File;
 
 public interface ImageClassifier extends Classifier<BufferedImage, String> {
 
-    static ImageClassifier.Builder newBuilder() {
+    static ImageClassifier.Builder builder() {
         return new Builder();
     }
 
