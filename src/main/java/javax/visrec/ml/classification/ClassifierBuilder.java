@@ -7,7 +7,9 @@ import javax.visrec.spi.ServiceProvider;
  *
  * @author Kevin Berendsen
  * @since 1.0
+ * @Deprecated for removal
  */
+@Deprecated
 public abstract class ClassifierBuilder {
 
     protected ClassifierBuilder() {
