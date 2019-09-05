@@ -1,5 +1,6 @@
 package javax.visrec.thrash;
 
+import javax.visrec.ml.data.Normalizer;
 import javax.visrec.ml.data.DataSet;
 
 /**

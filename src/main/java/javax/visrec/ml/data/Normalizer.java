@@ -1,7 +1,4 @@
-package javax.visrec.thrash;
-
-import javax.visrec.ml.data.DataSet;
-import javax.visrec.ml.data.DataSet;
+package javax.visrec.ml.data;
 
 /**
  * Interface to perform normalization/scaling of data set
@@ -11,6 +8,5 @@ import javax.visrec.ml.data.DataSet;
  */
 public interface Normalizer<T extends DataSet<?>> {
     public void normalize(T dataSet);    
-    // public T normalize(T dataSet);  // should we return normalized data set or perfrom inplace normalization in this interface  
 }
 
