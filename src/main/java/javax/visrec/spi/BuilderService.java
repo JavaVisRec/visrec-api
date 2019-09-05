@@ -7,7 +7,9 @@ import javax.visrec.ml.classification.ClassifierBuilder;
  *
  * @author Kevin Berendsen
  * @since 1.0
+ * @Deprecated for removal
  */
+@Deprecated
 public interface BuilderService {
 
     /**
