@@ -17,12 +17,11 @@ import java.util.Map;
 public interface Classifier<T, R> {
 
     /**
-     * Classifies specified instance and returns classification results as
-     * map with class names and corresponding classification scores.
+     * Classifies specified instance of type T and returns classification results of type R.
      *
      * @param input some instance to classify
      * @return classification results for the specified instance
      */
-    Map<R, Float> classify(T input);
+    R classify(T input);
        
 }

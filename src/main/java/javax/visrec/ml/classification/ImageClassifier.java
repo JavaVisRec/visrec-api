@@ -1,12 +1,12 @@
 package javax.visrec.ml.classification;
 
 import javax.visrec.spi.ServiceProvider;
-import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Map;
 
-public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, String> {
+public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Map<String, Float>> {
 
-    static ImageClassifier.Builder newBuilder() {
+    static ImageClassifier.Builder builder() {
         return new Builder();
     }
 

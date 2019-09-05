@@ -18,7 +18,7 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
     private final Map<String, Classifier<T, R>> classifiers = new HashMap<>();
 
     @Override
-    public Map<R, Float> classify(T input) {
+    public R classify(T input) {
         classifiers.values().stream() // or parallelStream
                 .forEach(c -> c.classify(input));
         // get the highest class frequency
