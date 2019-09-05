@@ -1,6 +1,6 @@
 package javax.visrec.ml.regression;
 
-import javax.visrec.ml.classification.Classifier;
+import javax.visrec.ml.classification.BinaryClassifier;
 
 /**
  * This class performs basic binary classification - mapping of specified input to true/false with probability.
@@ -8,7 +8,7 @@ import javax.visrec.ml.classification.Classifier;
  * @author Zoran Sevarac
  * @param <MODEL_CLASS> Implementation class of underlying machine learning model
  */
-public abstract class LogisticRegression<MODEL_CLASS> implements Classifier<float[], Boolean>{
+public abstract class LogisticRegression<MODEL_CLASS> implements BinaryClassifier<float[]>{
 
     private MODEL_CLASS model;
 
