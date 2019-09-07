@@ -1,6 +1,15 @@
 package javax.visrec.ml.classification;
 
-public abstract class AbstractMultiClassClassifier<MODEL_CLASS, T, R> implements MultiClassClassifier<T, R> {
+import javax.visrec.util.ModelProvider;
+
+/**
+ * 
+ * @author Zoran
+ * @param <MODEL_CLASS> class of machine learning model backend
+ * @param <T>
+ * @param <R> 
+ */
+public abstract class AbstractMultiClassClassifier<MODEL_CLASS, T, R> implements MultiClassClassifier<T, R>, ModelProvider<MODEL_CLASS> {
 
     private MODEL_CLASS model;
 

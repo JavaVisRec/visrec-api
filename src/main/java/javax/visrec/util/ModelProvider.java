@@ -8,6 +8,7 @@ package javax.visrec.util;
 public interface ModelProvider<M> {
     
     M getModel();
-    // also provide setModel to allow model injection?
-    
+   
+    // also provide public setModel to allow model injection?
+   
 }

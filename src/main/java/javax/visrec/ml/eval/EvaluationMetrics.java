@@ -60,16 +60,25 @@ public class EvaluationMetrics {
      */
     public final static String F_STAT = "FStatistics";
 
-    // p value? t statistics
+    // TODO: p value, t statistics
 
     // Classification Metrics
-    public final static String ACCURACY     = "Accuracy";
-    public final static String PRECISION    = "Precision";
-    public final static String RECALL       = "Recall";
-    public final static String F1SCORE      = "F1Score";
+    public final static String ACCURACY         = "Accuracy";
+    public final static String PRECISION        = "Precision";
+    public final static String RECALL           = "Recall";
+    public final static String F1SCORE          = "F1Score";
 
-
+    //
     private final HashMap<String, Float> values = new HashMap();
+    
+    private final static HashMap<String, String> description = new HashMap();
+    static {
+        description.put(ACCURACY, "How often is classifier correct in total");
+        description.put(PRECISION, "How often is classifier correct when it gives positive prediction");
+        description.put(RECALL, "When it is actually positive class, how often does it give positive prediction");
+        description.put(F1SCORE, "Average of precision and recall");
+    }
+    
 
     public float get(String key) {
         return values.get(key);
@@ -82,8 +91,15 @@ public class EvaluationMetrics {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        values.entrySet().stream().forEach((e) ->  sb.append(e.getKey()).append(": ").append(e.getValue()).append(System.lineSeparator()) );
-
+        values.entrySet().stream().forEach((e) ->  { sb.append(e.getKey()).append(": ")
+                                                     .append(e.getValue());
+                                                     if (description.get(e.getKey())!=null)   
+                                                        sb.append(" (")
+                                                          .append(description.get(e.getKey())) 
+                                                          .append(")");
+                                                     sb.append(System.lineSeparator());
+                                                    });
+        // todo: also append decsripton
         return sb.toString();
     }
 
