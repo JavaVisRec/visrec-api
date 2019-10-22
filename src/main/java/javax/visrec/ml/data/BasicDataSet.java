@@ -2,9 +2,7 @@ package javax.visrec.ml.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -19,8 +17,8 @@ public class BasicDataSet<E> implements DataSet<E> {
    /**
     * List of data set items in this data set
     */
-    protected List<E> items;  //this should be a data frame map of lists, even better us evalue types!
-    private Column[] columns;
+    protected List<E> items;  //this should be a data frame map of lists, even better use value types!
+    private Column[] columns; // this should  be a list
 
     protected BasicDataSet() {
        items = new ArrayList<>();

@@ -10,7 +10,6 @@ import java.util.Optional;
 import javax.visrec.ml.classification.Classifier;
 import javax.visrec.ml.classification.ImageClassifier;
 import javax.visrec.spi.ServiceProvider;
-import javax.visrec.util.Builder;
 
 /**
  * Skeleton abstract class to make it easier to implement image classifier.
@@ -59,6 +58,8 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
         IMAGE_CLASS image = imageFactory.getImage(inStream);
         return classify(image);
     }
+    
+    // todo: provide get top 1, 3, 5 results; sort and get
 
     // do we need this now, when impl is loaded using service provider?
     // Kevin and Zoran disussed: probably not needed now when we have service provider impl, and we dont want to allow user to mess with it
@@ -71,8 +72,7 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     }
 
     protected void setModel(MODEL_CLASS model) {
-        Objects.requireNonNull(model, "Model cannot bu null!");
-        this.model = model;
+        this.model = Objects.requireNonNull(model, "Model cannot bu null!");         
     }
 
     public float getThreshold() {
