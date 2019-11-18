@@ -1,5 +1,6 @@
 package javax.visrec.util;
 
+import javax.visrec.ml.ClassifierCreationException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -19,7 +20,7 @@ public interface Builder<T> {
      *
      * @return object specified by the builder to build
      */
-    T build();
+    T build() throws ClassifierCreationException;
 
     /**
      * Builds an object using properties from the specified input argument
@@ -27,7 +28,7 @@ public interface Builder<T> {
      * @param configuration properties for the builder, a map of key, value pairs.
      * @return object specified by the builder to build
      */
-    default T build(Map<String, Object> configuration) {
+    default T build(Map<String, Object> configuration) throws ClassifierCreationException {
         Method[] methods = this.getClass().getDeclaredMethods();
         for (Method method : methods) {
             if (!method.getName().equals("build") && method.getParameterCount() == 1

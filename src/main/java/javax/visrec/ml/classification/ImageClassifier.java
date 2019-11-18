@@ -1,10 +1,22 @@
 package javax.visrec.ml.classification;
 
+import javax.visrec.ml.ClassificationException;
+import javax.visrec.ml.ClassifierCreationException;
 import javax.visrec.spi.ServiceProvider;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
 
-public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Map<String, Float>> {
+public interface ImageClassifier {
+
+    Map<String, Float> classify(BufferedImage input) throws ClassificationException;
+
+    Map<String, Float> classify(File input) throws ClassificationException;
+
+    Map<String, Float> classify(InputStream input) throws ClassificationException;
 
     static ImageClassifier.Builder builder() {
         return new Builder();
@@ -14,13 +26,19 @@ public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Ma
 
         private int imageWidth;
         private int imageHeight;
+        private File networkArchitecture;
         private File trainingsFile;
         private File labelsFile;
         private float maxError;
         private float learningRate;
         private File modelFile;
+        private int maxEpochs;
 
         private BuildingBlock() {
+        }
+
+        public File getNetworkArchitecture() {
+            return networkArchitecture;
         }
 
         public int getImageWidth() {
@@ -50,9 +68,13 @@ public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Ma
         public File getModelFile() {
             return modelFile;
         }
+
+        public int getMaxEpochs() {
+            return maxEpochs;
+        }
     }
 
-    class Builder implements javax.visrec.util.Builder<ImageClassifier> {
+    class Builder {
 
         private BuildingBlock block;
 
@@ -85,6 +107,11 @@ public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Ma
             return this;
         }
 
+        public Builder maxEpochs(int epochs) {
+            block.maxEpochs = epochs;
+            return this;
+        }
+
         public Builder learningRate(float learningRate) {
             block.learningRate = learningRate;
             return this;
@@ -95,9 +122,28 @@ public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Ma
             return this;
         }
 
-        @Override
-        public ImageClassifier build() {
+        public Builder networkArchitecture(File architecture) {
+            block.networkArchitecture = architecture;
+            return this;
+        }
+
+        public ImageClassifier build() throws ClassifierCreationException {
             return ServiceProvider.current().getClassifierService().createImageClassifier(block);
+        }
+
+        public ImageClassifier build(Map<String, Object> configuration) throws ClassifierCreationException {
+            Method[] methods = this.getClass().getDeclaredMethods();
+            for (Method method : methods) {
+                if (!method.getName().equals("build") && method.getParameterCount() == 1
+                        && configuration.containsKey(method.getName())) {
+                    try {
+                        method.invoke(this, configuration.get(method.getName()));
+                    } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
+                        throw new ClassifierCreationException("Couldn't invoke '" + method.getName() + "'", e);
+                    }
+                }
+            }
+            return build();
         }
     }
 
