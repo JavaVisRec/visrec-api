@@ -148,7 +148,7 @@ public interface ImageClassifier {
                         }
 
                         // Float casting
-                        if (expectedParameterType.equals(float.class) || expectedParameterType.equals(Integer.class)) {
+                        if (expectedParameterType.equals(float.class) || expectedParameterType.equals(Float.class)) {
                             if (value instanceof String) {
                                 method.invoke(this, Float.parseFloat((String) value));
                                 continue;
