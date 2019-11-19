@@ -67,6 +67,8 @@ public abstract class AbstractImageClassifier<MODEL_CLASS> implements ImageClass
         }
         return classify(image);
     }
+    
+    // todo: provide get top 1, 3, 5 results; sort and get
 
     // do we need this now, when impl is loaded using service provider?
     // Kevin and Zoran disussed: probably not needed now when we have service provider impl, and we dont want to allow user to mess with it
@@ -79,8 +81,7 @@ public abstract class AbstractImageClassifier<MODEL_CLASS> implements ImageClass
     }
 
     protected void setModel(MODEL_CLASS model) {
-        Objects.requireNonNull(model, "Model cannot bu null!");
-        this.model = model;
+        this.model = Objects.requireNonNull(model, "Model cannot bu null!");         
     }
 
     public float getThreshold() {

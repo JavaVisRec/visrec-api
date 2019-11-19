@@ -1,13 +1,15 @@
-package javax.visrec.thrash;
+package javax.visrec.util;
 
 import javax.visrec.ml.data.Normalizer;
 import javax.visrec.ml.data.DataSet;
 
 /**
  * Utility methods that provides common operations on data sets.
+ * Will probably be deprecated or figure out how to expose implementation specific operations
  * 
  * @author Zoran Sevarac
  */
+@Deprecated
 public class DataSets {
     
     private DataSets() { } 

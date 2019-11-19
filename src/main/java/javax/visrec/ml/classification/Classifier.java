@@ -1,7 +1,5 @@
 package javax.visrec.ml.classification;
 
-import java.util.Map;
-
 /**
  * Generic classifier interface, that all classifiers should implement. Provides
  * a method to classify instances of some class. Implementations should specify
@@ -9,8 +7,9 @@ import java.util.Map;
  *
  * @author Zoran Sevarac
  * @param <T> type of input objects to classify (eg. User, Product, Transaction, Image, etc.)
- * @param <R> type of classification result map eg. String is commonly used , but Enum or Boolean as well.
- * In general Enums should be used when there is a small number of categories and String for more categories.
+ * @param <R> type of classification result.
+ * @see BinaryClassifier
+ * @see MultiClassClassifier
  * @since 1.0
  */
 @FunctionalInterface
