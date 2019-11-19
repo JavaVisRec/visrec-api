@@ -137,7 +137,34 @@ public interface ImageClassifier {
                 if (!method.getName().equals("build") && method.getParameterCount() == 1
                         && configuration.containsKey(method.getName())) {
                     try {
-                        method.invoke(this, configuration.get(method.getName()));
+                        Object value = configuration.get(method.getName());
+                        Class<?> expectedParameterType = method.getParameterTypes()[0];
+                        // Integer casting
+                        if (expectedParameterType.equals(int.class) || expectedParameterType.equals(Integer.class)) {
+                            if (value instanceof String) {
+                                method.invoke(this, Integer.parseInt((String) value));
+                                continue;
+                            }
+                        }
+
+                        // Float casting
+                        if (expectedParameterType.equals(float.class) || expectedParameterType.equals(Integer.class)) {
+                            if (value instanceof String) {
+                                method.invoke(this, Float.parseFloat((String) value));
+                                continue;
+                            }
+                        }
+
+                        // File casting
+                        if (expectedParameterType.equals(File.class)) {
+                            if (value instanceof String) {
+                                method.invoke(this, new File((String) value));
+                                continue;
+                            }
+                        }
+
+                        // Others
+                        method.invoke(this, value);
                     } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
                         throw new ClassifierCreationException("Couldn't invoke '" + method.getName() + "'", e);
                     }
