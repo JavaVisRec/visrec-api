@@ -7,7 +7,16 @@ Reference implementation of specification is available at
 
 https://github.com/JavaVisRec/visrec-ri/
 
-## Getting Started
+## Getting Started Guide
 For step by step guide and additional info see getting started guide at
 
 https://github.com/JavaVisRec/visrec-api/wiki/Getting-Started-Guide
+
+## Quick Start with Examples
+
+
+    git clone https://github.com/JavaVisRec/jsr381-examples.git
+    cd jsr381-examples
+    mvn clean install
+    mvn exec:java -Dexec.mainClass=jsr381.example.ImplementationExample
+
