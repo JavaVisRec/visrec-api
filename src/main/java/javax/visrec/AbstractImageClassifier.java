@@ -1,5 +1,8 @@
 package javax.visrec;
 
+import javax.visrec.ml.ClassificationException;
+import javax.visrec.ml.classification.ImageClassifier;
+import javax.visrec.spi.ServiceProvider;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -7,9 +10,6 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import javax.visrec.ml.classification.Classifier;
-import javax.visrec.ml.classification.ImageClassifier;
-import javax.visrec.spi.ServiceProvider;
 
 /**
  * Skeleton abstract class to make it easier to implement image classifier.
@@ -18,26 +18,23 @@ import javax.visrec.spi.ServiceProvider;
  * This class solves the problem of using various implementation of images and machine learning models in Java,
  * and provides standard Classifier API for clients.
  *
- * By default the type of key in the Map the {@link Classifier} is {@code String}
+ * By default the type of key in the Map the {@link ImageClassifier} is {@code String}
  *
  * @author Zoran Sevarac
  *
- * @param <IMAGE_CLASS> class of images
  * @param <MODEL_CLASS> class of machine learning model
- *
- *
  */
-public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements ImageClassifier<IMAGE_CLASS> { // could also implement binary classifier
+public abstract class AbstractImageClassifier<MODEL_CLASS> implements ImageClassifier { // could also implement binary classifier
 
-    private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
+    private ImageFactory<BufferedImage> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?
 
     private float threshold; // this should ba a part of every classifier
 
-    protected AbstractImageClassifier(@Deprecated final Class<IMAGE_CLASS> cls, final MODEL_CLASS model) {
-        final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ServiceProvider.current()
+    protected AbstractImageClassifier(final MODEL_CLASS model) {
+        final Optional<ImageFactory<BufferedImage>> optionalImageFactory = ServiceProvider.current()
                 .getImageFactoryService()
-                .getByImageType(cls); // BufferedImage.class
+                .getByImageType(BufferedImage.class);
         if (!optionalImageFactory.isPresent()) {
             throw new IllegalArgumentException(String.format("Could not find ImageFactory by '%s'", BufferedImage.class.getName()));
         }
@@ -45,17 +42,29 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
         setModel(model);
     }
 
-    public ImageFactory<IMAGE_CLASS> getImageFactory() {
+    public ImageFactory<BufferedImage> getImageFactory() {
         return imageFactory;
     }
 
-    public Map<String, Float> classify(File file) throws IOException {
-        IMAGE_CLASS image = imageFactory.getImage(file);
+    @Override
+    public Map<String, Float> classify(File file) throws ClassificationException {
+        BufferedImage image;
+        try {
+            image = imageFactory.getImage(file);
+        } catch (IOException e) {
+            throw new ClassificationException("Couldn't transform input into a BufferedImage", e);
+        }
         return classify(image);
     }
 
-    public Map<String, Float> classify(InputStream inStream) throws IOException {
-        IMAGE_CLASS image = imageFactory.getImage(inStream);
+    @Override
+    public Map<String, Float> classify(InputStream inputStream) throws ClassificationException {
+        BufferedImage image;
+        try {
+            image = imageFactory.getImage(inputStream);
+        } catch (IOException e) {
+            throw new ClassificationException("Couldn't transform input into a BufferedImage", e);
+        }
         return classify(image);
     }
     
