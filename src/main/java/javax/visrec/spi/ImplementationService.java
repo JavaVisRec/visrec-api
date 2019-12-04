@@ -14,16 +14,10 @@ public abstract class ImplementationService {
     public abstract String getName();
 
     /**
-     * Get the major version of the implementation
-     * @return major version as {@code int}
+     * Get the version of the implementation
+     * @return version as {@code String}
      */
-    public abstract int getMajorVersion();
-
-    /**
-     * Get the minor version of the implementation
-     * @return minor version as {@code int}
-     */
-    public abstract int getMinorVersion();
+    public abstract String getVersion();
 
     /**
      * Returns the name, major and minor version of the implementation
@@ -31,6 +25,6 @@ public abstract class ImplementationService {
      */
     @Override
     public final String toString() {
-        return getName() + " " + getMajorVersion() + "." + getMinorVersion();
+        return getName() + " " + getVersion();
     }
 }

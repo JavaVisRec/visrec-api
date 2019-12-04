@@ -80,7 +80,7 @@ public abstract class AbstractImageClassifier<MODEL_CLASS> implements ImageClass
         return model;
     }
 
-    protected void setModel(MODEL_CLASS model) {
+    public void setModel(MODEL_CLASS model) {
         this.model = Objects.requireNonNull(model, "Model cannot bu null!");         
     }
 
