@@ -127,6 +127,10 @@ public interface ImageClassifier {
             return this;
         }
 
+        public BuildingBlock getBuildingBlock() {
+            return block;
+        }
+
         public ImageClassifier build() throws ClassifierCreationException {
             return ServiceProvider.current().getClassifierService().createImageClassifier(block);
         }
