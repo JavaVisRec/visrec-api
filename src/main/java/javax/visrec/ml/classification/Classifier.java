@@ -8,7 +8,7 @@ package javax.visrec.ml.classification;
  * @author Zoran Sevarac
  * @param <T> type of input objects to classify (eg. User, Product, Transaction, Image, etc.)
  * @param <R> type of classification result.
- * @see BinaryClassifier
+ * @see DeprecatedBinaryClassifier
  * @see MultiClassClassifier
  * @since 1.0
  */
