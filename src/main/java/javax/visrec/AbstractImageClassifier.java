@@ -24,17 +24,17 @@ import java.util.Optional;
  *
  * @param <MODEL_CLASS> class of machine learning model
  */
-public abstract class AbstractImageClassifier<MODEL_CLASS> implements ImageClassifier { // could also implement binary classifier
+public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements ImageClassifier<IMAGE_CLASS> { // could also implement binary classifier
 
-    private ImageFactory<BufferedImage> imageFactory; // image factory impl for the specified image class
+    private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?
 
     private float threshold; // this should ba a part of every classifier
 
-    protected AbstractImageClassifier(final MODEL_CLASS model) {
-        final Optional<ImageFactory<BufferedImage>> optionalImageFactory = ServiceProvider.current()
+    protected AbstractImageClassifier(final Class<IMAGE_CLASS> imgCls, final MODEL_CLASS model) {
+        final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ServiceProvider.current()
                 .getImageFactoryService()
-                .getByImageType(BufferedImage.class);
+                .getByImageType(imgCls);
         if (!optionalImageFactory.isPresent()) {
             throw new IllegalArgumentException(String.format("Could not find ImageFactory by '%s'", BufferedImage.class.getName()));
         }
@@ -42,13 +42,13 @@ public abstract class AbstractImageClassifier<MODEL_CLASS> implements ImageClass
         setModel(model);
     }
 
-    public ImageFactory<BufferedImage> getImageFactory() {
+    public ImageFactory<IMAGE_CLASS> getImageFactory() {
         return imageFactory;
     }
 
     @Override
     public Map<String, Float> classify(File file) throws ClassificationException {
-        BufferedImage image;
+        IMAGE_CLASS image;
         try {
             image = imageFactory.getImage(file);
         } catch (IOException e) {
@@ -59,7 +59,7 @@ public abstract class AbstractImageClassifier<MODEL_CLASS> implements ImageClass
 
     @Override
     public Map<String, Float> classify(InputStream inputStream) throws ClassificationException {
-        BufferedImage image;
+        IMAGE_CLASS image;
         try {
             image = imageFactory.getImage(inputStream);
         } catch (IOException e) {

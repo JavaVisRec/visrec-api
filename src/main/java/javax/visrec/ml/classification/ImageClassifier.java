@@ -3,26 +3,23 @@ package javax.visrec.ml.classification;
 import javax.visrec.ml.ClassificationException;
 import javax.visrec.ml.ClassifierCreationException;
 import javax.visrec.spi.ServiceProvider;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-public interface ImageClassifier {
-
-    Map<String, Float> classify(BufferedImage input) throws ClassificationException;
+public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Map<String, Float>>{
 
     Map<String, Float> classify(File input) throws ClassificationException;
 
     Map<String, Float> classify(InputStream input) throws ClassificationException;
 
-    static ImageClassifier.Builder builder() {
-        return new Builder();
+    static <IMAGE_CLASS> ImageClassifier.Builder<IMAGE_CLASS> builder(Class<IMAGE_CLASS> imgCls) {
+        return new Builder<>(imgCls);
     }
 
-    class BuildingBlock {
+    class BuildingBlock<T> {
 
         private int imageWidth;
         private int imageHeight;
@@ -33,6 +30,7 @@ public interface ImageClassifier {
         private float learningRate;
         private File modelFile;
         private int maxEpochs;
+        private Class<T> imageClass;
 
         private BuildingBlock() {
         }
@@ -72,57 +70,60 @@ public interface ImageClassifier {
         public int getMaxEpochs() {
             return maxEpochs;
         }
+
+        public Class<T> getImageClass() { return imageClass; }
     }
 
-    class Builder {
+    class Builder<T> {
 
         private BuildingBlock block;
 
-        private Builder() {
-            block = new BuildingBlock();
+        private Builder(Class<T> imgCls) {
+            block = new BuildingBlock<T>();
+            block.imageClass = imgCls;
         }
 
-        public Builder imageWidth(int imageWidth) {
+        public Builder<T> imageWidth(int imageWidth) {
             block.imageWidth = imageWidth;
             return this;
         }
 
-        public Builder imageHeight(int imageHeight) {
+        public Builder<T> imageHeight(int imageHeight) {
             block.imageHeight = imageHeight;
             return this;
         }
 
-        public Builder trainingsFile(File trainingsFile) {
+        public Builder<T> trainingsFile(File trainingsFile) {
             block.trainingsFile = trainingsFile;
             return this;
         }
 
-        public Builder labelsFile(File labelsFile) {
+        public Builder<T> labelsFile(File labelsFile) {
             block.labelsFile = labelsFile;
             return this;
         }
 
-        public Builder maxError(float maxError) {
+        public Builder<T> maxError(float maxError) {
             block.maxError = maxError;
             return this;
         }
 
-        public Builder maxEpochs(int epochs) {
+        public Builder<T> maxEpochs(int epochs) {
             block.maxEpochs = epochs;
             return this;
         }
 
-        public Builder learningRate(float learningRate) {
+        public Builder<T> learningRate(float learningRate) {
             block.learningRate = learningRate;
             return this;
         }
 
-        public Builder modelFile(File modelFile) {
+        public Builder<T> modelFile(File modelFile) {
             block.modelFile = modelFile;
             return this;
         }
 
-        public Builder networkArchitecture(File architecture) {
+        public Builder<T> networkArchitecture(File architecture) {
             block.networkArchitecture = architecture;
             return this;
         }
@@ -131,11 +132,11 @@ public interface ImageClassifier {
             return block;
         }
 
-        public ImageClassifier build() throws ClassifierCreationException {
+        public ImageClassifier<T> build() throws ClassifierCreationException {
             return ServiceProvider.current().getClassifierService().createImageClassifier(block);
         }
 
-        public ImageClassifier build(Map<String, Object> configuration) throws ClassifierCreationException {
+        public ImageClassifier<T> build(Map<String, Object> configuration) throws ClassifierCreationException {
             Method[] methods = this.getClass().getDeclaredMethods();
             for (Method method : methods) {
                 if (!method.getName().equals("build") && method.getParameterCount() == 1

@@ -1,6 +1,5 @@
 package javax.visrec.ml.classification;
 
-import javax.visrec.ml.ClassificationException;
 import javax.visrec.ml.ClassifierCreationException;
 import javax.visrec.spi.ServiceProvider;
 import java.util.Map;
@@ -11,9 +10,9 @@ import java.util.Map;
  *
  * @author Zoran Sevarac
  */
-public interface BinaryClassifier {
+public interface BinaryClassifier<T> extends Classifier<T, Float> {
 
-    boolean classify(byte[] input) throws ClassificationException;
+
 
     static BinaryClassifier.Builder builder() {
         return new BinaryClassifier.Builder();

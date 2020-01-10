@@ -1,5 +1,7 @@
 package javax.visrec.ml.classification;
 
+import javax.visrec.ml.ClassificationException;
+
 /**
  * Generic classifier interface, that all classifiers should implement. Provides
  * a method to classify instances of some class. Implementations should specify
@@ -21,6 +23,6 @@ public interface Classifier<T, R> {
      * @param input some instance to classify
      * @return classification results for the specified instance
      */
-    R classify(T input);
+    R classify(T input) throws ClassificationException;
        
 }

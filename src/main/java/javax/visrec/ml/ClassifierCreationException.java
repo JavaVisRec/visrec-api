@@ -11,6 +11,14 @@ public class ClassifierCreationException extends Exception {
     /**
      * Creates a new instance of the exception
      * @param message additional message of the cause.
+     */
+    public ClassifierCreationException(String message) {
+        super(message);
+    }
+
+    /**
+     * Creates a new instance of the exception
+     * @param message additional message of the cause.
      * @param throwable caused by throwable.
      */
     public ClassifierCreationException(String message, Throwable throwable) {

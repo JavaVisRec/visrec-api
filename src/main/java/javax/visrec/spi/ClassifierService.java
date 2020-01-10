@@ -20,7 +20,7 @@ public interface ClassifierService {
      * @return {@link ImageClassifier}
      * @throws ClassifierCreationException if the classifier can not be created due to any reason.
      */
-    ImageClassifier createImageClassifier(ImageClassifier.BuildingBlock block) throws ClassifierCreationException;
+    <T> ImageClassifier<T> createImageClassifier(ImageClassifier.BuildingBlock<T> block) throws ClassifierCreationException;
 
     /**
      * Creates a new {@link BinaryClassifier} by providing the {@link BinaryClassifier.BuildingBlock} to tune
