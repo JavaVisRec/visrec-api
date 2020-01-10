@@ -15,7 +15,7 @@ public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Ma
 
     Map<String, Float> classify(InputStream input) throws ClassificationException;
 
-    static <IMAGE_CLASS> ImageClassifier.Builder<IMAGE_CLASS> builder(Class<IMAGE_CLASS> imgCls) {
+    static <IMAGE_CLASS> ImageClassifier.Builder<IMAGE_CLASS> builderOf(Class<IMAGE_CLASS> imgCls) {
         return new Builder<>(imgCls);
     }
 
