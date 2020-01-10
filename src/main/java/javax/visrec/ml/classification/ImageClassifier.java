@@ -133,7 +133,7 @@ public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Ma
         }
 
         public ImageClassifier<T> build() throws ClassifierCreationException {
-            return ServiceProvider.current().getClassifierService().createImageClassifier(block);
+            return ServiceProvider.current().getClassifierCreatorService().createImageClassifier(block);
         }
 
         public ImageClassifier<T> build(Map<String, Object> configuration) throws ClassifierCreationException {

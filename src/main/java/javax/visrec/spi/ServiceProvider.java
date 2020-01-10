@@ -44,10 +44,12 @@ public abstract class ServiceProvider {
     public abstract BuilderService getBuilderService();
 
     /**
-     * Get the {@link ClassifierService}
-     * @return classifier service
+     * Get the {@link ClassifierCreatorService}
+     * @return classifier creator service
      */
-    public abstract ClassifierService getClassifierService();
+    public ClassifierCreatorService getClassifierCreatorService() {
+        return ClassifierCreatorService.getInstance();
+    }
 
     /**
      * Get the {@link ImageFactoryService}

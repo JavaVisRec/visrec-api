@@ -14,33 +14,40 @@ public interface BinaryClassifier<T> extends Classifier<T, Float> {
 
 
 
-    static BinaryClassifier.Builder builder() {
-        return new BinaryClassifier.Builder();
+    static <T> BinaryClassifier.Builder<T> builderOf(Class<T> targetCls) {
+        return new BinaryClassifier.Builder<>(targetCls);
     }
 
-    class BuildingBlock {
+    class BuildingBlock<T> {
+
+        private Class<T> targetCls;
 
         private BuildingBlock() {
         }
+
+        public Class<T> getTargetClass() {
+            return targetCls;
+        }
     }
 
-    class Builder {
+    class Builder<T> {
 
-        private BinaryClassifier.BuildingBlock block;
+        private BinaryClassifier.BuildingBlock<T> block;
 
-        private Builder() {
-            block = new BinaryClassifier.BuildingBlock();
+        private Builder(Class<T> targetCls) {
+            block = new BinaryClassifier.BuildingBlock<>();
+            block.targetCls = targetCls;
         }
 
-        public BinaryClassifier.BuildingBlock getBuildingBlock() {
+        public BinaryClassifier.BuildingBlock<T> getBuildingBlock() {
             return block;
         }
 
-        public BinaryClassifier build() throws ClassifierCreationException {
-            return ServiceProvider.current().getClassifierService().createBinaryClassifier(block);
+        public BinaryClassifier<T> build() throws ClassifierCreationException {
+            return ServiceProvider.current().getClassifierCreatorService().createBinaryClassifier(block);
         }
 
-        public ImageClassifier build(Map<String, Object> configuration) throws ClassifierCreationException {
+        public BinaryClassifier<T> build(Map<String, Object> configuration) throws ClassifierCreationException {
             throw new IllegalStateException("not implemented yet");
         }
     }

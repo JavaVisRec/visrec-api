@@ -1,5 +1,6 @@
 package javax.visrec.ml.classification;
 
+import javax.visrec.ml.ClassificationException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +19,10 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
     private final Map<String, Classifier<T, R>> classifiers = new HashMap<>();
 
     @Override
-    public R classify(T input) {
-        classifiers.values().stream() // or parallelStream
-                .forEach(c -> c.classify(input));
+    public R classify(T input) throws ClassificationException {
+        for (Map.Entry<String, Classifier<T, R>> classifier : classifiers.entrySet()) {
+            classifier.getValue().classify(input);
+        }
         // get the highest class frequency
         //.collect(); // get average scores? This method can be overriden, provide default impl here
         // return merged classification result of all classifiers  - mean or most frequent?
