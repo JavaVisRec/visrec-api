@@ -76,10 +76,10 @@ public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Ma
 
     class Builder<T> {
 
-        private BuildingBlock block;
+        private BuildingBlock<T> block;
 
         private Builder(Class<T> imgCls) {
-            block = new BuildingBlock<T>();
+            block = new BuildingBlock<>();
             block.imageClass = imgCls;
         }
 
