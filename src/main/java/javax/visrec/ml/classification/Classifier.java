@@ -10,8 +10,9 @@ import javax.visrec.ml.ClassificationException;
  * @author Zoran Sevarac
  * @param <T> type of input objects to classify (eg. User, Product, Transaction, Image, etc.)
  * @param <R> type of classification result.
- * @see DeprecatedBinaryClassifier
+ * @see BinaryClassifier
  * @see MultiClassClassifier
+ * @see ImageClassifier
  * @since 1.0
  */
 @FunctionalInterface
