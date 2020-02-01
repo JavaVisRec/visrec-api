@@ -44,11 +44,11 @@ public abstract class ServiceProvider {
     public abstract BuilderService getBuilderService();
 
     /**
-     * Get the {@link ClassifierCreatorService}
+     * Get the {@link ClassifierFactoryService}
      * @return classifier creator service
      */
-    public ClassifierCreatorService getClassifierCreatorService() {
-        return ClassifierCreatorService.getInstance();
+    public ClassifierFactoryService getClassifierFactoryService() {
+        return ClassifierFactoryService.getInstance();
     }
 
     /**
