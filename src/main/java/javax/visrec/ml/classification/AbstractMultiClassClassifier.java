@@ -13,6 +13,7 @@ public abstract class AbstractMultiClassClassifier<MODEL_CLASS, T, R> implements
 
     private MODEL_CLASS model;
 
+    @Override
     public MODEL_CLASS getModel() {
         return model;
     }
