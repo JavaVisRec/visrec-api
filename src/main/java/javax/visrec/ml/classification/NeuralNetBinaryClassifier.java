@@ -12,7 +12,7 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
     }
 
     class BuildingBlock<T> {
-        private Class<T> targetCls;
+        private Class<T> inputCls;
         private int inputsNum;
         private int[] hiddenLayers;
         private float maxError;
@@ -23,8 +23,8 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
         private BuildingBlock() {
         }
 
-        public Class<T> getTargetClass() {
-            return targetCls;
+        public Class<T> getInputClass() {
+            return inputCls;
         }
 
         public int getInputsNum() {
@@ -53,7 +53,7 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
 
         private static <R> BuildingBlock<R> copyWithNewTargetClass(BuildingBlock<?> block, Class<R> cls) {
             BuildingBlock<R> newBlock = new BuildingBlock<>();
-            newBlock.targetCls = cls;
+            newBlock.inputCls = cls;
             newBlock.inputsNum = block.inputsNum;
             newBlock.hiddenLayers = block.hiddenLayers;
             newBlock.maxError = block.maxError;

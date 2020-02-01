@@ -1,10 +1,7 @@
 package javax.visrec.spi;
 
 import javax.visrec.ml.ClassifierCreationException;
-import javax.visrec.ml.classification.BinaryClassifier;
-import javax.visrec.ml.classification.Classifier;
-import javax.visrec.ml.classification.ImageClassifier;
-import javax.visrec.ml.classification.NeuralNetBinaryClassifier;
+import javax.visrec.ml.classification.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
@@ -33,14 +30,14 @@ public final class ClassifierFactoryService {
     }
 
     /**
-     * Creates a new {@link ImageClassifier} by providing the {@link ImageClassifier.BuildingBlock} to tune
+     * Creates a new {@link ImageClassifier} by providing the {@link NeuralNetImageClassifier.BuildingBlock} to tune
      * the implementation's image classifier.
      *
-     * @param block {@link ImageClassifier.BuildingBlock} is provided to tune the building of the image classifier.
+     * @param block {@link NeuralNetImageClassifier.BuildingBlock} is provided to tune the building of the image classifier.
      * @return {@link ImageClassifier}
      * @throws ClassifierCreationException if the classifier can not be created due to any reason.
      */
-    public <T> ImageClassifier<T> createImageClassifier(ImageClassifier.BuildingBlock<T> block) throws ClassifierCreationException {
+    public <T> ImageClassifier<T> createNeuralNetImageClassifier(NeuralNetImageClassifier.BuildingBlock<T> block) throws ClassifierCreationException {
         if (imageClassifierFactories == null) {
             imageClassifierFactories = new HashMap<>();
             for (ImageClassifierFactory<?> classifierCreator : ServiceLoader.load(ImageClassifierFactory.class)) {
@@ -48,7 +45,7 @@ public final class ClassifierFactoryService {
             }
         }
 
-        ImageClassifierFactory<?> creator = imageClassifierFactories.get(block.getImageClass());
+        ImageClassifierFactory<?> creator = imageClassifierFactories.get(block.getInputClass());
         if (creator == null) {
             throw new ClassifierCreationException("Unsupported image class");
         }
@@ -74,7 +71,7 @@ public final class ClassifierFactoryService {
             }
         }
 
-        BinaryClassifierFactory<?> creator = binaryClassifierFactories.get(block.getTargetClass());
+        BinaryClassifierFactory<?> creator = binaryClassifierFactories.get(block.getInputClass());
         if (creator == null) {
             throw new ClassifierCreationException("Unsupported target class");
         }
