@@ -6,7 +6,7 @@ package javax.visrec.ml;
  * @author Kevin Berendsen
  * @since 1.0
  */
-public class ClassificationException extends Exception {
+public class ClassificationException extends RuntimeException {
 
     /**
      * Creates a new instance of the exception
