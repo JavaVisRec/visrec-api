@@ -25,13 +25,12 @@ jobs:
       - name: Build with Maven
         run: ./mvnw package
 
-      - name: Persist private key to local file
-        run: echo $PRIVATE_KEY > private.key
+      - name: Add private key to keyring
+        run: |
+          echo "${PRIVATE_KEY}" > private.key
+          gpg --import --batch private.key
         env:
           PRIVATE_KEY: ${{ secrets.GPG_SECRET_KEY }}
-
-      - name: Add secret key to GPG keyring
-        run: gpg --import --batch private.key
 
       - name: Publish to snapshot repository
         run: ./mvnw deploy -s $GITHUB_WORKSPACE/settings.xml
