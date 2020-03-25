@@ -1,0 +1,41 @@
+name: Maven Package
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+   
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+        #settings-path: ${{ github.workspace }} # location for the settings.xml
+        #server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+
+    - name: Override version and build with Maven
+      run: ./mvnw versions:set -DnewVersion=<version> package
+    
+    - name: Persist private key to local file
+      run: echo $PRIVATE_KEY > private.key
+      env:
+        PRIVATE_KEY: ${{ secrets.GPG_SECRET_KEY }} 
+    
+    - name: Add secret key to GPG keyring
+      run: gpg --import --batch private.key
+
+    - name: Publish to snapshot repository
+      run: ./mvnw deploy -s $GITHUB_WORKSPACE/settings.xml
+      env:
+        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }} 
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }} 
