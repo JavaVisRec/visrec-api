@@ -1,4 +1,4 @@
-name: Maven Package
+name: staging
 
 on:
   # To trigger this workflow manually, you can use the following curl command:
@@ -36,7 +36,7 @@ jobs:
         env:
           PRIVATE_KEY: ${{ secrets.GPG_SECRET_KEY }}
 
-      - name: Publish to snapshot repository
+      - name: Publish to repository
         run: ./mvnw deploy -s settings.xml -Dversion.suffix=
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}

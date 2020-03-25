@@ -1,4 +1,4 @@
-name: Maven Package
+name: snapshot
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
         env:
           PRIVATE_KEY: ${{ secrets.GPG_SECRET_KEY }}
 
-      - name: Publish to snapshot repository
+      - name: Publish to repository
         run: ./mvnw deploy -s settings.xml
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
