@@ -1,4 +1,7 @@
 # visrec-api
+![build](https://github.com/JavaVisRec/visrec-api/workflows/build/badge.svg) 
+![Sonatype Nexus (Releases)](https://img.shields.io/nexus/r/javax.visrec/visrec-api?label=maven%20central&server=https%3A%2F%2Foss.sonatype.org%2F)
+
 This repo contains specification of standard Visual Recognition API for Java (JSR381)
 
 The Visual Recognition API JSR #381 is a software development standard recognized by the Java Community Process (JCP) that simplifies and standardizes a set of APIs familiar to Java developers for classifying and recognizing objects in images using machine learning. Beside classes specific for visual recognition tasks, it provides general abstractions for machine learning tasks like classification, regression and data set, and reusable design which can be applied for machine learning systems in other domains.
