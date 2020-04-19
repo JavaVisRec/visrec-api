@@ -5,6 +5,7 @@ import javax.visrec.spi.ServiceProvider;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.file.Path;
 import java.util.Map;
 
 public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
@@ -22,7 +23,8 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
         private File labelsFile;
         private float maxError;
         private float learningRate;
-        private File modelFile;
+        private Path exportPath;
+        private Path importPath;
         private int maxEpochs;
         private Class<T> inputCls;
 
@@ -57,9 +59,15 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             return learningRate;
         }
 
-        public File getModelFile() {
-            return modelFile;
+        public Path getExportPath() {
+            return exportPath;
         }
+
+        public Path getImportPath() {
+            return importPath;
+        }
+        
+        
 
         public int getMaxEpochs() {
             return maxEpochs;
@@ -73,7 +81,8 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             newBlock.imageHeight = block.imageHeight;
             newBlock.imageWidth = block.imageWidth;
             newBlock.labelsFile = block.labelsFile;
-            newBlock.modelFile = block.modelFile;
+            newBlock.exportPath = block.exportPath;
+            newBlock.importPath = block.importPath;
             newBlock.networkArchitecture = block.networkArchitecture;
             newBlock.maxError = block.maxError;
             newBlock.maxEpochs = block.maxEpochs;
@@ -135,11 +144,16 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             return this;
         }
 
-        public Builder<T> modelFile(File modelFile) {
-            block.modelFile = modelFile;
+        public Builder<T> exportModel(Path path) {
+            block.exportPath = path;
             return this;
         }
 
+        public Builder<T> importModel(Path path) {
+            block.importPath = path;
+            return this;
+        }        
+        
         public Builder<T> networkArchitecture(File architecture) {
             block.networkArchitecture = architecture;
             return this;

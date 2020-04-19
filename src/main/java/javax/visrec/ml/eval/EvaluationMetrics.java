@@ -68,7 +68,7 @@ public class EvaluationMetrics {
     public final static String RECALL           = "Recall";
     public final static String F1SCORE          = "F1Score";
 
-    //
+    // Hold values of relevant evaluation metrics
     private final HashMap<String, Float> values = new HashMap();
     
     private final static HashMap<String, String> description = new HashMap();
@@ -99,7 +99,6 @@ public class EvaluationMetrics {
                                                           .append(")");
                                                      sb.append(System.lineSeparator());
                                                     });
-        // todo: also append decsripton
         return sb.toString();
     }
 

@@ -29,7 +29,7 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?
 
-    private float threshold; // this should ba a part of every classifier
+    private float threshold=0.5f; // this should ba a part of every classifier
 
     protected AbstractImageClassifier(final Class<IMAGE_CLASS> imgCls, final MODEL_CLASS model) {
         final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ServiceProvider.current()
@@ -70,17 +70,11 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     
     // todo: provide get top 1, 3, 5 results; sort and get
 
-    // do we need this now, when impl is loaded using service provider?
-    // Kevin and Zoran disussed: probably not needed now when we have service provider impl, and we dont want to allow user to mess with it
-//    public void setImageFactory(ImageFactory<IMAGE_CLASS> imageFactory) {
-//        this.imageFactory = imageFactory;
-//    }
-
     public MODEL_CLASS getModel() {
         return model;
     }
 
-    public void setModel(MODEL_CLASS model) {
+    public final void setModel(MODEL_CLASS model) {
         this.model = Objects.requireNonNull(model, "Model cannot bu null!");         
     }
 
