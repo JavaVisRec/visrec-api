@@ -1,9 +1,11 @@
 name: snapshot
 
+  # To trigger this workflow manually, you can use the following curl command:
+  # curl -XPOST -u "USERNAME:PERSONAL_TOKEN" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/JavaVisRec/visrec-api/dispatches --data '{"event_type": "snapshot-pub"}'
+
 on:
-  push:
-    branches:
-      - master
+  repository_dispatch:
+    types: [snapshot-pub]
   pull_request:
     branches:
       - master
