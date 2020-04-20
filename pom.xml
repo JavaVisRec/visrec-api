@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>javax.visrec</groupId>
     <artifactId>visrec-api</artifactId>
-    <version>1.0.0${version.suffix}</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>javax.visrec:visrec-api</name>
@@ -43,7 +43,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <version.suffix>-SNAPSHOT</version.suffix>
     </properties>
 
     <dependencies>
@@ -75,7 +74,7 @@
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
-                        <phase>verify</phase>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>sign</goal>
                         </goals>

@@ -37,7 +37,9 @@ jobs:
           PRIVATE_KEY: ${{ secrets.GPG_SECRET_KEY }}
 
       - name: Publish to repository
-        run: ./mvnw deploy -s settings.xml -Dversion.suffix=
+        run: |
+          sed -i "s/-SNAPSHOT//g" pom.xml
+          ./mvnw deploy -s settings.xml
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
