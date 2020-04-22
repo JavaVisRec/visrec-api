@@ -1,6 +1,5 @@
 # visrec-api
-![build](https://github.com/JavaVisRec/visrec-api/workflows/build/badge.svg) 
-![Sonatype Nexus (Releases)](https://img.shields.io/nexus/r/javax.visrec/visrec-api?label=maven%20central&server=https%3A%2F%2Foss.sonatype.org%2F)
+![build](https://github.com/JavaVisRec/visrec-api/workflows/build/badge.svg) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/javax.visrec/visrec-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/javax.visrec/visrec-api)
 
 This repo contains specification of standard Visual Recognition API for Java (JSR381)
 
