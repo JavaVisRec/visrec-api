@@ -1,4 +1,4 @@
-package javax.visrec.ml.regression;
+package javax.visrec.ml.classification;
 
 import javax.visrec.ml.classification.BinaryClassifier;
 
