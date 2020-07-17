@@ -1,6 +1,5 @@
 package javax.visrec;
 
-import javax.visrec.ml.ClassificationException;
 import javax.visrec.ml.classification.ImageClassifier;
 import javax.visrec.spi.ServiceProvider;
 import java.awt.image.BufferedImage;
@@ -47,23 +46,23 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     }
 
     @Override
-    public Map<String, Float> classify(File file) throws ClassificationException {
+    public Map<String, Float> classify(File file)   {
         IMAGE_CLASS image;
         try {
             image = imageFactory.getImage(file);
         } catch (IOException e) {
-            throw new ClassificationException("Couldn't transform input into a BufferedImage", e);
+            throw new RuntimeException("Couldn't transform input into a BufferedImage", e);
         }
         return classify(image);
     }
 
     @Override
-    public Map<String, Float> classify(InputStream inputStream) throws ClassificationException {
+    public Map<String, Float> classify(InputStream inputStream) {
         IMAGE_CLASS image;
         try {
             image = imageFactory.getImage(inputStream);
         } catch (IOException e) {
-            throw new ClassificationException("Couldn't transform input into a BufferedImage", e);
+            throw new RuntimeException("Couldn't transform input into a BufferedImage", e);
         }
         return classify(image);
     }

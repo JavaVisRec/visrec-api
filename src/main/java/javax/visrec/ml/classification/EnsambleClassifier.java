@@ -1,6 +1,5 @@
 package javax.visrec.ml.classification;
 
-import javax.visrec.ml.ClassificationException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +18,7 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
     private final Map<String, Classifier<T, R>> classifiers = new HashMap<>();
 
     @Override
-    public R classify(T input) throws ClassificationException {
+    public R classify(T input) {
         for (Map.Entry<String, Classifier<T, R>> classifier : classifiers.entrySet()) {
             classifier.getValue().classify(input);
         }

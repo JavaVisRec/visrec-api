@@ -1,6 +1,5 @@
 package javax.visrec.ml.detection;
 
-import javax.visrec.ml.ClassificationException;
 import javax.visrec.util.BoundingBox;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,6 @@ public interface ObjectDetector<T> {
      * @param image image to search for object
      * @return a map of multiple {@link BoundingBox}
      */
-    Map<String, List<BoundingBox>> detectObject(T image) throws ClassificationException;
+    Map<String, List<BoundingBox>> detectObject(T image);
 
 }
