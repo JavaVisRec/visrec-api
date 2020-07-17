@@ -2,10 +2,7 @@ package javax.visrec.ml.classification;
 
 import javax.visrec.spi.ServiceProvider;
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.util.Map;
 
 public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
 
@@ -65,14 +62,15 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
         public Path getImportPath() {
             return importPath;
         }
-        
-        
+
 
         public int getMaxEpochs() {
             return maxEpochs;
         }
 
-        public Class<T> getInputClass() { return inputCls; }
+        public Class<T> getInputClass() {
+            return inputCls;
+        }
 
         private static <R> BuildingBlock<R> copyWithNewInputClass(BuildingBlock<?> block, Class<R> cls) {
             BuildingBlock<R> newBlock = new BuildingBlock<>();
@@ -91,7 +89,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
         }
     }
 
-    class Builder<T> {
+    class Builder<T> implements javax.visrec.util.Builder<ImageClassifier<T>, ClassifierCreationException> {
 
         private BuildingBlock<T> block;
 
@@ -151,61 +149,19 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
         public Builder<T> importModel(Path path) {
             block.importPath = path;
             return this;
-        }        
-        
+        }
+
         public Builder<T> networkArchitecture(File architecture) {
             block.networkArchitecture = architecture;
             return this;
         }
 
-        public BuildingBlock getBuildingBlock() {
+        public BuildingBlock<T> getBuildingBlock() {
             return block;
         }
 
         public ImageClassifier<T> build() throws ClassifierCreationException {
             return ServiceProvider.current().getClassifierFactoryService().createNeuralNetImageClassifier(block);
-        }
-
-        public ImageClassifier<T> build(Map<String, Object> configuration) throws ClassifierCreationException {
-            Method[] methods = this.getClass().getDeclaredMethods();
-            for (Method method : methods) {
-                if (!method.getName().equals("build") && method.getParameterCount() == 1
-                        && configuration.containsKey(method.getName())) {
-                    try {
-                        Object value = configuration.get(method.getName());
-                        Class<?> expectedParameterType = method.getParameterTypes()[0];
-                        // Integer casting
-                        if (expectedParameterType.equals(int.class) || expectedParameterType.equals(Integer.class)) {
-                            if (value instanceof String) {
-                                method.invoke(this, Integer.parseInt((String) value));
-                                continue;
-                            }
-                        }
-
-                        // Float casting
-                        if (expectedParameterType.equals(float.class) || expectedParameterType.equals(Float.class)) {
-                            if (value instanceof String) {
-                                method.invoke(this, Float.parseFloat((String) value));
-                                continue;
-                            }
-                        }
-
-                        // File casting
-                        if (expectedParameterType.equals(File.class)) {
-                            if (value instanceof String) {
-                                method.invoke(this, new File((String) value));
-                                continue;
-                            }
-                        }
-
-                        // Others
-                        method.invoke(this, value);
-                    } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
-                        throw new ClassifierCreationException("Couldn't invoke '" + method.getName() + "'", e);
-                    }
-                }
-            }
-            return build();
         }
     }
 }
