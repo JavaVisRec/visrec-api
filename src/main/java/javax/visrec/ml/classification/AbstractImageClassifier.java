@@ -1,4 +1,4 @@
-package javax.visrec;
+package javax.visrec.ml.classification;
 
 import javax.visrec.ml.classification.ImageClassifier;
 import javax.visrec.spi.ServiceProvider;
@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import javax.visrec.ImageFactory;
 
 /**
  * Skeleton abstract class to make it easier to implement image classifier.
