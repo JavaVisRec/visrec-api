@@ -2,7 +2,6 @@ package javax.visrec.ml.classification;
 
 import javax.visrec.spi.ServiceProvider;
 import java.io.File;
-import java.util.Map;
 
 public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
 
@@ -63,7 +62,7 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
         }
     }
 
-    class Builder<T> {
+    class Builder<T> implements javax.visrec.util.Builder<BinaryClassifier<T>, ClassifierCreationException> {
 
         private NeuralNetBinaryClassifier.BuildingBlock<T> block;
 
@@ -116,10 +115,6 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
 
         public BinaryClassifier<T> build() throws ClassifierCreationException {
             return ServiceProvider.current().getClassifierFactoryService().createNeuralNetBinaryClassifier(block);
-        }
-
-        public BinaryClassifier<T> build(Map<String, Object> configuration) throws ClassifierCreationException {
-            throw new IllegalStateException("not implemented yet");
         }
     }
 }
