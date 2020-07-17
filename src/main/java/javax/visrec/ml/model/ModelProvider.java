@@ -1,4 +1,4 @@
-package javax.visrec.util;
+package javax.visrec.ml.model;
 
 /**
  * This interface should be implemented by classes which expose access to underlying ML model

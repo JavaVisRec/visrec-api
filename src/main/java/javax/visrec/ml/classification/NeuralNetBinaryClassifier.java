@@ -1,6 +1,5 @@
 package javax.visrec.ml.classification;
 
-import javax.visrec.ml.ClassifierCreationException;
 import javax.visrec.spi.ServiceProvider;
 import java.io.File;
 import java.util.Map;

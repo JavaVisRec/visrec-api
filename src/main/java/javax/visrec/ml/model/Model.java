@@ -1,4 +1,4 @@
-package javax.visrec.util;
+package javax.visrec.ml.model;
 
 import javax.visrec.ml.data.DataSet;
 

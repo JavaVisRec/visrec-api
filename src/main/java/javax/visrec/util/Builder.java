@@ -1,6 +1,6 @@
 package javax.visrec.util;
 
-import javax.visrec.ml.ClassifierCreationException;
+import javax.visrec.ml.classification.ClassifierCreationException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;

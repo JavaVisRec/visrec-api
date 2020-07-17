@@ -1,6 +1,6 @@
 package javax.visrec.spi;
 
-import javax.visrec.ml.ClassifierCreationException;
+import javax.visrec.ml.classification.ClassifierCreationException;
 import javax.visrec.ml.classification.ImageClassifier;
 import javax.visrec.ml.classification.NeuralNetImageClassifier;
 

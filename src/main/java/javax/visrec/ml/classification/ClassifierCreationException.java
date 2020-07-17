@@ -1,4 +1,4 @@
-package javax.visrec.ml;
+package javax.visrec.ml.classification;
 
 /**
  * Exception thrown if anything fails in the creation of a classifier.

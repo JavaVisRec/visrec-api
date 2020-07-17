@@ -1,6 +1,6 @@
 package javax.visrec.ml.classification;
 
-import javax.visrec.util.ModelProvider;
+import javax.visrec.ml.model.ModelProvider;
 
 /**
  * This class performs basic binary classification - mapping of specified input to true/false with probability 

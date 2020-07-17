@@ -1,6 +1,5 @@
 package javax.visrec.ml.detection;
 
-import javax.visrec.util.BoundingBox;
 import java.util.List;
 import java.util.Map;
 
