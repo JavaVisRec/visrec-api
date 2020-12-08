@@ -60,8 +60,6 @@ public class EvaluationMetrics {
      */
     public final static String F_STAT = "FStatistics";
 
-    // TODO: p value, t statistics
-
     // Classification Metrics
     public final static String ACCURACY         = "Accuracy";
     public final static String PRECISION        = "Precision";

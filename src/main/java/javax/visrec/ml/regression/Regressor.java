@@ -1,9 +1,11 @@
 package javax.visrec.ml.regression;
 
 /**
- * Base interface for all regressors.
- * Regressors try to predict a continual value(s) (a decimal number) based on a set of inputs.
- * Rename to ValueEstimator? 
+ * Regressor tries to predict a numeric value based on a given set of inputs.
+ * This is a base interface for all regressors.
+ * Implementations should specify specific type of inputs and outputs that
+ * specific algorithm expects and returns.
+ * 
  * @author Zoran Sevarac
  * @param <I> type of inputs / features
  * @param <R> return/result type

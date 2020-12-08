@@ -19,8 +19,4 @@ public abstract class LogisticRegression<MODEL_CLASS> implements BinaryClassifie
         return model;
     }
 
-    protected void setModel(MODEL_CLASS model) {
-        this.model = model;
-    }
-
 }

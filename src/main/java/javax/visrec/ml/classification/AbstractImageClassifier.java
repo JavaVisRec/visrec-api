@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.visrec.ImageFactory;
+import javax.visrec.ml.model.ModelProvider;
 
 /**
  * Skeleton abstract class to make it easier to implement image classifier.
@@ -24,7 +25,7 @@ import javax.visrec.ImageFactory;
  *
  * @param <MODEL_CLASS> class of machine learning model
  */
-public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements ImageClassifier<IMAGE_CLASS> { // could also implement binary classifier
+public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implements ImageClassifier<IMAGE_CLASS>, ModelProvider { // could also implement binary classifier
 
     private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?
@@ -51,10 +52,10 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
         IMAGE_CLASS image;
         try {
             image = imageFactory.getImage(file);
+            return classify(image);
         } catch (IOException e) {
             throw new RuntimeException("Couldn't transform input into a BufferedImage", e);
         }
-        return classify(image);
     }
 
     @Override
@@ -62,19 +63,20 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
         IMAGE_CLASS image;
         try {
             image = imageFactory.getImage(inputStream);
+            return classify(image);
         } catch (IOException e) {
             throw new RuntimeException("Couldn't transform input into a BufferedImage", e);
-        }
-        return classify(image);
+        }        
     }
     
     // todo: provide get top 1, 3, 5 results; sort and get
 
+    @Override
     public MODEL_CLASS getModel() {
         return model;
     }
 
-    public final void setModel(MODEL_CLASS model) {
+    protected final void setModel(MODEL_CLASS model) {
         this.model = Objects.requireNonNull(model, "Model cannot bu null!");         
     }
 

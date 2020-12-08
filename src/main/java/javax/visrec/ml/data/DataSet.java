@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Stream;
 
 /**
  * Generic interface for all data sets for machine learning, independent of type of elements.
@@ -15,8 +16,6 @@ import java.util.Random;
  * @since 1.0
  */
 public interface DataSet<E> extends Iterable<E> {
-
-    // TODO: add stream for filtering elements in data set
 
     /**
      * Get a collection of the items in the {@link DataSet}
@@ -86,7 +85,7 @@ public interface DataSet<E> extends Iterable<E> {
     }
        
     /**
-     * Split dataset into specified number of equally sized parts.
+     * Split data set into specified number of equally sized parts.
      * @param numParts number of parts to be returned
      * @return multiple {@link DataSet} in an array.
      */
@@ -102,7 +101,7 @@ public interface DataSet<E> extends Iterable<E> {
     }
 
     /**
-     * Split dataset into specified number of equally sized parts, using specified random generator.
+     * Split data set into specified number of equally sized parts, using specified random generator.
      * @param numParts number of parts/subsets to return
      * @param rnd random number generator
      * @return multiple {@link DataSet} in an array.
@@ -161,51 +160,24 @@ public interface DataSet<E> extends Iterable<E> {
     default void shuffle(Random rnd) {
         Collections.shuffle(getItems(), rnd);
     }
+               
+    /**
+     * Sets the columns of this data set.
+     * 
+     * @param columns 
+     */
+    public void setColumns(List<Column> columns);
 
     /**
-     * Get labels of target/output columns.
-     * @return array with labels of target/output columns
+     * Returns the columns of the data set.
+     * 
+     * @return 
      */
-    public String[] getTargetNames();
-    // also add setTargetNames(String ...) and setTargetColumns(int ...)
+    public List<Column> getColumns();
 
-    public void setColumnNames(String[] columnNames);
     
-    public String[] getColumnNames();
-
-
-    public static class Column {
-        private final String name;
-        private final Type type;
-        private final boolean isTarget;
-
-        public Column(String name) {
-            this.name = name;
-            this.type = null;
-            this.isTarget = false;
-        }
-
-        public Column(String name, Type type, boolean isTarget) {
-            this.name = name;
-            this.type = type;
-            this.isTarget = isTarget;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public Type getType() {
-            return type;
-        }
-
-        public boolean isTarget() {
-            return isTarget;
-        }
-    }
-
-    public static enum Type {
-        DECIMAL, INTEGER, BINARY, STRING; // ENUM?
+    default public Stream<E> stream() {
+        return getItems().stream();
     }
 
 }
