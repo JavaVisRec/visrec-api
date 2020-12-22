@@ -3,7 +3,7 @@ package javax.visrec.ml.regression;
 import javax.visrec.ml.model.ModelProvider;
 
 /**
- * Simple linear regression finds the best possible straight line that tries to explain given training set.
+ * Simple linear regression finds the best possible straight line that tries to roughly describe given training set.
  * Mathematical formula for linear regression is: <b>prediction = slope * x + intercept</b>
  * which is a formula for linear function (straight line) and that's where the names comes from.
  * 

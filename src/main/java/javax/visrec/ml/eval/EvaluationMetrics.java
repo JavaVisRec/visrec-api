@@ -74,7 +74,7 @@ public class EvaluationMetrics {
         description.put(ACCURACY, "How often is classifier correct in total");
         description.put(PRECISION, "How often is classifier correct when it gives positive prediction");
         description.put(RECALL, "When it is actually positive class, how often does it give positive prediction");
-        description.put(F1SCORE, "Average of precision and recall");
+        description.put(F1SCORE, "Harmonic average (balance) of precision and recall");
     }
     
 

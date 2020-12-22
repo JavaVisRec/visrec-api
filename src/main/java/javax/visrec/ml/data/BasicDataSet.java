@@ -1,6 +1,7 @@
 package javax.visrec.ml.data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,12 +17,12 @@ public class BasicDataSet<E> implements DataSet<E> {
    /**
     * List of data set items in this data set.
     */
-    protected List<E> items;
+    protected List<E> items; 
     
     /**
      * List of data set columns. Each column provides info about it's name, type.
      */
-    private List<Column> columns; // a sta ak oovo napravim da bud emapa sa nazivima kolona kao kljucevima
+    private List<Column> columns;
 
     protected BasicDataSet() {
        items = new ArrayList<>();
@@ -31,10 +32,17 @@ public class BasicDataSet<E> implements DataSet<E> {
      * Creates an instance of {@link BasicDataSet}
      * @param cols columns of the data set.
      */
-    public BasicDataSet(Column... cols) { // ??? is thi sconstructir used anywhere?
+    public BasicDataSet(Column... cols) {
         this.columns = new ArrayList();
+        Arrays.stream(cols).forEach(col->columns.add(col));        
         items = new ArrayList<>();
     }
+    
+    public BasicDataSet(String... cols) {
+        this.columns = new ArrayList();
+        Arrays.stream(cols).forEach(col->columns.add(new Column(col)));        
+        items = new ArrayList<>();
+    }    
 
     /**
      * Creates an instance of {@link BasicDataSet}
@@ -50,7 +58,7 @@ public class BasicDataSet<E> implements DataSet<E> {
     }       
 
     @Override
-    public List<Column> getColumns() {
+    public List<Column> columns() {
         return columns;
     }
     
@@ -68,21 +76,21 @@ public class BasicDataSet<E> implements DataSet<E> {
         return colNames;
     }
     
-    public void setTargetColumns(int... targetIdxs) {
+    public void setAsTargetColumns(int... targetIdxs) {
         // reset all cureent target columns
-        columns.stream().forEach( c->c.setTarget(false));
+        columns.stream().forEach( c->c.setAsTarget(false));
                         
         for(int idx : targetIdxs) {
-            columns.get(idx).setTarget(true);
+            columns.get(idx).setAsTarget(true);
         }
     }
     
-    public void setTargetColumns(String... targetColNames) {
-         columns.stream().forEach( c->c.setTarget(false));
+    public void setAsTargetColumns(String... targetColNames) {
+         columns.stream().forEach( c->c.setAsTarget(false));
          
          columns.stream().forEach(col-> {
                                             for(String name : targetColNames)  {
-                                                if (col.getName().equals(name)) col.setTarget(true);                                           
+                                                if (col.getName().equals(name)) col.setAsTarget(true);                                           
                                             }
                                         });
     } 

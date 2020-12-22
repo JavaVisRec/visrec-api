@@ -173,7 +173,7 @@ public interface DataSet<E> extends Iterable<E> {
      * 
      * @return 
      */
-    public List<Column> getColumns();
+    public List<Column> columns();
 
     
     default public Stream<E> stream() {

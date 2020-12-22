@@ -48,7 +48,7 @@ package javax.visrec.ml.data;
             this.type = type;
         }
 
-        public void setTarget(boolean isTarget) {
+        public void setAsTarget(boolean isTarget) {
             this.isTarget = isTarget;
         }
                 
