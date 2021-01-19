@@ -14,9 +14,9 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
 
         private int imageWidth;
         private int imageHeight;
-        private File networkArchitecture;
-        private File trainingFile;
-        private File labelsFile;
+        private Path networkArchitecture;
+        private Path trainingFile;
+        private Path labelsFile;
         private float maxError;
         private float learningRate;
         private Path exportPath;
@@ -27,7 +27,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
         private BuildingBlock() {
         }
 
-        public File getNetworkArchitecture() {
+        public Path getNetworkArchitecture() {
             return networkArchitecture;
         }
 
@@ -39,11 +39,11 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             return imageHeight;
         }
 
-        public File getTrainingFile() {
+        public Path getTrainingFile() {
             return trainingFile;
         }
 
-        public File getLabelsFile() {
+        public Path getLabelsFile() {
             return labelsFile;
         }
 
@@ -116,12 +116,12 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             return this;
         }
 
-        public Builder<T> trainingFile(File trainingFile) {
+        public Builder<T> trainingFile(Path trainingFile) {
             block.trainingFile = trainingFile;
             return this;
         }
 
-        public Builder<T> labelsFile(File labelsFile) {
+        public Builder<T> labelsFile(Path labelsFile) {
             block.labelsFile = labelsFile;
             return this;
         }
@@ -151,7 +151,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             return this;
         }
 
-        public Builder<T> networkArchitecture(File architecture) {
+        public Builder<T> networkArchitecture(Path architecture) {
             block.networkArchitecture = architecture;
             return this;
         }

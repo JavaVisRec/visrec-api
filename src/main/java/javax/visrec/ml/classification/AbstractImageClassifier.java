@@ -30,7 +30,7 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     private ImageFactory<IMAGE_CLASS> imageFactory; // image factory impl for the specified image class
     private MODEL_CLASS model; // the model could be injected from machine learning container?
 
-    private float threshold=0.5f; // this should ba a part of every classifier
+    private float threshold=0.0f; // this should ba a part of every classifier
 
     protected AbstractImageClassifier(final Class<IMAGE_CLASS> imgCls, final MODEL_CLASS model) {
         final Optional<ImageFactory<IMAGE_CLASS>> optionalImageFactory = ServiceProvider.current()
