@@ -13,12 +13,13 @@ public interface ImageFactoryService {
 
     /**
      * Get the {@link ImageFactory} implementation by its image type.
+     *
      * @param imageCls image type in {@link Class} object which is able to
      *                 be processed by the image factory implementation.
-     * @param <T> image type
+     * @param <T>      image type
      * @return {@link Optional} with possible {@link ImageFactory} implementation
      * if found.
      */
-    <T> Optional<ImageFactory<T>> getByImageType(final Class<T> imageCls);
+    <T> Optional<ImageFactory<T>> getByImageType(Class<T> imageCls);
 
 }

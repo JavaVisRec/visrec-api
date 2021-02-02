@@ -1,7 +1,7 @@
 package javax.visrec.ml.classification;
 
 import javax.visrec.spi.ServiceProvider;
-import java.io.File;
+import java.nio.file.Path;
 
 public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
 
@@ -16,7 +16,7 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
         private float maxError;
         private int maxEpochs;
         private float learningRate;
-        private File trainingFile;
+        private Path trainingPath;
 
         private BuildingBlock() {
         }
@@ -45,8 +45,8 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
             return learningRate;
         }
 
-        public File getTrainingFile() {
-            return trainingFile;
+        public Path getTrainingPath() {
+            return trainingPath;
         }
 
         private static <R> BuildingBlock<R> copyWithNewTargetClass(BuildingBlock<?> block, Class<R> cls) {
@@ -57,7 +57,7 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
             newBlock.maxError = block.maxError;
             newBlock.maxEpochs = block.maxEpochs;
             newBlock.learningRate = block.learningRate;
-            newBlock.trainingFile = block.trainingFile;
+            newBlock.trainingPath = block.trainingPath;
             return newBlock;
         }
     }
@@ -104,8 +104,8 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
             return this;
         }
 
-        public Builder<T> trainingFile(File trainingFile) {
-            block.trainingFile = trainingFile;
+        public Builder<T> trainingPath(Path trainingPath) {
+            block.trainingPath = trainingPath;
             return this;
         }
 

@@ -36,14 +36,6 @@ public abstract class ServiceProvider {
     }
 
     /**
-     * Get the {@link BuilderService}
-     * @return builder service.
-     * @Deprecated for removal
-     */
-    @Deprecated
-    public abstract BuilderService getBuilderService();
-
-    /**
      * Get the {@link ClassifierFactoryService}
      * @return classifier creator service
      */

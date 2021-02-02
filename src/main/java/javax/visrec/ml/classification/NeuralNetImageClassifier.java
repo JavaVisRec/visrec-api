@@ -1,7 +1,6 @@
 package javax.visrec.ml.classification;
 
 import javax.visrec.spi.ServiceProvider;
-import java.io.File;
 import java.nio.file.Path;
 
 public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
@@ -15,7 +14,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
         private int imageWidth;
         private int imageHeight;
         private Path networkArchitecture;
-        private Path trainingFile;
+        private Path trainingPath;
         private Path labelsFile;
         private float maxError;
         private float learningRate;
@@ -39,11 +38,11 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             return imageHeight;
         }
 
-        public Path getTrainingFile() {
-            return trainingFile;
+        public Path getTrainingPath() {
+            return trainingPath;
         }
 
-        public Path getLabelsFile() {
+        public Path getLabelsPath() {
             return labelsFile;
         }
 
@@ -84,7 +83,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             newBlock.maxError = block.maxError;
             newBlock.maxEpochs = block.maxEpochs;
             newBlock.learningRate = block.learningRate;
-            newBlock.trainingFile = block.trainingFile;
+            newBlock.trainingPath = block.trainingPath;
             return newBlock;
         }
     }
@@ -117,7 +116,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
         }
 
         public Builder<T> trainingFile(Path trainingFile) {
-            block.trainingFile = trainingFile;
+            block.trainingPath = trainingFile;
             return this;
         }
 

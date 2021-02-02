@@ -1,8 +1,8 @@
 package javax.visrec.ml.classification;
 
 
-import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Map;
 
 /**
@@ -17,11 +17,11 @@ public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Ma
     /**
      * Classify the input and get a map of classification results as output
      *
-     * @param input {@link File} to use as input
+     * @param input {@link Path} to use as input
      * @return {@code Map} with key as classification label and with value as accuracy percentage of likelihood
      * @throws ClassificationException if the file couldn't be found or classified
      */
-    Map<String, Float> classify(File input) throws ClassificationException;
+    Map<String, Float> classify(Path input) throws ClassificationException;
 
     /**
      * Classify the input and get a map of classification results as output

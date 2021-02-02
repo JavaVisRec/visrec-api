@@ -4,9 +4,9 @@ import javax.visrec.ImageFactory;
 import javax.visrec.ml.model.ModelProvider;
 import javax.visrec.spi.ServiceProvider;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -49,10 +49,10 @@ public abstract class AbstractImageClassifier<IMAGE_CLASS, MODEL_CLASS> implemen
     }
 
     @Override
-    public Map<String, Float> classify(File file) throws ClassificationException {
+    public Map<String, Float> classify(Path path) throws ClassificationException {
         IMAGE_CLASS image;
         try {
-            image = imageFactory.getImage(file);
+            image = imageFactory.getImage(path);
             return classify(image);
         } catch (IOException e) {
             throw new ClassificationException("Failed to transform input into a BufferedImage", e);
