@@ -1,5 +1,6 @@
 package javax.visrec.ml.classification;
 
+import javax.visrec.ml.model.ModelCreationException;
 import javax.visrec.spi.ServiceProvider;
 import java.nio.file.Path;
 
@@ -88,7 +89,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
         }
     }
 
-    class Builder<T> implements javax.visrec.util.Builder<ImageClassifier<T>, ClassifierCreationException> {
+    class Builder<T> implements javax.visrec.ml.model.ModelBuilder<ImageClassifier<T>> {
 
         private BuildingBlock<T> block;
 
@@ -159,7 +160,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             return block;
         }
 
-        public ImageClassifier<T> build() throws ClassifierCreationException {
+        public ImageClassifier<T> build() throws ModelCreationException {
             return ServiceProvider.current().getClassifierFactoryService().createNeuralNetImageClassifier(block);
         }
     }

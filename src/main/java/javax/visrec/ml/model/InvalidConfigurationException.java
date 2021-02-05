@@ -1,4 +1,4 @@
-package javax.visrec.util;
+package javax.visrec.ml.model;
 
 /**
  * The Builder is able to attempt to invoke setter methods of the implemented Builder interface. If the
@@ -7,9 +7,9 @@ package javax.visrec.util;
  *
  * @author Kevin Berendsen
  */
-public class InvalidBuilderConfigurationException extends RuntimeException {
+public class InvalidConfigurationException extends ModelCreationException {
 
-    InvalidBuilderConfigurationException(String msg, Throwable throwable) {
+    InvalidConfigurationException(String msg, Throwable throwable) {
         super(msg, throwable);
     }
 

@@ -1,5 +1,6 @@
 package javax.visrec.ml.regression;
 
+import java.util.Objects;
 import javax.visrec.ml.model.ModelProvider;
 
 /**
@@ -18,9 +19,9 @@ public abstract class SimpleLinearRegression<MODEL_CLASS> implements Regressor<F
         return model;
     }
 
-//    protected void setModel(MODEL_CLASS model) {
-//        this.model = model;
-//    }
+    protected final void setModel(MODEL_CLASS model) {
+        this.model = Objects.requireNonNull(model, "Model cannot bu null!");
+    }
     
     @Override
     public abstract Float predict(Float input);    

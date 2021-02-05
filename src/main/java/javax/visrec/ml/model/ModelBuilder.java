@@ -1,4 +1,4 @@
-package javax.visrec.util;
+package javax.visrec.ml.model;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -12,14 +12,14 @@ import java.util.Map;
  * @author Kevin Berendsen
  * @since 1.0
  */
-public interface Builder<T, E extends Throwable> {
+public interface ModelBuilder<T> {
 
     /**
      * Builds and returns an object using properties set using available builder methods.
      *
      * @return object specified by the builder to build
      */
-    T build() throws E;
+    T build() throws ModelCreationException;
 
     /**
      * Builds an object using properties from the specified input argument
@@ -27,7 +27,7 @@ public interface Builder<T, E extends Throwable> {
      * @param configuration properties for the builder, a map of key, value pairs.
      * @return object specified by the builder to build
      */
-    default T build(Map<String, Object> configuration) throws E, InvalidBuilderConfigurationException {
+    default T build(Map<String, Object> configuration) throws ModelCreationException {
         Method[] methods = this.getClass().getDeclaredMethods();
         for (Method method : methods) {
             if (!method.getName().equals("build") && method.getParameterCount() == 1
@@ -35,7 +35,7 @@ public interface Builder<T, E extends Throwable> {
                 try {
                     method.invoke(this, configuration.get(method.getName()));
                 } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
-                    throw new InvalidBuilderConfigurationException("Couldn't invoke '" + method.getName() + "'", e);
+                    throw new InvalidConfigurationException("Couldn't invoke '" + method.getName() + "'", e);
                 }
             }
         }

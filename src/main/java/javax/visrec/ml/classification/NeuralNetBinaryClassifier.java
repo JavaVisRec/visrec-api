@@ -1,5 +1,6 @@
 package javax.visrec.ml.classification;
 
+import javax.visrec.ml.model.ModelCreationException;
 import javax.visrec.spi.ServiceProvider;
 import java.nio.file.Path;
 
@@ -62,7 +63,7 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
         }
     }
 
-    class Builder<T> implements javax.visrec.util.Builder<BinaryClassifier<T>, ClassifierCreationException> {
+    class Builder<T> implements javax.visrec.ml.model.ModelBuilder<BinaryClassifier<T>> {
 
         private NeuralNetBinaryClassifier.BuildingBlock<T> block;
 
@@ -113,7 +114,7 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
             return block;
         }
 
-        public BinaryClassifier<T> build() throws ClassifierCreationException {
+        public BinaryClassifier<T> build() throws ModelCreationException {
             return ServiceProvider.current().getClassifierFactoryService().createNeuralNetBinaryClassifier(block);
         }
     }

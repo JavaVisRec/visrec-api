@@ -1,4 +1,4 @@
-package javax.visrec.ml.classification;
+package javax.visrec.ml.model;
 
 /**
  * Exception thrown if anything fails in the creation of a classifier.
@@ -6,13 +6,13 @@ package javax.visrec.ml.classification;
  * @author Kevin Berendsen
  * @since 1.0
  */
-public class ClassifierCreationException extends Exception {
+public class ModelCreationException extends Exception {
 
     /**
      * Creates a new instance of the exception
      * @param message additional message of the cause.
      */
-    public ClassifierCreationException(String message) {
+    public ModelCreationException(String message) {
         super(message);
     }
 
@@ -21,7 +21,7 @@ public class ClassifierCreationException extends Exception {
      * @param message additional message of the cause.
      * @param throwable caused by throwable.
      */
-    public ClassifierCreationException(String message, Throwable throwable) {
+    public ModelCreationException(String message, Throwable throwable) {
         super(message, throwable);
     }
 

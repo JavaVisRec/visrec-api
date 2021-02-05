@@ -1,6 +1,6 @@
 package javax.visrec.spi;
 
-import javax.visrec.ml.classification.ClassifierCreationException;
+import javax.visrec.ml.model.ModelCreationException;
 import javax.visrec.ml.classification.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,9 +35,9 @@ public final class ClassifierFactoryService {
      *
      * @param block {@link NeuralNetImageClassifier.BuildingBlock} is provided to tune the building of the image classifier.
      * @return {@link ImageClassifier}
-     * @throws ClassifierCreationException if the classifier can not be created due to any reason.
+     * @throws ModelCreationException if the classifier can not be created due to any reason.
      */
-    public <T> ImageClassifier<T> createNeuralNetImageClassifier(NeuralNetImageClassifier.BuildingBlock<T> block) throws ClassifierCreationException {
+    public <T> ImageClassifier<T> createNeuralNetImageClassifier(NeuralNetImageClassifier.BuildingBlock<T> block) throws ModelCreationException {
         if (imageClassifierFactories == null) {
             imageClassifierFactories = new HashMap<>();
             for (ImageClassifierFactory<?> classifierCreator : ServiceLoader.load(ImageClassifierFactory.class)) {
@@ -47,7 +47,7 @@ public final class ClassifierFactoryService {
 
         ImageClassifierFactory<?> creator = imageClassifierFactories.get(block.getInputClass());
         if (creator == null) {
-            throw new ClassifierCreationException("Unsupported image class");
+            throw new ModelCreationException("Unsupported image class");
         }
 
         @SuppressWarnings("unchecked")
@@ -61,9 +61,9 @@ public final class ClassifierFactoryService {
      *
      * @param block {@link NeuralNetBinaryClassifier.BuildingBlock} is provided to tune the building of the binary classifier.
      * @return {@link BinaryClassifier}
-     * @throws ClassifierCreationException if the classifier can not be created due to any reason.
+     * @throws ModelCreationException if the classifier can not be created due to any reason.
      */
-    public <T> BinaryClassifier<T> createNeuralNetBinaryClassifier(NeuralNetBinaryClassifier.BuildingBlock<T> block) throws ClassifierCreationException {
+    public <T> BinaryClassifier<T> createNeuralNetBinaryClassifier(NeuralNetBinaryClassifier.BuildingBlock<T> block) throws ModelCreationException {
         if (binaryClassifierFactories == null) {
             binaryClassifierFactories = new HashMap<>();
             for (BinaryClassifierFactory<?> classifierCreator : ServiceLoader.load(BinaryClassifierFactory.class)) {
@@ -73,7 +73,7 @@ public final class ClassifierFactoryService {
 
         BinaryClassifierFactory<?> creator = binaryClassifierFactories.get(block.getInputClass());
         if (creator == null) {
-            throw new ClassifierCreationException("Unsupported target class");
+            throw new ModelCreationException("Unsupported target class");
         }
 
         @SuppressWarnings("unchecked")

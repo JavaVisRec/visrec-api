@@ -1,5 +1,6 @@
 package javax.visrec.ml.classification;
 
+import java.util.Objects;
 import javax.visrec.ml.model.ModelProvider;
 
 /**
@@ -18,5 +19,9 @@ public abstract class LogisticRegression<MODEL_CLASS> implements BinaryClassifie
     public MODEL_CLASS getModel() {
         return model;
     }
+    
+    protected final void setModel(MODEL_CLASS model) {
+        this.model = Objects.requireNonNull(model, "Model cannot be null!");
+    }    
 
 }
