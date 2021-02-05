@@ -18,6 +18,7 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
         private int maxEpochs;
         private float learningRate;
         private Path trainingPath;
+        private float threshold;
 
         private BuildingBlock() {
         }
@@ -50,6 +51,12 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
             return trainingPath;
         }
 
+        public float getThreshold() {
+            return threshold;
+        }
+        
+        
+
         private static <R> BuildingBlock<R> copyWithNewTargetClass(BuildingBlock<?> block, Class<R> cls) {
             BuildingBlock<R> newBlock = new BuildingBlock<>();
             newBlock.inputCls = cls;
@@ -59,6 +66,7 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
             newBlock.maxEpochs = block.maxEpochs;
             newBlock.learningRate = block.learningRate;
             newBlock.trainingPath = block.trainingPath;
+            newBlock.threshold = block.threshold;
             return newBlock;
         }
     }
@@ -109,6 +117,13 @@ public interface NeuralNetBinaryClassifier<T> extends BinaryClassifier<T> {
             block.trainingPath = trainingPath;
             return this;
         }
+        
+        public Builder<T> threshold(float  threshold) {
+            block.threshold = threshold;
+            return this;
+        }
+        
+        
 
         public NeuralNetBinaryClassifier.BuildingBlock<T> getBuildingBlock() {
             return block;

@@ -22,6 +22,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
         private Path exportPath;
         private Path importPath;
         private int maxEpochs;
+        private float threshold;        
         private Class<T> inputCls;
 
         private BuildingBlock() {
@@ -68,6 +69,12 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             return maxEpochs;
         }
 
+        public float getThreshold() {
+            return threshold;
+        }
+
+        
+        
         public Class<T> getInputClass() {
             return inputCls;
         }
@@ -85,6 +92,7 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             newBlock.maxEpochs = block.maxEpochs;
             newBlock.learningRate = block.learningRate;
             newBlock.trainingPath = block.trainingPath;
+            newBlock.threshold = block.threshold;
             return newBlock;
         }
     }
@@ -140,6 +148,11 @@ public interface NeuralNetImageClassifier<T> extends ImageClassifier<T> {
             block.learningRate = learningRate;
             return this;
         }
+        
+        public Builder<T> threshold(float threshold) {
+            block.threshold = threshold;
+            return this;
+        }        
 
         public Builder<T> exportModel(Path path) {
             block.exportPath = path;
