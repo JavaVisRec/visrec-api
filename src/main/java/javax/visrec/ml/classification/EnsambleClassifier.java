@@ -28,7 +28,7 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
         }
         
         int[] freq = new int[results.size()];        
-        return results.get(0);        
+        return results.get(0);  // todo       
     }
 
     // or just provide method for adding swith some intrenal id?
