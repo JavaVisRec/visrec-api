@@ -1,6 +1,8 @@
 package javax.visrec.ml.classification;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,13 +21,14 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
 
     @Override
     public R classify(T input) {
+        List<R> results = new ArrayList<>();
         for (Map.Entry<String, Classifier<T, R>> classifier : classifiers.entrySet()) {
-            classifier.getValue().classify(input);
+            R result = classifier.getValue().classify(input);
+            results.add(result);
         }
-        // get the highest class frequency
-        //.collect(); // get average scores? This method can be overriden, provide default impl here
-        // return merged classification result of all classifiers  - mean or most frequent?
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        int[] freq = new int[results.size()];        
+        return results.get(0);        
     }
 
     // or just provide method for adding swith some intrenal id?
