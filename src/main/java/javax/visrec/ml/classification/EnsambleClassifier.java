@@ -22,16 +22,28 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
     @Override
     public R classify(T input) {
         List<R> results = new ArrayList<>();
+        Map<String, Integer> freqCount = new HashMap<>();
+        int maxFreq = 0;
+        R maxClass = null;
         for (Map.Entry<String, Classifier<T, R>> classifier : classifiers.entrySet()) {
             R result = classifier.getValue().classify(input);
             results.add(result);
-        }
+            // what if it is a binary classifier ? it should return class name with correspondin probability
+            if (freqCount.containsKey(result)) {
+                freqCount.put(result.toString(), freqCount.get(result.toString())+1);
+            } else {
+                freqCount.put(result.toString(), 1);
+            }
+            
+            if (freqCount.get(result.toString()) > maxFreq) {
+                maxFreq = freqCount.get(result.toString());
+                maxClass = result;
+            }
+        }             
         
-        int[] freq = new int[results.size()];        
-        return results.get(0);  // todo       
+        return maxClass;       
     }
 
-    // or just provide method for adding swith some intrenal id?
     public void addClassifier(String classifierId, Classifier<T, R> classifier) {
         classifiers.put(classifierId, classifier);
     }
