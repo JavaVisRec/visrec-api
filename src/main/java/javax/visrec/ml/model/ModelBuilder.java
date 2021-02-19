@@ -5,11 +5,9 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
- * Generic builder interface, that all builders for machine learning algorithms implement.
+ * Generic model builder interface, that all builders for machine learning algorithms implement.
  *
  * @param <T> type of the object to be returned by the builder.
- * @author Zoran Sevarac
- * @author Kevin Berendsen
  * @since 1.0
  */
 public interface ModelBuilder<T> {
@@ -18,6 +16,7 @@ public interface ModelBuilder<T> {
      * Builds and returns an object using properties set using available builder methods.
      *
      * @return object specified by the builder to build
+     * @throws javax.visrec.ml.model.ModelCreationException
      */
     T build() throws ModelCreationException;
 
@@ -26,6 +25,7 @@ public interface ModelBuilder<T> {
      *
      * @param configuration properties for the builder, a map of key, value pairs.
      * @return object specified by the builder to build
+     * @throws javax.visrec.ml.model.ModelCreationException
      */
     default T build(Map<String, Object> configuration) throws ModelCreationException {
         Method[] methods = this.getClass().getDeclaredMethods();

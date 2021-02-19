@@ -7,7 +7,6 @@ import java.util.Map;
  * Interface to perform object detection in image.
  * Returns a map of object labels/classes and corresponding location in image outlined by BoundingBox-es
  *
- * @author Zoran Sevarac
  * @param <T> Class used to represent image that will be analyzed
  * @since 1.0
  */

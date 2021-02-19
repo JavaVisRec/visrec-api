@@ -28,7 +28,6 @@ package javax.visrec.ml.eval;
  * @param <MODEL_CLASS> Model class
  * @param <DATASET_CLASS> Data set class
  *
- * @author Zoran Sevarac
  * @since 1.0
  */
 @FunctionalInterface

@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
  * Provides a list of data set items with column info.
  * 
  * @param <E> Type of elements in data set
- * @author Zoran Sevarac
  */
 public class BasicDataSet<E> implements DataSet<E> {
 

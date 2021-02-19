@@ -3,7 +3,6 @@ package javax.visrec.ml.detection;
 /**
  * This class represents a bounding box over image at specified position, dimensions, label and score.
  * 
- * @author Zoran Sevarac
  * @since 1.0
  */
 public class BoundingBox {

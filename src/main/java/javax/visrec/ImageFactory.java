@@ -9,7 +9,6 @@ import java.nio.file.Path;
  * This interface provides a standard way to get/read different(specified) kinds of image from file, url or input stream.
  *
  * @param <T> the type of object to be returned after getting image from {@link Path}, {@link URL} or {@link InputStream}
- * @author Zoran Sevarac
  * @since 1.0
  */
 public interface ImageFactory<T> {

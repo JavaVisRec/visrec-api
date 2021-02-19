@@ -9,7 +9,6 @@ import java.util.Map;
  * Classifier interface specialized in image classification
  *
  * @param <IMAGE_CLASS> type of input objects to classify (eg. User, Product, Transaction, Image, etc.)
- * @author Zoran Sevarac
  * @since 1.0
  */
 public interface ImageClassifier<IMAGE_CLASS> extends Classifier<IMAGE_CLASS, Map<String, Float>> {

@@ -3,7 +3,6 @@ package javax.visrec.ml.model;
 /**
  * Exception thrown if anything fails in the creation of a classifier.
  *
- * @author Kevin Berendsen
  * @since 1.0
  */
 public class ModelCreationException extends Exception {

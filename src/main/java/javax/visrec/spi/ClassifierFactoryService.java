@@ -9,7 +9,6 @@ import java.util.ServiceLoader;
 /**
  * Service to provide the correct {@link Classifier} implementation.
  *
- * @author Kevin Berendsen
  * @since 1.0
  */
 public final class ClassifierFactoryService {

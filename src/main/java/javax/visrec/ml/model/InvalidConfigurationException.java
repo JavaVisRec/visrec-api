@@ -5,7 +5,6 @@ package javax.visrec.ml.model;
  * declared setter method can't be invoked it will throw this exception because the configuration
  * doesn't match the method to invoke.
  *
- * @author Kevin Berendsen
  */
 public class InvalidConfigurationException extends ModelCreationException {
 

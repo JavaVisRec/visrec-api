@@ -14,7 +14,6 @@ package javax.visrec.ml.classification;
  *
  * @param <T> type of input objects to classify (eg. User, Product, Transaction, Image, etc.)
  * @param <R> type of classification result (String, Enum, custom class).
- * @author Zoran Sevarac
  * @see BinaryClassifier
  * @see MultiClassClassifier
  * @see ImageClassifier

@@ -6,7 +6,6 @@ package javax.visrec.ml.regression;
  * Implementations should specify specific type of inputs and outputs that
  * specific algorithm expects and returns.
  * 
- * @author Zoran Sevarac
  * @param <I> type of inputs / features
  * @param <R> return/result type
  */

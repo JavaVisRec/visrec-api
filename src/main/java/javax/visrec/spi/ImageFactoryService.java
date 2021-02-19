@@ -6,7 +6,6 @@ import java.util.Optional;
 /**
  * The service to locate and find implementations of the {@link ImageFactory} interface.
  *
- * @author Kevin Berendsen
  * @since 1.0
  */
 public interface ImageFactoryService {

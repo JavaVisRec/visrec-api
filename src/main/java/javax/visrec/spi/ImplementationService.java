@@ -2,7 +2,7 @@ package javax.visrec.spi;
 
 /**
  * Returns information about the used implementation of visual recognition API
- * @author Kevin Berendsen
+ *
  * @since 1.0
  */
 public abstract class ImplementationService {

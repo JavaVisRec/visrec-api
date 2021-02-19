@@ -8,7 +8,6 @@ import javax.visrec.ml.model.ModelProvider;
  * using logistic regression algorithm. 
  * Subclasses should use specific logistic regression implementation to provide that functionality.
  *
- * @author Zoran Sevarac
  * @param <MODEL_CLASS> Implementation class of underlying machine learning model
  */
 public abstract class LogisticRegression<MODEL_CLASS> implements BinaryClassifier<float[]>, ModelProvider<MODEL_CLASS> {

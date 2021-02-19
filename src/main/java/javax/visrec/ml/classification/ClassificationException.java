@@ -3,7 +3,6 @@ package javax.visrec.ml.classification;
 /**
  * Exception thrown if anything fails in the execution of a classifier.
  *
- * @author Kevin Berendsen
  * @since 1.0
  */
 public class ClassificationException extends RuntimeException {

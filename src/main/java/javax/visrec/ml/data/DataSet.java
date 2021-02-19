@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 /**
  * Generic interface for all data sets for machine learning, independent of type of elements.
  *
- * @author Zoran Sevarac
  * @param <E> type of data set elements
  * @since 1.0
  */

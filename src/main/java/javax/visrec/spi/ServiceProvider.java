@@ -10,9 +10,6 @@ import java.util.*;
 /**
  * The ServiceProvider is the centralized provider to provide API scoped services.
  *
- * @author Werner Keil
- * @author Martin Desruisseaux
- * @author Kevin Berendsen
  * @since 1.0
  */
 public abstract class ServiceProvider {

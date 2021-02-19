@@ -22,7 +22,6 @@ import java.util.Map;
 /**
  * Registry for all ML algorithms provided by this implementation.
  * 
- * @author Zoran Sevarac
  */
 public class ServiceRegistry {
     

@@ -27,7 +27,6 @@ import java.util.HashMap;
 /**
  * Wrapper for constants and values for classifier and regressor evaluation metrics.
  * 
- * @author Zoran Sevarac
  */
 public class EvaluationMetrics {
 
