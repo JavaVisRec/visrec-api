@@ -1,10 +1,12 @@
 package javax.visrec.ml.classification;
 
 /**
- * Classifier answers the question what is the category/type of an input object.
- * Each category/type has corresponding label or class name, which can be String, Enum or custom user  defined class.
- * This is a generic classifier interface, that all classifiers should implement, and
+ * Generic classifier interface, that all classifiers should implement, and
  * it provides a method to classify given instances of some class.
+ * Each category/type has corresponding label or class, which can be String, Enum or custom user defined class.
+ * Machine learning based classifier can learn from examples how to determine a 
+ * category of an input object with high degree of confidence.
+ *
  * <p>
  * Implementations should specify input type <T> of instances that are classified,
  * and type of the returned vales <R>.

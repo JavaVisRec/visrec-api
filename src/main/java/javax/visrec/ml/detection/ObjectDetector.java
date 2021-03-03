@@ -14,7 +14,7 @@ import java.util.Map;
 public interface ObjectDetector<T> {
 
     /**
-     * Detects object in specified image
+     * Detects object in specified image and returns a map with detected objects in bounding boxes.
      *
      * @param image image to search for object
      * @return a map of multiple {@link BoundingBox}
