@@ -19,6 +19,7 @@ package javax.visrec.ml.classification;
  * @see BinaryClassifier
  * @see MultiClassClassifier
  * @see ImageClassifier
+ * @see Classifiable
  * @since 1.0
  */
 @FunctionalInterface

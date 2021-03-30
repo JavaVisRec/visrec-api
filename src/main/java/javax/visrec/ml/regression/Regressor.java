@@ -9,7 +9,7 @@ package javax.visrec.ml.regression;
  * @param <I> type of inputs / features
  * @param <R> return/result type
  */
-public interface Regressor<I, R> {
+public interface Regressor<I, R extends Number> {
 
     R predict(I inputs);
 

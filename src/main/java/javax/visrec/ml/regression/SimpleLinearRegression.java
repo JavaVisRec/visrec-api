@@ -27,7 +27,7 @@ public abstract class SimpleLinearRegression<MODEL_CLASS> implements Regressor<F
     public abstract Float predict(Float input);    
     
     /**
-     * Slope tells how much on average output change when input changes by one. 
+     * Slope parameter of the model tells how much on average output change when input changes by one. 
      * 
      * If it is zero there is no linear dependency between input and output, and data is probably scattered.
      * If it is less then one output grows slower then input.
@@ -39,7 +39,8 @@ public abstract class SimpleLinearRegression<MODEL_CLASS> implements Regressor<F
     public abstract float getSlope();
 
     /**
-     * Intercept tells us the value of prediction when input is zero
+     * Intercept tells us the value of prediction when input is zero.
+     * 
      * @return 
      */
     public abstract float getIntercept();

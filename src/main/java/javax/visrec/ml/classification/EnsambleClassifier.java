@@ -28,7 +28,7 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
             R result = classifier.getValue().classify(input);
             results.add(result);
             // what if it is a binary classifier ? it should return class name with corresponding probability
-            // if (instanceof BinaryClassifier)
+            // if (instanceof BinaryClassifier) deal with binary classifiers using if statement
             if (freqCount.containsKey(result)) {
                 freqCount.put(result.toString(), freqCount.get(result.toString())+1);
             } else {
@@ -44,8 +44,9 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
         return maxClass;       
     }
 
-    public void addClassifier(String classifierId, Classifier<T, R> classifier) {
+    public EnsambleClassifier addClassifier(String classifierId, Classifier<T, R> classifier) {
         classifiers.put(classifierId, classifier);
+        return this;
     }
 
     public Classifier getClassifier(String classiferId) {
