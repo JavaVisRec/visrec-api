@@ -172,8 +172,16 @@ public interface DataSet<E> extends Iterable<E> {
      * 
      * @return 
      */
-    public List<Column> columns();
-
+    public List<Column> getColumns();
+    
+    /**
+     * Get the names of target columns.
+     * Target columns are use as target output during the training.
+     * 
+     * @return Returns target columns
+     */
+    public String[] getTargetColumnsNames();
+    
     
     default public Stream<E> stream() {
         return getItems().stream();

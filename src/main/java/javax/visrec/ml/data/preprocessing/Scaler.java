@@ -11,6 +11,6 @@ import javax.visrec.ml.data.DataSet;
  * @param <T> Data set class (that implements DataSet interface)
  */
 public interface Scaler<T extends DataSet<?>> {
-    public void scale(T dataSet);    
+    public void apply(T dataSet);    
 }
 

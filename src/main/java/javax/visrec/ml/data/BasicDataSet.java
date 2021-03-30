@@ -57,7 +57,7 @@ public class BasicDataSet<E> implements DataSet<E> {
     }       
 
     @Override
-    public List<Column> columns() {
+    public List<Column> getColumns() {
         return columns;
     }
     

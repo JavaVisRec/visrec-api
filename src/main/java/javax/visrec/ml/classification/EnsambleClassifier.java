@@ -27,7 +27,8 @@ public final class EnsambleClassifier<T, R> implements Classifier<T, R> {
         for (Map.Entry<String, Classifier<T, R>> classifier : classifiers.entrySet()) {
             R result = classifier.getValue().classify(input);
             results.add(result);
-            // what if it is a binary classifier ? it should return class name with correspondin probability
+            // what if it is a binary classifier ? it should return class name with corresponding probability
+            // if (instanceof BinaryClassifier)
             if (freqCount.containsKey(result)) {
                 freqCount.put(result.toString(), freqCount.get(result.toString())+1);
             } else {
