@@ -21,7 +21,7 @@ public class BasicDataSet<E> implements DataSet<E> {
     /**
      * List of data set columns. Each column provides info about it's name, type.
      */
-    private List<Column> columns;
+    private List<Column> columns = new ArrayList();
 
     protected BasicDataSet() {
        items = new ArrayList<>();
@@ -62,7 +62,7 @@ public class BasicDataSet<E> implements DataSet<E> {
     }
     
     public void setColumnNames(String[] columnNames) {
-        for(int i=0; i<columns.size(); i++) {
+        for(int i=0; i<columnNames.length; i++) {
              columns.get(i).setName(columnNames[i]);
         }   
     }
