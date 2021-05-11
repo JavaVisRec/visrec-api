@@ -21,7 +21,7 @@ public class BasicDataSet<E> implements DataSet<E> {
     /**
      * List of data set columns. Each column provides info about it's name, type.
      */
-    private List<Column> columns = new ArrayList();
+    private List<Column> columns = new ArrayList<>();
 
     protected BasicDataSet() {
        items = new ArrayList<>();
@@ -94,6 +94,7 @@ public class BasicDataSet<E> implements DataSet<E> {
                                         });
     } 
     
+    @Override
     public String[] getTargetColumnsNames() {
         List<String> targetLabels = columns.stream()
                         .filter((col) -> col.isTarget())
