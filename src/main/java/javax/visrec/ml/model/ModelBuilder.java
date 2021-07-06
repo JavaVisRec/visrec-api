@@ -28,18 +28,22 @@ public interface ModelBuilder<T> {
      * @throws javax.visrec.ml.model.ModelCreationException
      */
     default T build(Map<String, Object> configuration) throws ModelCreationException {
+        ModelBuilder<T> thizz = this;
         Method[] methods = this.getClass().getDeclaredMethods();
         for (Method method : methods) {
             if (!method.getName().equals("build") && method.getParameterCount() == 1
                     && configuration.containsKey(method.getName())) {
                 try {
-                    method.invoke(this, configuration.get(method.getName()));
+                    Object obj = method.invoke(thizz, configuration.get(method.getName()));
+                    if (thizz.getClass().isInstance(obj)) {
+                        thizz = (ModelBuilder<T>) thizz.getClass().cast(obj);
+                    }
                 } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
                     throw new InvalidConfigurationException("Couldn't invoke '" + method.getName() + "'", e);
                 }
             }
         }
-        return build();
+        return thizz.build();
     }
 
 }
